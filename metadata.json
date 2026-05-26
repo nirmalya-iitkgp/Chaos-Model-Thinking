@@ -1,0 +1,6 @@
+{
+  "name": "Chaos model Thinking",
+  "description": "An interactive educational simulator for complex systems, positive/negative feedback loops, threshold bifurcations, and chaos across economics, environment, urban planning, public health, and social dynamics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
