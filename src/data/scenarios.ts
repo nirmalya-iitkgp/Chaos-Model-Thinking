@@ -951,19 +951,19 @@ export const SCENARIO_LIST: ScenarioDefinition[] = [
       if (enableACC) {
         return {
           title: 'ACC Shock-Dampening (System Safe)',
-          text: `Incredible! Equipping vehicles with Adaptive Cruise Control (ACC) filtered out human reaction lag and over-braking. Because ACC reads electronic spacing, it adjusted speed slightly without panic, squelching the shockwave before a macroscopic gridlock could emerge.`,
+          text: `Equipping vehicles with Adaptive Cruise Control (ACC) eliminated human braking reaction delay. Maintaining electronic headway spacing prevented the amplification of deceleration waves, preserving steady traffic flow.`,
           isCritical: false
         };
       } else if (density <= 50 || reactivity <= 45) {
         return {
           title: 'Density Buffer Restored',
-          text: `At a lower volume of ${density}%, trailing drivers had ample distance cushions. When Car 0 tapped their brakes, the trailing human spacing absorbed the speed fluctuation, dissipating the cascade without triggering a macroscopic halt.`,
+          text: `At a volume of ${density}%, headway cushions allowed trailing drivers to absorb speed fluctuations without initiating a macroscopic stop-and-go wave.`,
           isCritical: false
         };
       }
       return {
         title: 'Macroscopic Shockwave Formed',
-        text: `Deterministic Gridlock! Under high volume (${density}%) and human panic reaction (${reactivity}%), safety margins were too thin. Each trailing driver over-reacted and braked harder than the car in front, amplifying a backward-traveling wave. This highlights how individual micro-behaviors naturally self-organize into unprompted macroscopic jams.`,
+        text: `Under vehicle density of ${density}% and driver reaction delay (${reactivity}%), backward-propagating deceleration waves amplified upstream, causing a localized standstill without physical blockage.`,
         isCritical: true
       };
     }
@@ -1205,13 +1205,13 @@ export const SCENARIO_LIST: ScenarioDefinition[] = [
       if (reserve >= 35 && demand <= 80) {
         return {
           title: 'Domino Chain Arrested (System Resilient)',
-          text: `Incredible! A generous +${reserve}% operating margin provided the necessary capacity headroom (slack) for neighboring substations Beta & Gamma to safely absorb Alpha's emergency load redistribution. Although localized disruptions occurred, the domino cascading feedback was blocked, preventing a macroscopic urban collapse.`,
+          text: `An operating reserve margin of +${reserve}% provided sufficient capacity for neighboring substations Beta and Gamma to absorb load shed from Alpha, arresting the cascade before system-wide collapse.`,
           isCritical: false
         };
       }
       return {
-        title: 'Macroscopic Cascading Failure Triggered!',
-        text: `Grid criticality crossed the tipping point! With thin operating margins (+${reserve}% reserve) and heavy demand load (${demand}%), safety buffers were immediately breached. Once Alpha tripped, its surge spilled onto adjacent Beta & Gamma loops, overloading them and setting off an unavoidable cascading chain reaction. Your entire grid blacked out to 0%. This proves how extreme lean optimization makes interconnected infrastructures critically fragile to minor triggers.`,
+        title: 'Macroscopic Cascading Failure Triggered',
+        text: `With an operating reserve margin of +${reserve}% and peak demand (${demand}%), redirecting Alpha's load pushed adjacent loops beyond thermal trip thresholds, initiating a cascading blackout across downstream substations.`,
         isCritical: true
       };
     }
@@ -1373,13 +1373,13 @@ export const SCENARIO_LIST: ScenarioDefinition[] = [
       if (phase <= 2 && superspreaderCount <= 1) {
         return {
           title: 'Epidemic Eradicated (Curve Flattened)',
-          text: `Incredible foresight! By launching mitigation actions early on Phase ${phase} alongside light cluster seeding, you successfully squashed the exponential rise. Active cases peaked at a manageable ${state.infected.toLocaleString()}, allowing physicians to provide adequate support and hold deaths to only ${state.deceased.toLocaleString()}. This highlights the high impact of early timing in non-linear epidemics.`,
+          text: `Early intervention at Phase ${phase} alongside contact tracing kept transmission reproduction below replacement. Active cases peaked at ${state.infected.toLocaleString()}, allowing hospital capacity to support all patients and limiting deaths to ${state.deceased.toLocaleString()}.`,
           isCritical: false
         };
       }
       return {
-        title: 'Runaway Pandemic Outbreak!',
-        text: `The exponential trigger achieved terminal velocity! Due to delayed intervention (Phase ${phase}) and active superspreader gathering seeds (${superspreaderCount}), the virus reproduced faster than standard social isolation could intercept. Infection count surged to ${state.infected.toLocaleString()}, triggering triage constraints that drove deaths to a devastating ${state.deceased.toLocaleString()}. This reveals how small initial delays inside chaotic systems cause cascading catastrophes.`,
+        title: 'Exponential Outbreak Phase',
+        text: `Delayed intervention until Phase ${phase} allowed unchecked viral transmission. Cases escalated to ${state.infected.toLocaleString()}, exceeding clinical capacity and leading to ${state.deceased.toLocaleString()} cumulative fatalities.`,
         isCritical: true
       };
     }
@@ -1483,14 +1483,14 @@ export const SCENARIO_LIST: ScenarioDefinition[] = [
 
       if (isAboveThreshold) {
         return {
-          title: `Herd Immunity Active (Passed Threshold ${threshold}%)`,
-          text: `Outstanding! At ${coverage}% vaccination (above the dynamically shifted ${threshold}% critical threshold), there are not enough vulnerable people to sustain transmission. This dynamic threshold is derived from Pc = 1 - 1/R0. Each infected person encounters vaccinated individuals, stopping the chain. New Infections collapsed to ${state.newInfections} by Year 5, proving eradication.`,
+          title: `Herd Immunity Active (Threshold: ${threshold}%)`,
+          text: `At ${coverage}% vaccination (exceeding the critical threshold Pc = 1 - 1/R0 of ${threshold}%), immune individuals shield vulnerable members, preventing sustained chains of infection and reducing annual cases to ${state.newInfections}.`,
           isCritical: false
         };
       }
       return {
-        title: `Outbreak Explosion (Below Threshold ${threshold}%)`,
-        text: `At ${coverage}% coverage (below the dynamically calculated ${threshold}% threshold required for R0 = ${infectivity}), herd immunity collapsed. Even though ${coverage}% looks high, the remaining vulnerable population allowed the virus to form continuous connection vectors. Infections escalated to ${state.newInfections} cases. A mere 1% difference completely flips the system from total eradication to widespread outbreak (a classic mathematical bifurcation).`,
+        title: `Outbreak Sustained (Below Threshold: ${threshold}%)`,
+        text: `At ${coverage}% coverage (below the critical threshold of ${threshold}% for R0 = ${infectivity}), the remaining susceptible population maintains contiguous transmission paths, causing annual infections to reach ${state.newInfections}. A marginal drop below the critical point flips the system from containment to recurrence.`,
         isCritical: true
       };
     }
@@ -1707,6 +1707,1290 @@ export const SCENARIO_LIST: ScenarioDefinition[] = [
       return {
         title: `Fad Dissipated (Flipped Below Threshold ${threshold}%)`,
         text: `At ${initial}% adoption (below the dynamic threshold of ${threshold}% needed for ${cohesion}x social cohesion), the bandwagon never materialized. The general majority ignored the trend, social velocity crashed, and adoption dropped to ${state.adoptionRate}%. Tipping points require exact critical mass relative to social cohesion to survive.`,
+        isCritical: true
+      };
+    }
+  },
+  {
+    id: 'conway-life',
+    domain: 'Emergence & Complexity',
+    name: 'Conway’s Life & Langton’s Ant',
+    chaosConcept: 'Cellular Automata, Emergence & Computation',
+    learningObjective: 'Observe how microscopic deterministic local rules generate self-replicating gliders, chaotic oscillators, and the emergent 104-step highway structure of Langton’s Ant from pure stochastic noise.',
+    timeLabel: 'Epoch',
+    maxSteps: 6,
+    controls: [
+      {
+        id: 'simulationMode',
+        label: 'Automaton Model Mode',
+        type: 'slider',
+        min: 0,
+        max: 2,
+        step: 1,
+        defaultValue: 0,
+        description: '0: Conway’s Standard (B3/S23), 1: HighLife Replicator (B36/S23), 2: Langton’s Ant (2-state emergent highway)'
+      },
+      {
+        id: 'gridDensity',
+        label: 'Initial Seed Density',
+        type: 'slider',
+        min: 10,
+        max: 50,
+        step: 5,
+        defaultValue: 25,
+        unit: '%',
+        description: 'Initial percentage of active live cells or seed particles on the lattice.'
+      },
+      {
+        id: 'mutationNoise',
+        label: 'Entropy Perturbation Noise',
+        type: 'slider',
+        min: 0,
+        max: 5,
+        step: 1,
+        defaultValue: 0,
+        unit: '%',
+        description: 'Stochastic cosmic bit-flips injected each epoch to test structural resilience.'
+      }
+    ],
+    initialState: {
+      liveCells: 300,
+      activeDensity: 25,
+      entropy: 0.72,
+      gliderCount: 2,
+      phaseDescription: 'Initial random soup seeded on the 2D lattice. Micro-scale interaction begins.'
+    },
+    calculateStep: (step, prev, controls) => {
+      const mode = Number(controls.simulationMode ?? 0);
+      const density = Number(controls.gridDensity ?? 25);
+      const noise = Number(controls.mutationNoise ?? 0);
+
+      let liveCells = prev.liveCells;
+      let activeDensity = prev.activeDensity;
+      let entropy = prev.entropy;
+      let gliderCount = prev.gliderCount;
+      let phaseDescription = '';
+
+      if (mode === 2) {
+        // Langton's Ant trajectory
+        const stepsCount = step * 1800;
+        const inHighway = stepsCount >= 8000;
+        liveCells = Math.round(150 + step * 95);
+        activeDensity = Math.round((liveCells / 1600) * 100);
+        entropy = inHighway ? 0.22 : Math.max(0.4, 0.85 - step * 0.08);
+        gliderCount = inHighway ? 1 : 0;
+        phaseDescription = inHighway 
+          ? `EMERGENT HIGHWAY ENGAGED: After chaotic wandering, the ant locked into the famous 104-step self-repeating diagonal highway!`
+          : `Chaotic build phase (~${stepsCount} steps): Ant modifies grid symmetrically, forming pseudo-fractal card patterns.`;
+      } else if (mode === 1) {
+        // HighLife Replicator
+        liveCells = Math.min(1200, Math.round(prev.liveCells * 1.25 + noise * 15));
+        activeDensity = Math.min(75, Math.round((liveCells / 1600) * 100));
+        entropy = Math.min(0.9, Math.round((0.55 + step * 0.05) * 100) / 100);
+        gliderCount = step * 2;
+        phaseDescription = `HighLife B36/S23: Replicator pattern clones itself every 12 generations. Population expanding exponentially.`;
+      } else {
+        // Conway B3/S23
+        if (step === 1) {
+          liveCells = Math.round(1600 * (density / 100) * 0.75);
+          gliderCount = Math.max(1, Math.round(density / 15));
+          phaseDescription = 'Extinction wave: isolated cells die of underpopulation, dense clusters die of overcrowding.';
+        } else if (step === 2) {
+          liveCells = Math.round(prev.liveCells * 0.88 + noise * 12);
+          gliderCount = prev.gliderCount + 1;
+          phaseDescription = 'Stable structures crystallize: Blinkers, Blocks, Gliders, and Beehives separate from chaos.';
+        } else if (step === 3) {
+          liveCells = Math.round(prev.liveCells * 0.94);
+          phaseDescription = 'Gliders traverse empty voids. Collisions either annihilate or breed new secondary oscillators.';
+        } else {
+          liveCells = Math.max(80, Math.round(prev.liveCells * (0.97 + (noise * 0.02))));
+          phaseDescription = `Self-organized criticality reached: Steady state balance of gliders, pulsars, and still lifes.`;
+        }
+        activeDensity = Math.min(60, Math.max(5, Math.round((liveCells / 1600) * 100)));
+        entropy = Math.max(0.15, Math.round((0.7 - step * 0.08 + (noise * 0.04)) * 100) / 100);
+      }
+
+      return {
+        liveCells,
+        activeDensity,
+        entropy,
+        gliderCount,
+        phaseDescription
+      };
+    },
+    metrics: [
+      { key: 'liveCells', label: 'Living Cells', color: 'text-emerald-500', formatter: (val) => `${val} cells` },
+      { key: 'activeDensity', label: 'Lattice Density', color: 'text-indigo-500', formatter: (val) => `${val}%` },
+      { key: 'entropy', label: 'Shannon Entropy', color: 'text-amber-500', formatter: (val) => `${val} bits` }
+    ],
+    analysis: (state, controls) => {
+      const mode = Number(controls.simulationMode ?? 0);
+      if (mode === 2) {
+        return {
+          title: 'Langton’s Ant Emergence Theorem',
+          text: `Langton's Ant demonstrates that extremely simple local rules (turn 90° right on white, turn 90° left on black) create deterministic chaos that inevitably organizes into a periodic 104-step diagonal highway, proving how complex computational order emerges spontaneously.`,
+          isCritical: false
+        };
+      }
+      return {
+        title: 'Universal Computation at the Edge of Chaos',
+        text: `Conway's Game of Life is Turing complete. Simple cell-level binary rules generate self-propelled structures (gliders), logic gates (glider guns), and memory cells. System density settled to ${state.activeDensity}% with ${state.liveCells} active organisms.`,
+        isCritical: false
+      };
+    }
+  },
+  {
+    id: 'preferential-attachment',
+    domain: 'Social',
+    name: 'Preferential Attachment (Scale-Free Graph)',
+    chaosConcept: 'Power-Law Distribution & "Rich-Get-Richer" Feedback',
+    learningObjective: 'Discover how linear preferential attachment (Barabási–Albert model) generates scale-free hubs, and explore the bifurcation boundary between random Poisson graphs and winner-takes-all monopoly hubs.',
+    timeLabel: 'Growth Wave',
+    maxSteps: 6,
+    controls: [
+      {
+        id: 'attachmentBias',
+        label: 'Attachment Bias (α Power Exponent)',
+        type: 'slider',
+        min: 0.0,
+        max: 2.5,
+        step: 0.5,
+        defaultValue: 1.0,
+        unit: 'α',
+        description: 'α=0: Uniform random (Bell curve). α=1: Standard Barabási–Albert scale-free. α>1.5: Winner-takes-all monopoly hub.'
+      },
+      {
+        id: 'edgesPerNode',
+        label: 'Edges Per New Node (m)',
+        type: 'slider',
+        min: 1,
+        max: 4,
+        step: 1,
+        defaultValue: 2,
+        description: 'Number of links each newly entering node casts to existing network members.'
+      },
+      {
+        id: 'initialSeedSize',
+        label: 'Initial Seed Clique',
+        type: 'slider',
+        min: 3,
+        max: 8,
+        step: 1,
+        defaultValue: 4,
+        description: 'Starting fully connected seed nodes before growth waves begin.'
+      }
+    ],
+    initialState: {
+      totalNodes: 12,
+      totalEdges: 18,
+      maxDegree: 5,
+      degreeGini: 0.22,
+      networkRegime: 'Early seed cluster. Uniform link distribution across founders.'
+    },
+    calculateStep: (step, prev, controls) => {
+      const alpha = Number(controls.attachmentBias ?? 1.0);
+      const m = Number(controls.edgesPerNode ?? 2);
+      const seed = Number(controls.initialSeedSize ?? 4);
+
+      const addedNodes = 20 * step;
+      const totalNodes = seed + addedNodes;
+      const totalEdges = Math.round(seed * (seed - 1) / 2 + addedNodes * m);
+
+      let maxDegree: number;
+      let degreeGini: number;
+      let networkRegime = '';
+
+      if (alpha === 0) {
+        // Erdős–Rényi Poisson random network
+        maxDegree = Math.round(m * 2 + Math.sqrt(totalNodes));
+        degreeGini = Math.round((0.15 + step * 0.02) * 100) / 100;
+        networkRegime = 'RANDOM POISSON REGIME (α=0): No super-hubs. Node degrees follow a narrow bell-curve Gaussian distribution.';
+      } else if (alpha <= 1.2) {
+        // Scale-free Barabási-Albert power law
+        maxDegree = Math.round(m * Math.pow(totalNodes / seed, 0.5) * 1.8);
+        degreeGini = Math.min(0.75, Math.round((0.28 + step * 0.07 * alpha) * 100) / 100);
+        networkRegime = 'SCALE-FREE POWER LAW (α=1.0): Hub dominance emerges! A few mega-nodes capture disproportionate traffic (P(k) ~ k⁻³).';
+      } else {
+        // Super-linear winner-takes-all monopoly
+        maxDegree = Math.min(totalEdges, Math.round(m * Math.pow(totalNodes / seed, 0.85) * alpha * 1.5));
+        degreeGini = Math.min(0.94, Math.round((0.35 + step * 0.11 * alpha) * 100) / 100);
+        networkRegime = 'MONOPOLY STAR REGIME (α>1.5): Winner-Takes-All! One single colossal hub swallows virtually all incoming edges.';
+      }
+
+      return {
+        totalNodes,
+        totalEdges,
+        maxDegree,
+        degreeGini,
+        networkRegime
+      };
+    },
+    metrics: [
+      { key: 'totalNodes', label: 'Network Nodes', color: 'text-indigo-500', formatter: (val) => `${val} nodes` },
+      { key: 'maxDegree', label: 'Top Hub Degree', color: 'text-rose-500', formatter: (val) => `${val} links` },
+      { key: 'degreeGini', label: 'Degree Gini Inequality', color: 'text-amber-500', formatter: (val) => `${val}` }
+    ],
+    analysis: (state, controls) => {
+      const alpha = Number(controls.attachmentBias ?? 1.0);
+      if (alpha > 1.2) {
+        return {
+          title: 'Monopolistic Hub Consolidation (Winner-Takes-All)',
+          text: `With super-linear attachment (α=${alpha}), the rich-get-richer feedback escalates exponentially. The founding node became a monopoly hub with ${state.maxDegree} links (Degree Gini: ${state.degreeGini}), mirroring extreme market capture in tech platforms and social media monopolies.`,
+          isCritical: true
+        };
+      } else if (alpha === 0) {
+        return {
+          title: 'Decentralized Poisson Network',
+          text: `Without preferential attachment (α=0), new links connect purely at random. The network lacks vulnerable single-point-of-failure hubs, showing low inequality (${state.degreeGini} Gini) and high resilience against targeted attacks.`,
+          isCritical: false
+        };
+      }
+      return {
+        title: 'Scale-Free Power Law Network (Barabási–Albert)',
+        text: `Linear preferential attachment produced a scale-free topology with a top hub of ${state.maxDegree} links. The network exhibits high resistance against random failures, but extreme vulnerability to targeted attacks against the central hubs.`,
+        isCritical: false
+      };
+    }
+  },
+  {
+    id: 'spatial-prisoners-dilemma',
+    domain: 'Social',
+    name: 'Spatial Prisoner’s Dilemma & Trust',
+    chaosConcept: 'Spatial Reciprocity & Evolutionary Game Fractality',
+    learningObjective: 'Observe why spatial geometry allows cooperators to survive against selfish defectors (Nowak & May model): cooperators cluster in protective spatial colonies to out-earn predatory defectors at the boundaries.',
+    timeLabel: 'Generation',
+    maxSteps: 6,
+    controls: [
+      {
+        id: 'temptationPayoff',
+        label: 'Temptation Payoff (T)',
+        type: 'slider',
+        min: 1.1,
+        max: 2.2,
+        step: 0.1,
+        defaultValue: 1.6,
+        description: 'Payoff for defecting against a cooperator (T > R=1.0 > P=0.1 > S=0.0). Critical boundary occurs around T ≈ 1.8.'
+      },
+      {
+        id: 'noiseRate',
+        label: 'Noise / Miscommunication Rate',
+        type: 'slider',
+        min: 0,
+        max: 15,
+        step: 1,
+        defaultValue: 2,
+        unit: '%',
+        description: 'Probability that an intended cooperation accidentally registers as a defection.'
+      },
+      {
+        id: 'mutationRate',
+        label: 'Strategy Mutation Rate',
+        type: 'slider',
+        min: 0,
+        max: 10,
+        step: 1,
+        defaultValue: 1,
+        unit: '%',
+        description: 'Rate at which offspring spontaneously adopt a random strategy variant.'
+      }
+    ],
+    initialState: {
+      cooperationPercent: 55,
+      defectionPercent: 45,
+      clusterIndex: 0.35,
+      averagePayoff: 5.8,
+      statusComment: 'Diverse strategy population seeded on the 2D grid: Tit-for-Tat, Cooperators, Defectors, Pavlov, and Grudgers.'
+    },
+    calculateStep: (step, prev, controls) => {
+      const T = Number(controls.temptationPayoff ?? 1.6);
+      const noise = Number(controls.noiseRate ?? 2);
+      const mutation = Number(controls.mutationRate ?? 1);
+
+      let coop = prev.cooperationPercent;
+      let cluster = prev.clusterIndex;
+      let avgPayoff = prev.averagePayoff;
+      let comment = '';
+
+      if (T >= 1.85 || noise > 8) {
+        // Defection wave dominates
+        coop = Math.max(5, Math.round(prev.cooperationPercent - (T * 12 + noise * 1.5)));
+        cluster = Math.max(0.1, Math.round((prev.clusterIndex - 0.06) * 100) / 100);
+        avgPayoff = Math.max(0.8, Math.round((prev.averagePayoff * 0.7) * 10) / 10);
+        comment = `TRAGEDY OF THE COMMONS: High temptation (T=${T}) breaks cooperation shields. Defectors invade clusters, collapsing total group wealth.`;
+      } else {
+        // Spatial reciprocity shields cooperators
+        coop = Math.min(92, Math.round(prev.cooperationPercent + (1.8 - T) * 14 - (noise * 0.8)));
+        cluster = Math.min(0.88, Math.round((prev.clusterIndex + 0.11) * 100) / 100);
+        avgPayoff = Math.min(8.8, Math.round((prev.averagePayoff + 0.55 - (noise * 0.05)) * 10) / 10);
+        comment = `SPATIAL RECIPROCITY THRIVES: Tit-for-Tat cooperators formed tightly packed shields. Mutual cooperation inside colonies rewards higher than border defection.`;
+      }
+
+      const def = 100 - coop;
+
+      return {
+        cooperationPercent: coop,
+        defectionPercent: def,
+        clusterIndex: cluster,
+        averagePayoff: avgPayoff,
+        statusComment: comment
+      };
+    },
+    metrics: [
+      { key: 'cooperationPercent', label: 'Cooperation Share', color: 'text-emerald-500', formatter: (val) => `${val}%` },
+      { key: 'defectionPercent', label: 'Defection Share', color: 'text-rose-500', formatter: (val) => `${val}%` },
+      { key: 'clusterIndex', label: 'Spatial Cluster Density', color: 'text-indigo-500', formatter: (val) => `${val}` }
+    ],
+    analysis: (state, controls) => {
+      const T = Number(controls.temptationPayoff ?? 1.6);
+      if (state.cooperationPercent < 25) {
+        return {
+          title: 'Cooperative Extinction (Threshold Crossed)',
+          text: `At temptation T=${T}, the short-term advantage of predatory defection destroyed spatial clusters. Without geometric shields, unconditional defectors overran the population, dragging group average payoff down to ${state.averagePayoff}.`,
+          isCritical: true
+        };
+      }
+      return {
+        title: 'Spatial Reciprocity Clustered Equilibrium',
+        text: `In a well-mixed well-stirred soup, defectors always win. But in a 2D spatial lattice, cooperators help each other and insulate their colony interior, sustaining ${state.cooperationPercent}% cooperation and a strong cluster index of ${state.clusterIndex}.`,
+        isCritical: false
+      };
+    }
+  },
+  {
+    id: 'schelling-segregation',
+    domain: 'Urban',
+    name: 'Schelling’s Neighborhood Segregation',
+    chaosConcept: 'Micro-Motives & Macro-Behavior (Threshold Cascades)',
+    learningObjective: 'Observe the counter-intuitive Schelling paradox: even when individual agents are completely tolerant and only require 30% similar neighbors, individual relocation cascades inexorably into extreme systemic segregation (>75%).',
+    timeLabel: 'Moving Round',
+    maxSteps: 6,
+    controls: [
+      {
+        id: 'similarityPreference',
+        label: 'Similarity Preference (Tolerance Threshold)',
+        type: 'slider',
+        min: 15,
+        max: 75,
+        step: 5,
+        defaultValue: 35,
+        unit: '%',
+        description: 'Minimum % of same-color neighbors an agent requires to feel happy and stay put.'
+      },
+      {
+        id: 'vacancyRate',
+        label: 'Neighborhood Vacancy Rate',
+        type: 'slider',
+        min: 5,
+        max: 35,
+        step: 5,
+        defaultValue: 15,
+        unit: '%',
+        description: 'Percentage of open homes available for unhappy agents to relocate to.'
+      },
+      {
+        id: 'demographicSplit',
+        label: 'Group A (Red) Population Share',
+        type: 'slider',
+        min: 40,
+        max: 60,
+        step: 5,
+        defaultValue: 50,
+        unit: '%',
+        description: 'Demographic balance between Red and Blue resident populations.'
+      }
+    ],
+    initialState: {
+      segregationIndex: 48,
+      happyPercent: 62,
+      unhappyCount: 380,
+      relocations: 0,
+      cascadeStatus: 'Uniformly integrated initial distribution. High mixing of Red and Blue residents.'
+    },
+    calculateStep: (step, prev, controls) => {
+      const pref = Number(controls.similarityPreference ?? 35);
+      const vacancy = Number(controls.vacancyRate ?? 15);
+
+      let segregation = prev.segregationIndex;
+      let happy = prev.happyPercent;
+      let unhappy = prev.unhappyCount;
+      let relocations = prev.relocations + Math.round(unhappy * 0.7);
+      let cascadeStatus = '';
+
+      if (step === 1) {
+        unhappy = Math.round(1000 * (1 - vacancy / 100) * (pref / 100) * 0.9);
+        happy = Math.round(100 - (unhappy / 10));
+        segregation = Math.min(85, Math.round(48 + (pref - 25) * 0.6));
+        cascadeStatus = `${unhappy} residents feel uncomfortable below their ${pref}% preference threshold and begin searching for vacant houses.`;
+      } else {
+        const moves = Math.round(unhappy * 0.65);
+        unhappy = Math.max(12, Math.round(unhappy * 0.45));
+        happy = Math.min(99, 100 - Math.round(unhappy / 10));
+        // Supports both single-step and direct jump
+        const stepMultiplier = prev.segregationIndex <= 48 ? step : 1;
+        segregation = Math.min(96, Math.round(prev.segregationIndex + (pref / 30) * 8 * stepMultiplier));
+        
+        if (segregation > 80) {
+          cascadeStatus = `TOTAL SEGREGATION: Neighborhoods have fractured into distinct Red and Blue enclaves. Segregation reached ${segregation}%.`;
+        } else {
+          cascadeStatus = `Sorting round ${step}: Relocations trigger ripple effects, causing previously happy neighbors to dip below their threshold.`;
+        }
+      }
+
+      return {
+        segregationIndex: segregation,
+        happyPercent: happy,
+        unhappyCount: unhappy,
+        relocations,
+        cascadeStatus
+      };
+    },
+    metrics: [
+      { key: 'segregationIndex', label: 'Segregation Index', color: 'text-rose-500', formatter: (val) => `${val}% segregated` },
+      { key: 'happyPercent', label: 'Satisfied Residents', color: 'text-emerald-500', formatter: (val) => `${val}%` },
+      { key: 'unhappyCount', label: 'Displaced Seekers', color: 'text-amber-500', formatter: (val) => `${val} people` }
+    ],
+    analysis: (state, controls) => {
+      const pref = Number(controls.similarityPreference ?? 35);
+      return {
+        title: `The Schelling Tipping Paradox (${pref}% Individual Preference → ${state.segregationIndex}% Macro Segregation)`,
+        text: `Thomas Schelling proved that severe macro-segregation does NOT require racist or xenophobic micro-motives. Even when residents are happy being in the minority (only requiring ${pref}% similar neighbors), the iterative relocation feedback drives macro segregation to ${state.segregationIndex}%.`,
+        isCritical: state.segregationIndex >= 75
+      };
+    }
+  },
+  {
+    id: 'boids-flocking',
+    domain: 'Emergence & Complexity',
+    name: 'Boids Flocking (Swarm Intelligence)',
+    chaosConcept: 'Decentralized Coordination & Murmuration',
+    learningObjective: 'Explore how 3 simple local steering rules (Separation, Alignment, Cohesion) generate macroscopic bird flocking, fish schooling, and murmuration without central leadership or global communication.',
+    timeLabel: 'Flight Frame',
+    maxSteps: 6,
+    controls: [
+      {
+        id: 'cohesionWeight',
+        label: 'Cohesion Weight (Attraction to Center)',
+        type: 'slider',
+        min: 0.2,
+        max: 2.5,
+        step: 0.1,
+        defaultValue: 1.0,
+        description: 'Steer toward the average position of local flockmates.'
+      },
+      {
+        id: 'alignmentWeight',
+        label: 'Alignment Weight (Match Heading)',
+        type: 'slider',
+        min: 0.2,
+        max: 2.5,
+        step: 0.1,
+        defaultValue: 1.2,
+        description: 'Steer toward the average heading direction of local flockmates.'
+      },
+      {
+        id: 'separationWeight',
+        label: 'Separation Weight (Collision Avoidance)',
+        type: 'slider',
+        min: 0.5,
+        max: 3.0,
+        step: 0.2,
+        defaultValue: 1.5,
+        description: 'Steer to avoid crowding or crashing into local flockmates.'
+      },
+      {
+        id: 'predatorPresent',
+        label: 'Introduce Apex Predator (Hawk)',
+        type: 'toggle',
+        defaultValue: false,
+        description: 'Spawns a hunting predator that exerts a strong repulsive scatter force on nearby boids.'
+      }
+    ],
+    initialState: {
+      polarizationIndex: 35,
+      flockCohesion: 42,
+      clusterCount: 4,
+      meanSeparation: 38,
+      flightBehavior: 'Initial disordered flight vectors. Boids begin sensing nearest neighbors.'
+    },
+    calculateStep: (step, prev, controls) => {
+      const coh = Number(controls.cohesionWeight ?? 1.0);
+      const ali = Number(controls.alignmentWeight ?? 1.2);
+      const sep = Number(controls.separationWeight ?? 1.5);
+      const predator = !!controls.predatorPresent;
+
+      let pol = prev.polarizationIndex;
+      let cohIdx = prev.flockCohesion;
+      let clusters = prev.clusterCount;
+      let sepDist = prev.meanSeparation;
+      let flight = '';
+
+      if (predator) {
+        pol = Math.max(18, Math.round(prev.polarizationIndex * 0.65));
+        cohIdx = Math.max(20, Math.round(prev.flockCohesion * 0.7));
+        clusters = Math.min(8, prev.clusterCount + 2);
+        sepDist = Math.round(sep * 28);
+        flight = 'PREDATOR ATTACK: Flash expansion! Swarm fragments into evasion pockets to confuse the predator’s targeting.';
+      } else {
+        const stepMultiplier = prev.polarizationIndex <= 35 ? step : 1;
+        pol = Math.min(98, Math.round(prev.polarizationIndex + ali * 16 * stepMultiplier));
+        cohIdx = Math.min(95, Math.round(prev.flockCohesion + coh * 14 * stepMultiplier));
+        clusters = Math.max(1, Math.round(prev.clusterCount - 0.7 * stepMultiplier));
+        sepDist = Math.round(20 + sep * 8);
+        
+        if (pol > 85) {
+          flight = 'ORGANIZED MURMURATION: Unified coherent swarm cruising as a single organic super-organism.';
+        } else {
+          flight = `Swarm coalescing: Alignment forces (${ali}x) syncing heading vectors into streaming sub-flocks.`;
+        }
+      }
+
+      return {
+        polarizationIndex: pol,
+        flockCohesion: cohIdx,
+        clusterCount: clusters,
+        meanSeparation: sepDist,
+        flightBehavior: flight
+      };
+    },
+    metrics: [
+      { key: 'polarizationIndex', label: 'Flock Alignment (Polarization)', color: 'text-indigo-500', formatter: (val) => `${val}% aligned` },
+      { key: 'flockCohesion', label: 'Cohesion Index', color: 'text-emerald-500', formatter: (val) => `${val}%` },
+      { key: 'clusterCount', label: 'Sub-Flock Groups', color: 'text-amber-500', formatter: (val) => `${val} clusters` }
+    ],
+    analysis: (state, controls) => {
+      const predator = !!controls.predatorPresent;
+      if (predator) {
+        return {
+          title: 'Predator Evasion & Collective Flash Expansion',
+          text: `When a predator penetrates the flock, local collision avoidance overrides global alignment. The swarm undergoes a "flash expansion" bifurcation, splitting into ${state.clusterCount} sub-groups before reconverging behind the predator.`,
+          isCritical: true
+        };
+      }
+      return {
+        title: 'Emergent Reynolds Flocking (Murmuration)',
+        text: `With Alignment (${controls.alignmentWeight}) and Cohesion (${controls.cohesionWeight}) in balance with Separation (${controls.separationWeight}), the flock achieved ${state.polarizationIndex}% polarization. No central controller is needed—global order is purely emergent.`,
+        isCritical: false
+      };
+    }
+  },
+  {
+    id: 'forest-fire-percolation',
+    domain: 'Environment',
+    name: 'Forest Fire & Percolation Threshold',
+    chaosConcept: 'Critical Phenomena & Phase Transitions (pc ≈ 59.3%)',
+    learningObjective: 'Investigate statistical physics percolation: at 55% tree density, fires burn out locally; at 62%, a single spark percolates through the entire lattice, revealing the universal mathematical phase transition boundary.',
+    timeLabel: 'Fire Wave',
+    maxSteps: 6,
+    controls: [
+      {
+        id: 'treeDensity',
+        label: 'Forest Canopy Density (p)',
+        type: 'slider',
+        min: 35,
+        max: 85,
+        step: 2,
+        defaultValue: 59,
+        unit: '%',
+        description: 'Square lattice occupancy probability p. The exact theoretical percolation threshold is pc = 59.27%.'
+      },
+      {
+        id: 'windIntensity',
+        label: 'Wind Velocity Multiplier',
+        type: 'slider',
+        min: 0.0,
+        max: 2.0,
+        step: 0.5,
+        defaultValue: 0.5,
+        unit: 'x',
+        description: 'Increases forward leap distance of burning embers across barren gaps.'
+      },
+      {
+        id: 'lightningSpark',
+        label: 'Inject Lightning Ignition Spark',
+        type: 'toggle',
+        defaultValue: true,
+        description: 'Ignites trees along the western forest boundary.'
+      }
+    ],
+    initialState: {
+      burnedPercent: 0,
+      activeFires: 12,
+      percolated: false,
+      forestStatus: 'Forest seeded at specified tree density. Waiting for ignition event.'
+    },
+    calculateStep: (step, prev, controls) => {
+      const density = Number(controls.treeDensity ?? 59);
+      const wind = Number(controls.windIntensity ?? 0.5);
+      const ignited = !!controls.lightningSpark;
+
+      // Effective percolation threshold adjusted slightly for wind
+      const criticalThreshold = Math.max(45, Math.round(59.3 - wind * 6));
+      const isPercolating = density >= criticalThreshold && ignited;
+
+      let burned = prev.burnedPercent;
+      let active = prev.activeFires;
+      let percolated = isPercolating;
+      let status = '';
+
+      if (!ignited) {
+        burned = 0;
+        active = 0;
+        status = 'No ignition source active. Forest canopy remains untouched.';
+      } else if (step === 1) {
+        burned = Math.round(density * 0.08);
+        active = Math.round(density * 0.4);
+        status = `Lightning strikes western border. Fire catches in initial trees (${burned}% consumed).`;
+      } else {
+        if (isPercolating) {
+          // Exponential fire spread across spanning cluster
+          const stepMultiplier = prev.burnedPercent === 0 ? step : 1;
+          burned = Math.min(99.4, Math.round(prev.burnedPercent + (density * 0.28 * (1 + wind * 0.3) * stepMultiplier)));
+          active = burned > 90 ? Math.max(0, Math.round(prev.activeFires * 0.4)) : Math.round(prev.activeFires * 1.6);
+          status = burned > 90 
+            ? 'TOTAL CONFLAGRATION: Spanning cluster burned through the entire eastern boundary!'
+            : `EXPONENTIAL PERCOLATION: Density (${density}%) exceeds critical threshold (${criticalThreshold}%). Continuous tree chain detected.`;
+        } else {
+          // Fire dies out in finite subcritical cluster
+          active = Math.max(0, Math.round(prev.activeFires * 0.35));
+          burned = Math.min(Math.round(density * 0.35), Math.round(prev.burnedPercent + active * 0.2));
+          status = `EXTINGUISHED: Density (${density}%) is subcritical (<${criticalThreshold}%). Fire halted at natural tree gaps.`;
+        }
+      }
+
+      return {
+        burnedPercent: burned,
+        activeFires: active,
+        percolated,
+        forestStatus: status
+      };
+    },
+    metrics: [
+      { key: 'burnedPercent', label: 'Forest Consumed', color: 'text-rose-500', formatter: (val) => `${val}% burned` },
+      { key: 'activeFires', label: 'Active Burning Fronts', color: 'text-amber-500', formatter: (val) => `${val} fronts` },
+      { key: 'percolated', label: 'Spanning Cluster Spanned', color: 'text-indigo-500', formatter: (val) => val ? 'YES (Critical)' : 'NO (Contained)' }
+    ],
+    analysis: (state, controls) => {
+      const density = Number(controls.treeDensity ?? 59);
+      const wind = Number(controls.windIntensity ?? 0.5);
+      const criticalThreshold = Math.max(45, Math.round(59.3 - wind * 6));
+
+      if (density >= criticalThreshold) {
+        return {
+          title: `Percolation Phase Transition Triggered (${density}% >= ${criticalThreshold}% pc)`,
+          text: `Above the 2D square lattice percolation threshold (pc ≈ 59.3%), a connected path of adjacent trees spans from one end of the forest to the other. The fire percolated infinitely, consuming ${state.burnedPercent}% of the biome.`,
+          isCritical: true
+        };
+      }
+      return {
+        title: `Subcritical Forest Self-Containment (${density}% < ${criticalThreshold}% pc)`,
+        text: `Below pc, tree clusters are geometrically disconnected. Even with blazing flames, the fire extinguished itself after burning only ${state.burnedPercent}%, demonstrating the non-linear "all-or-nothing" nature of percolation boundaries.`,
+        isCritical: false
+      };
+    }
+  },
+  {
+    id: 'sugarscape',
+    domain: 'Economics',
+    name: 'Sugarscape & Wealth Distribution',
+    chaosConcept: 'Emergent Wealth Inequality & Pareto Power Laws',
+    learningObjective: 'Explore the Epstein & Axtell artificial society: observe how even with equal opportunities and uniform initial conditions, random differences in vision and metabolism inevitably produce an extreme Pareto wealth inequality distribution (Gini > 0.65).',
+    timeLabel: 'Harvest Cycle',
+    maxSteps: 6,
+    controls: [
+      {
+        id: 'sugarRegrowth',
+        label: 'Sugar Terrain Regrowth Rate',
+        type: 'slider',
+        min: 1,
+        max: 4,
+        step: 1,
+        defaultValue: 1,
+        unit: 'units/tick',
+        description: 'Speed at which sugar piles replenish after agent harvest.'
+      },
+      {
+        id: 'visionRange',
+        label: 'Agent Vision Range',
+        type: 'slider',
+        min: 2,
+        max: 6,
+        step: 1,
+        defaultValue: 4,
+        unit: 'cells',
+        description: 'Maximum distance agents can scan in 4 cardinal directions to locate sugar.'
+      },
+      {
+        id: 'metabolicPressure',
+        label: 'Metabolic Consumption Cost',
+        type: 'slider',
+        min: 1,
+        max: 3,
+        step: 1,
+        defaultValue: 2,
+        unit: 'sugar/tick',
+        description: 'Energy burned by agents each cycle. High metabolism causes starvation if not foraging rich cells.'
+      }
+    ],
+    initialState: {
+      giniCoefficient: 0.28,
+      topTenPercentWealth: 26,
+      totalPopulation: 250,
+      starvationRate: 2,
+      economicStatus: 'Agents spawn uniformly across Sugarscape with random vision and metabolism.'
+    },
+    calculateStep: (step, prev, controls) => {
+      const regrowth = Number(controls.sugarRegrowth ?? 1);
+      const vision = Number(controls.visionRange ?? 4);
+      const metabolism = Number(controls.metabolicPressure ?? 2);
+
+      let gini = prev.giniCoefficient;
+      let top10 = prev.topTenPercentWealth;
+      let pop = prev.totalPopulation;
+      let starvation = prev.starvationRate;
+      let status = '';
+
+      if (step === 1) {
+        gini = 0.38;
+        top10 = 35;
+        starvation = Math.round(metabolism * 3);
+        status = 'Initial harvest begins. Agents near sugar mountain peaks start accumulating massive surpluses.';
+      } else {
+        // Inequality escalates over time (Pareto distribution emergence)
+        const inequalityBoost = (vision / 4) * (metabolism / 2);
+        const stepMultiplier = prev.giniCoefficient <= 0.28 ? step : 1;
+        gini = Math.min(0.85, Math.round((prev.giniCoefficient + 0.08 * inequalityBoost * stepMultiplier) * 100) / 100);
+        top10 = Math.min(88, Math.round(prev.topTenPercentWealth + 9 * inequalityBoost * stepMultiplier));
+        starvation = Math.round((metabolism / regrowth) * 4);
+        pop = Math.max(120, Math.round(prev.totalPopulation - starvation + regrowth * 3));
+        
+        if (gini >= 0.65) {
+          status = `PARETO LAW LOCKED: Gini hit ${gini}! Top 10% own ${top10}% of all sugar assets. Wealth distribution matches Pareto 80/20 power law.`;
+        } else {
+          status = `Inequality widening: Low-metabolism high-vision agents monopolize the two sugar peaks.`;
+        }
+      }
+
+      return {
+        giniCoefficient: gini,
+        topTenPercentWealth: top10,
+        totalPopulation: pop,
+        starvationRate: starvation,
+        economicStatus: status
+      };
+    },
+    metrics: [
+      { key: 'giniCoefficient', label: 'Gini Inequality Index', color: 'text-amber-500', formatter: (val) => `${val}` },
+      { key: 'topTenPercentWealth', label: 'Top 10% Wealth Share', color: 'text-rose-500', formatter: (val) => `${val}%` },
+      { key: 'totalPopulation', label: 'Active Population', color: 'text-emerald-500', formatter: (val) => `${val} agents` }
+    ],
+    analysis: (state, controls) => {
+      return {
+        title: `Spontaneous Wealth Inequality (Epstein & Axtell Sugarscape)`,
+        text: `Despite a decentralized environment with equal initial endowments, simple biological variance (vision and metabolism) compounded over generations into an extreme Gini coefficient of ${state.giniCoefficient}, with the top 10% holding ${state.topTenPercentWealth}% of all capital.`,
+        isCritical: state.giniCoefficient >= 0.60
+      };
+    }
+  },
+  {
+    id: 'gray-scott',
+    domain: 'Emergence & Complexity',
+    name: 'Gray-Scott Reaction-Diffusion',
+    chaosConcept: 'Morphogenesis & Turing Pattern Bifurcations',
+    learningObjective: 'Explore Alan Turing’s reaction-diffusion equations: discover how two diffusing chemicals (U and V) generate biological leopard spots, coral mazes, and cell-division mitosis through non-linear feed and kill dynamics.',
+    timeLabel: 'Reaction Epoch',
+    maxSteps: 6,
+    controls: [
+      {
+        id: 'feedRate',
+        label: 'Chemical U Feed Rate (F)',
+        type: 'slider',
+        min: 0.010,
+        max: 0.090,
+        step: 0.002,
+        defaultValue: 0.037,
+        unit: 'F',
+        description: 'Rate at which fresh substance U is fed into the system.'
+      },
+      {
+        id: 'killRate',
+        label: 'Chemical V Kill Rate (K)',
+        type: 'slider',
+        min: 0.045,
+        max: 0.070,
+        step: 0.001,
+        defaultValue: 0.060,
+        unit: 'K',
+        description: 'Rate at which reactant V decays or is removed from the system.'
+      },
+      {
+        id: 'diffusionRatio',
+        label: 'Diffusion Coefficient Ratio (Du/Dv)',
+        type: 'slider',
+        min: 1.5,
+        max: 3.0,
+        step: 0.1,
+        defaultValue: 2.0,
+        unit: 'ratio',
+        description: 'Ratio of diffusion rates between substance U and substance V.'
+      }
+    ],
+    initialState: {
+      morphogenBalance: 78,
+      patternEntropy: 0.35,
+      activeSpots: 24,
+      patternType: 'Mitosis Solitons (Self-Replicating Cells)',
+      phaseNarrative: 'Chemical U fully saturates the dish. Seed spots of catalyst V begin consuming U.'
+    },
+    calculateStep: (step, prev, controls) => {
+      const F = Number(controls.feedRate ?? 0.037);
+      const K = Number(controls.killRate ?? 0.060);
+
+      let pattern = 'Mitosis Solitons';
+      let balance = prev.morphogenBalance;
+      let entropy = prev.patternEntropy;
+      let spots = prev.activeSpots;
+      let narrative = '';
+
+      if (F <= 0.032 && K >= 0.060) {
+        pattern = 'Stable Leopard Spots';
+        spots = Math.min(180, Math.round(24 + 28 * step));
+        balance = Math.max(30, Math.round(78 - 6 * step));
+        entropy = Math.round((0.35 + step * 0.08) * 100) / 100;
+        narrative = `Spots equilibrium reached: ${spots} isolated circular morphogen islands stabilized across the lattice.`;
+      } else if (F >= 0.055 && K >= 0.058) {
+        pattern = 'Coral Reef / Labyrinthine Stripes';
+        spots = Math.round(12 + step * 4);
+        balance = Math.max(45, Math.round(78 - 5 * step));
+        entropy = Math.min(0.88, Math.round((0.40 + step * 0.10) * 100) / 100);
+        narrative = `Labyrinthine coral lines branching: Continuous connected stripe network forms fingerprint patterns.`;
+      } else if (F <= 0.038 && K <= 0.062) {
+        pattern = 'Mitosis / Soliton Cell Division';
+        spots = Math.min(320, Math.round(24 * Math.pow(1.65, step)));
+        balance = Math.max(25, Math.round(78 - 9 * step));
+        entropy = Math.min(0.92, Math.round((0.35 + step * 0.11) * 100) / 100);
+        narrative = `Cell division cascade: Growing circular spots deform into peanut shapes and divide into twin daughter cells (${spots} cells).`;
+      } else {
+        pattern = 'Turbulent Chemical Waves';
+        spots = Math.round(50 + step * 15);
+        balance = 55;
+        entropy = 0.85;
+        narrative = `Chaotic rotating spiral wave fronts undulating through the reaction medium.`;
+      }
+
+      return {
+        morphogenBalance: balance,
+        patternEntropy: entropy,
+        activeSpots: spots,
+        patternType: pattern,
+        phaseNarrative: narrative
+      };
+    },
+    metrics: [
+      { key: 'activeSpots', label: 'Active Morphogen Spots', color: 'text-emerald-500', formatter: (val) => `${val} spots` },
+      { key: 'morphogenBalance', label: 'Chemical U Concentration', color: 'text-indigo-500', formatter: (val) => `${val}%` },
+      { key: 'patternEntropy', label: 'Spatial Order Entropy', color: 'text-amber-500', formatter: (val) => `${val} bits` }
+    ],
+    analysis: (state, controls) => {
+      const F = Number(controls.feedRate ?? 0.037);
+      const K = Number(controls.killRate ?? 0.060);
+      return {
+        title: `Turing Morphogenesis Regime: ${state.patternType}`,
+        text: `At F=${F} and K=${K}, the balance of local activation (autocatalysis UV²) and lateral inhibition (diffusion Du/Dv) triggers Turing bifurcation, generating ${state.activeSpots} self-organizing structures with ${state.patternEntropy} entropy.`,
+        isCritical: false
+      };
+    }
+  },
+  {
+    id: 'slime-mold',
+    domain: 'Emergence & Complexity',
+    name: 'Slime Mold Network Optimization',
+    chaosConcept: 'Bio-Computing & Shortest-Path Steiner Trees',
+    learningObjective: 'Witness decentralized bio-intelligence in Physarum Polycephalum: autonomous amoeboid particles deposit pheromones and follow sensory gradients to build resilient shortest-path transportation webs between nutrient sources.',
+    timeLabel: 'Foraging Wave',
+    maxSteps: 6,
+    controls: [
+      {
+        id: 'decayRate',
+        label: 'Pheromone Evaporation / Decay Rate',
+        type: 'slider',
+        min: 1,
+        max: 15,
+        step: 1,
+        defaultValue: 5,
+        unit: '%',
+        description: 'Rate at which unreinforced chemical trails evaporate from the environment.'
+      },
+      {
+        id: 'sensorAngle',
+        label: 'Sensory Aperture Angle',
+        type: 'slider',
+        min: 15,
+        max: 60,
+        step: 5,
+        defaultValue: 35,
+        unit: '°',
+        description: 'Angular offset of front-left and front-right chemoattractant sensors.'
+      },
+      {
+        id: 'particleDensity',
+        label: 'Amoeboid Particle Count',
+        type: 'slider',
+        min: 500,
+        max: 2000,
+        step: 100,
+        defaultValue: 1000,
+        unit: 'particles',
+        description: 'Number of active foraging agents on the sensory map.'
+      }
+    ],
+    initialState: {
+      transportEfficiency: 42,
+      networkRedundancy: 28,
+      veinDensity: 35,
+      foragingStatus: 'Particles deployed around nutrient nodes. Early exploratory foraging filaments radiating outwards.'
+    },
+    calculateStep: (step, prev, controls) => {
+      const decay = Number(controls.decayRate ?? 5);
+      const angle = Number(controls.sensorAngle ?? 35);
+      const count = Number(controls.particleDensity ?? 1000);
+
+      const stepMultiplier = prev.transportEfficiency <= 42 ? step : 1;
+      const efficiencyBoost = (decay / 5) * (count / 1000);
+      const efficiency = Math.min(98, Math.round(prev.transportEfficiency + 9.5 * efficiencyBoost * stepMultiplier));
+      const redundancy = Math.min(85, Math.round(28 + (60 - angle) * 0.8 * (step / 2)));
+      const vein = Math.min(92, Math.round(35 + (count / 50) * (step / 3)));
+
+      let status = '';
+      if (efficiency > 85) {
+        status = 'OPTIMAL STEINER SPAN: Disconnected veins pruned by evaporation. Slime mold established minimal-length transport network matching human engineered rail systems!';
+      } else {
+        status = `Wave ${step}: Pheromone reinforcement strengthens high-traffic trunk lines while low-flow exploratory trails decay.`;
+      }
+
+      return {
+        transportEfficiency: efficiency,
+        networkRedundancy: redundancy,
+        veinDensity: vein,
+        foragingStatus: status
+      };
+    },
+    metrics: [
+      { key: 'transportEfficiency', label: 'Transport Routing Efficiency', color: 'text-emerald-500', formatter: (val) => `${val}% optimal` },
+      { key: 'networkRedundancy', label: 'Fault-Tolerant Loops', color: 'text-indigo-500', formatter: (val) => `${val}% redundancy` },
+      { key: 'veinDensity', label: 'Active Biomass Veins', color: 'text-amber-500', formatter: (val) => `${val}% coverage` }
+    ],
+    analysis: (state, controls) => {
+      return {
+        title: 'Physarum Polycephalum Decentralized Bio-Computing',
+        text: `Without a central brain or nervous system, Physarum solves NP-hard geometric Steiner network problems. Feedback between flux and tube diameter naturally prunes redundant loops to achieve ${state.transportEfficiency}% optimal transport efficiency.`,
+        isCritical: false
+      };
+    }
+  },
+  {
+    id: 'ant-colony',
+    domain: 'Emergence & Complexity',
+    name: 'Ant Colony Optimization (ACO)',
+    chaosConcept: 'Stigmergy & Positive Feedback Route Discovery',
+    learningObjective: 'Discover Marco Dorigo’s ACO algorithm: individual ants leave nests searching for food, depositing evaporation-prone pheromones on return. Shorter paths complete round trips faster, refreshing pheromones before evaporation to discover optimal paths around complex obstacles.',
+    timeLabel: 'Foraging Round',
+    maxSteps: 6,
+    controls: [
+      {
+        id: 'evaporationRate',
+        label: 'Pheromone Evaporation Rate (ρ)',
+        type: 'slider',
+        min: 1,
+        max: 10,
+        step: 1,
+        defaultValue: 3,
+        unit: '%',
+        description: 'Rate of trail evaporation per tick. Higher evaporation eliminates sub-optimal detours faster.'
+      },
+      {
+        id: 'pheromoneSensitivity',
+        label: 'Pheromone Sensitivity (α)',
+        type: 'slider',
+        min: 1.0,
+        max: 3.0,
+        step: 0.2,
+        defaultValue: 2.0,
+        unit: 'α',
+        description: 'Exploitation vs exploration balance. High α forces ants onto the strongest existing highway.'
+      },
+      {
+        id: 'antPopulation',
+        label: 'Foraging Ant Population',
+        type: 'slider',
+        min: 80,
+        max: 250,
+        step: 10,
+        defaultValue: 120,
+        unit: 'ants',
+        description: 'Number of active foragers traversing between nest and food nodes.'
+      }
+    ],
+    initialState: {
+      routeOptimality: 38,
+      foodHarvested: 0,
+      activePheromoneStrength: 25,
+      colonyStatus: 'Ants deploy from nest in random Brownian walk searching for food sources.'
+    },
+    calculateStep: (step, prev, controls) => {
+      const rho = Number(controls.evaporationRate ?? 3);
+      const alpha = Number(controls.pheromoneSensitivity ?? 2.0);
+      const pop = Number(controls.antPopulation ?? 120);
+
+      const stepMultiplier = prev.routeOptimality <= 38 ? step : 1;
+      const optimality = Math.min(99, Math.round(prev.routeOptimality + (10 * alpha * (1 + rho * 0.1)) * stepMultiplier));
+      const food = prev.foodHarvested + Math.round((pop * 0.45) * (optimality / 100) * step);
+      const phero = Math.min(100, Math.round(25 + 12 * alpha * (pop / 120) * step));
+
+      let status = '';
+      if (optimality > 85) {
+        status = 'CONVERGENCE: Colony converged on global shortest path around the obstacles. Round-trip speed locked in exponential pheromone reinforcement.';
+      } else {
+        status = `Round ${step}: Shorter path ants return to nest faster, refreshing the shorter route before evaporation degrades the trail.`;
+      }
+
+      return {
+        routeOptimality: optimality,
+        foodHarvested: food,
+        activePheromoneStrength: phero,
+        colonyStatus: status
+      };
+    },
+    metrics: [
+      { key: 'routeOptimality', label: 'Route Optimality Index', color: 'text-emerald-500', formatter: (val) => `${val}% optimal` },
+      { key: 'foodHarvested', label: 'Total Food Retrieved', color: 'text-amber-500', formatter: (val) => `${val} units` },
+      { key: 'activePheromoneStrength', label: 'Pheromone Trail Intensity', color: 'text-indigo-500', formatter: (val) => `${val}%` }
+    ],
+    analysis: (state, controls) => {
+      return {
+        title: 'Stigmergic Swarm Intelligence (ACO)',
+        text: `Ant Colony Optimization uses indirect communication (stigmergy). Because the shorter route takes less transit time, ants traverse it more frequently per unit time. Pheromones accumulate faster on the short branch, creating positive feedback that drives route optimality to ${state.routeOptimality}%.`,
+        isCritical: false
+      };
+    }
+  },
+  {
+    id: 'watts-strogatz',
+    domain: 'Social',
+    name: 'Watts–Strogatz Small-World Network',
+    chaosConcept: 'Phase Transition to "Six Degrees of Separation"',
+    learningObjective: 'Discover Duncan Watts & Steven Strogatz’s small-world phenomenon: observe how rewiring just 1-5% of regular lattice edges collapses average path length exponentially while preserving high local clustering.',
+    timeLabel: 'Rewiring Phase',
+    maxSteps: 6,
+    controls: [
+      {
+        id: 'rewiringProb',
+        label: 'Rewiring Probability (p)',
+        type: 'slider',
+        min: 0.00,
+        max: 1.00,
+        step: 0.05,
+        defaultValue: 0.05,
+        unit: 'p',
+        description: 'Probability that each edge in the regular ring lattice is rewired to a uniformly random node.'
+      },
+      {
+        id: 'networkNodes',
+        label: 'Network Node Count (N)',
+        type: 'slider',
+        min: 20,
+        max: 60,
+        step: 4,
+        defaultValue: 36,
+        unit: 'nodes',
+        description: 'Total number of nodes arranged in the circular ring lattice.'
+      },
+      {
+        id: 'initialNeighbors',
+        label: 'Nearest Neighbors per Node (k)',
+        type: 'slider',
+        min: 2,
+        max: 6,
+        step: 2,
+        defaultValue: 4,
+        unit: 'k',
+        description: 'Initial regular ring connections to adjacent k nearest neighbors.'
+      }
+    ],
+    initialState: {
+      averagePathLength: 4.8,
+      clusteringCoefficient: 0.67,
+      smallWorldRatio: 1.0,
+      rewiredShortcuts: 0,
+      networkPhase: 'Regular Ring Lattice (p=0): High clustering (C=0.67), but long geodesic path distances (L=4.8).'
+    },
+    calculateStep: (step, prev, controls) => {
+      const p = Number(controls.rewiringProb ?? 0.05);
+      const N = Number(controls.networkNodes ?? 36);
+      const k = Number(controls.initialNeighbors ?? 4);
+
+      const totalEdges = Math.round((N * k) / 2);
+      const shortcuts = Math.round(totalEdges * p);
+
+      // Theoretical scaling:
+      // L(0) ~ N / (2k), L(1) ~ ln(N) / ln(k)
+      // C(0) = 3(k-2)/(4(k-1)), C(1) ~ k / N
+      const L0 = N / (2 * k);
+      const L_random = Math.log(N) / Math.log(k);
+      const C0 = (3 * (k - 2)) / (4 * (k - 1));
+      const C_random = k / N;
+
+      // Small-world effect: L drops exponentially with p, but C stays high until p > 0.3
+      const effectiveP = Math.min(1.0, p * (step > 1 && prev.rewiredShortcuts === 0 ? 1 : 1));
+      const L = Math.max(L_random, Math.round((L_random + (L0 - L_random) / (1 + 15 * effectiveP)) * 10) / 10);
+      const C = Math.max(C_random, Math.round((C0 * Math.pow(1 - effectiveP, 3) + C_random * effectiveP) * 100) / 100);
+
+      // Small world coefficient: (C/C_rand) / (L/L_rand)
+      const sigma = Math.round(((C / C_random) / Math.max(0.1, (L / L_random))) * 10) / 10;
+
+      let phase = '';
+      if (effectiveP === 0) {
+        phase = 'REGULAR LATTICE (p=0): High clustering but long separation. Information travels slowly.';
+      } else if (effectiveP <= 0.15) {
+        phase = `SMALL-WORLD EMERGENCE (${shortcuts} shortcuts): "Six Degrees of Separation"! Path length plummeted from ${L0.toFixed(1)} to ${L}, while high clustering (${C}) remains intact!`;
+      } else {
+        phase = `RANDOM GRAPH (p=${effectiveP}): Disordered random network. Low path length, but local community clustering has disintegrated.`;
+      }
+
+      return {
+        averagePathLength: L,
+        clusteringCoefficient: C,
+        smallWorldRatio: sigma,
+        rewiredShortcuts: shortcuts,
+        networkPhase: phase
+      };
+    },
+    metrics: [
+      { key: 'averagePathLength', label: 'Average Degrees of Separation (L)', color: 'text-indigo-500', formatter: (val) => `${val} hops` },
+      { key: 'clusteringCoefficient', label: 'Local Clustering Index (C)', color: 'text-emerald-500', formatter: (val) => `${val}` },
+      { key: 'smallWorldRatio', label: 'Small-World Index (σ)', color: 'text-amber-500', formatter: (val) => `σ = ${val}` }
+    ],
+    analysis: (state, controls) => {
+      const p = Number(controls.rewiringProb ?? 0.05);
+      if (p > 0.01 && p <= 0.2) {
+        return {
+          title: 'Small-World Phase Transition (Watts & Strogatz 1998)',
+          text: `With just ${Math.round(p * 100)}% random rewiring, the network entered the small-world regime (σ = ${state.smallWorldRatio}). Long-range shortcuts connect distant clusters without breaking local neighborhoods, explaining viral contagions and the human social "six degrees of separation".`,
+          isCritical: false
+        };
+      }
+      return {
+        title: p === 0 ? 'Regular Ordered Ring Lattice' : 'Erdős–Rényi Random Graph',
+        text: p === 0
+          ? `At p=0, each node connects strictly to neighbors. Local clustering is high (${state.clusteringCoefficient}), but average path length is long (${state.averagePathLength} hops).`
+          : `At p=${p}, extensive rewiring turned the topology into a random graph, destroying clustering while maintaining low path length (${state.averagePathLength} hops).`,
+        isCritical: false
+      };
+    }
+  },
+  {
+    id: 'kuramoto-oscillators',
+    domain: 'Emergence & Complexity',
+    name: 'Kuramoto Synchronized Oscillators',
+    chaosConcept: 'Spontaneous Order & Phase Transition to Coherence',
+    learningObjective: 'Explore Yoshiki Kuramoto’s coupled non-linear differential equations: discover how independent oscillators with diverse natural frequencies spontaneously lock into unified collective synchronization once coupling strength K crosses the critical threshold Kc.',
+    timeLabel: 'Coupling Cycle',
+    maxSteps: 6,
+    controls: [
+      {
+        id: 'couplingStrength',
+        label: 'Coupling Strength (K)',
+        type: 'slider',
+        min: 0.0,
+        max: 5.0,
+        step: 0.2,
+        defaultValue: 1.8,
+        unit: 'K',
+        description: 'Interaction attraction between oscillators. Critical sync threshold Kc ≈ 1.5.'
+      },
+      {
+        id: 'frequencyVariance',
+        label: 'Natural Frequency Dispersion (σ)',
+        type: 'slider',
+        min: 0.2,
+        max: 2.0,
+        step: 0.2,
+        defaultValue: 0.8,
+        unit: 'σ',
+        description: 'Standard deviation of individual oscillator natural frequencies.'
+      },
+      {
+        id: 'oscillatorCount',
+        label: 'Oscillator Population (N)',
+        type: 'slider',
+        min: 40,
+        max: 200,
+        step: 20,
+        defaultValue: 100,
+        unit: 'units',
+        description: 'Number of coupled phase oscillators in the system.'
+      }
+    ],
+    initialState: {
+      orderParameter: 0.12,
+      phaseCoherence: 12,
+      synchronizedFraction: 15,
+      syncRegime: 'Incoherent State: Oscillators drifting at random natural frequencies. Center order parameter r ≈ 0.'
+    },
+    calculateStep: (step, prev, controls) => {
+      const K = Number(controls.couplingStrength ?? 1.8);
+      const sigma = Number(controls.frequencyVariance ?? 0.8);
+      const N = Number(controls.oscillatorCount ?? 100);
+
+      // Critical coupling threshold Kc = 2 * sigma
+      const Kc = 2 * sigma;
+      const isSynchronizing = K >= Kc;
+
+      let r = prev.orderParameter;
+      let regime = '';
+
+      if (K === 0) {
+        r = Math.round((0.08 + (1 / Math.sqrt(N))) * 100) / 100;
+        regime = 'ZERO COUPLING: Pure stochastic chaos. Zero phase alignment between oscillators.';
+      } else if (isSynchronizing) {
+        // Kuramoto phase transition: r = sqrt(1 - Kc/K)
+        const asymptoticR = Math.sqrt(1 - (Kc / (K + 0.1)));
+        const stepMultiplier = prev.orderParameter <= 0.12 ? step : 1;
+        r = Math.min(0.99, Math.round((prev.orderParameter + (asymptoticR - prev.orderParameter) * 0.45 * stepMultiplier) * 100) / 100);
+        regime = r > 0.85 
+          ? `LOCKSTEP SYNCHRONY (r = ${r}): All ${N} oscillators locked into unified phase coherence! Flashing in perfect unison.`
+          : `PHASE LOCKING ENGAGED (K = ${K} > ${Kc.toFixed(1)} Kc): A giant synchronous core formed and sweeps drifting oscillators into lockstep.`;
+      } else {
+        r = Math.max(0.08, Math.round((prev.orderParameter * 0.7) * 100) / 100);
+        regime = `SUBCRITICAL DRIFT (K = ${K} < ${Kc.toFixed(1)} Kc): Coupling is too weak to overcome natural frequency variance. System remains incoherent.`;
+      }
+
+      return {
+        orderParameter: r,
+        phaseCoherence: Math.round(r * 100),
+        synchronizedFraction: Math.round(Math.min(100, (r * 100) * 1.1)),
+        syncRegime: regime
+      };
+    },
+    metrics: [
+      { key: 'orderParameter', label: 'Kuramoto Order Parameter (r)', color: 'text-indigo-500', formatter: (val) => `r = ${val}` },
+      { key: 'phaseCoherence', label: 'Phase Coherence', color: 'text-emerald-500', formatter: (val) => `${val}% in sync` },
+      { key: 'synchronizedFraction', label: 'Locked Oscillators', color: 'text-amber-500', formatter: (val) => `${val}% locked` }
+    ],
+    analysis: (state, controls) => {
+      const K = Number(controls.couplingStrength ?? 1.8);
+      const sigma = Number(controls.frequencyVariance ?? 0.8);
+      const Kc = 2 * sigma;
+
+      if (K >= Kc) {
+        return {
+          title: `Kuramoto Spontaneous Synchronization (K = ${K} >= ${Kc.toFixed(1)} Kc)`,
+          text: `Above critical coupling Kc, non-linear sine interactions overcome frequency dispersion. Mutual phase entrainment emerged spontaneously, driving the Kuramoto order parameter to r = ${state.orderParameter} (mirroring Malaysian firefly swarms and cardiac pacemaker synchrony).`,
+          isCritical: false
+        };
+      }
+      return {
+        title: `Incoherent Phase Drift (K = ${K} < ${Kc.toFixed(1)} Kc)`,
+        text: `Coupling strength K=${K} is below the critical threshold Kc=${Kc.toFixed(1)}. Natural frequency diversity dominates, preventing global synchronization (order parameter r = ${state.orderParameter}).`,
         isCritical: true
       };
     }

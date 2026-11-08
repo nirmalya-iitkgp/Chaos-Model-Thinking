@@ -23,6 +23,18 @@ import {
   Thermometer,
   CloudAlert
 } from 'lucide-react';
+import ConwayLifeVisualizer from './visualizers/ConwayLifeVisualizer';
+import PreferentialAttachmentVisualizer from './visualizers/PreferentialAttachmentVisualizer';
+import SpatialPrisonerVisualizer from './visualizers/SpatialPrisonerVisualizer';
+import SchellingSegregationVisualizer from './visualizers/SchellingSegregationVisualizer';
+import BoidsFlockingVisualizer from './visualizers/BoidsFlockingVisualizer';
+import ForestFireVisualizer from './visualizers/ForestFireVisualizer';
+import SugarscapeVisualizer from './visualizers/SugarscapeVisualizer';
+import GrayScottVisualizer from './visualizers/GrayScottVisualizer';
+import SlimeMoldVisualizer from './visualizers/SlimeMoldVisualizer';
+import AntColonyVisualizer from './visualizers/AntColonyVisualizer';
+import WattsStrogatzVisualizer from './visualizers/WattsStrogatzVisualizer';
+import KuramotoVisualizer from './visualizers/KuramotoVisualizer';
 
 interface VisualizerProps {
   scenarioId: string;
@@ -34,8 +46,32 @@ interface VisualizerProps {
 
 export default function Visualizer({ scenarioId, activeStep, state, controls, history }: VisualizerProps) {
   
-  // Render different SVG setups depending on the selected scenario
+  // Render different visualizer components depending on the selected scenario
   switch (scenarioId) {
+    case 'gray-scott':
+      return <GrayScottVisualizer state={state} activeStep={activeStep} controls={controls} history={history} />;
+    case 'slime-mold':
+      return <SlimeMoldVisualizer state={state} activeStep={activeStep} controls={controls} history={history} />;
+    case 'ant-colony':
+      return <AntColonyVisualizer state={state} activeStep={activeStep} controls={controls} history={history} />;
+    case 'watts-strogatz':
+      return <WattsStrogatzVisualizer state={state} activeStep={activeStep} controls={controls} history={history} />;
+    case 'kuramoto-oscillators':
+      return <KuramotoVisualizer state={state} activeStep={activeStep} controls={controls} history={history} />;
+    case 'conway-life':
+      return <ConwayLifeVisualizer state={state} activeStep={activeStep} controls={controls} history={history} />;
+    case 'preferential-attachment':
+      return <PreferentialAttachmentVisualizer state={state} activeStep={activeStep} controls={controls} history={history} />;
+    case 'spatial-prisoners-dilemma':
+      return <SpatialPrisonerVisualizer state={state} activeStep={activeStep} controls={controls} history={history} />;
+    case 'schelling-segregation':
+      return <SchellingSegregationVisualizer state={state} activeStep={activeStep} controls={controls} history={history} />;
+    case 'boids-flocking':
+      return <BoidsFlockingVisualizer state={state} activeStep={activeStep} controls={controls} history={history} />;
+    case 'forest-fire-percolation':
+      return <ForestFireVisualizer state={state} activeStep={activeStep} controls={controls} history={history} />;
+    case 'sugarscape':
+      return <SugarscapeVisualizer state={state} activeStep={activeStep} controls={controls} history={history} />;
     case 'market-panic':
       return <MarketPanicVisualizer state={state} history={history} activeStep={activeStep} controls={controls} />;
     case 'bullwhip-effect':
@@ -766,12 +802,12 @@ function ClimateTippingVisualizer({ state, activeStep, controls, history = [] }:
     r: 2 + (i % 3)
   }));
 
-  // Render sky color background gradient reflecting temperature severity
-  let skyFill = 'from-sky-950/80 to-slate-950 border-slate-800';
+  // Render sky color background reflecting temperature severity
+  let skyBg = 'bg-slate-950 border-slate-800';
   if (temperature >= 2.5) {
-    skyFill = 'from-orange-950/90 to-slate-950 border-orange-900/40';
+    skyBg = 'bg-stone-950 border-stone-800';
   } else if (temperature >= 1.7) {
-    skyFill = 'from-amber-950/85 to-slate-950 border-amber-900/30';
+    skyBg = 'bg-zinc-950 border-zinc-800';
   }
 
   return (
@@ -780,7 +816,7 @@ function ClimateTippingVisualizer({ state, activeStep, controls, history = [] }:
       {/* HEADER DIAGNOSTIC PANEL */}
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
         <div>
-          <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider block font-semibold">Decadal Biosphere Lab</span>
+          <span className="text-xs font-mono text-slate-400 block font-medium">Decadal Biosphere Lab</span>
           <h3 className="text-sm font-bold text-slate-100 mt-0.5">Global Hysteresis & Feedback Analysis</h3>
         </div>
         <div className="flex items-center gap-2">
@@ -794,10 +830,10 @@ function ClimateTippingVisualizer({ state, activeStep, controls, history = [] }:
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         
         {/* LEFT COMPARTMENT: PHYSICAL ARCTIC CROSS-SECTION */}
-        <div className={`lg:col-span-6 bg-gradient-to-b ${skyFill} p-4 rounded-lg border flex flex-col justify-between h-72 relative overflow-hidden transition-all duration-500`}>
+        <div className={`lg:col-span-6 ${skyBg} p-4 rounded-lg border flex flex-col justify-between h-72 relative overflow-hidden transition-all duration-300`}>
           
           <div className="flex items-center justify-between z-20 pointer-events-none">
-            <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">Cryological Profile Sim</span>
+            <span className="text-xs font-mono text-zinc-400">Cryological profile</span>
             <div className="text-right">
               <span className="text-[10px] font-mono text-slate-400 block">Polar Albedo: <strong className="text-cyan-400 font-bold">{albedo}%</strong></span>
               <span className="text-[10px] font-mono text-slate-400 block">permafrost gas: <strong className="text-orange-400 font-bold">{methane} Gt</strong></span>
@@ -3142,19 +3178,19 @@ function VaccinationVisualizer({ state, activeStep, controls, history = [] }: an
             </div>
 
             {/* Horizontal target gauge bar */}
-            <div className="w-full h-2.5 bg-slate-950 rounded-full mt-2.5 overflow-hidden relative">
+            <div className="w-full h-2.5 bg-slate-950 rounded mt-2.5 overflow-hidden relative">
               <div 
-                className={`h-full rounded-full transition-all duration-300 ${isProtected ? 'bg-gradient-to-r from-emerald-500 to-green-400' : 'bg-gradient-to-r from-rose-500 to-amber-500'}`}
+                className={`h-full transition-all duration-300 ${isProtected ? 'bg-emerald-600' : 'bg-rose-600'}`}
                 style={{ width: `${Math.min((coverage / 98) * 100, 100)}%` }}
               />
-              {/* Threshold indicator line at 85% (which is 86.7% of the slider max 98) */}
-              <div className="absolute top-0 bottom-0 left-[86.7%] w-0.5 bg-white shadow-[0_0_8px_white] z-10" />
+              {/* Threshold indicator line at 85% */}
+              <div className="absolute top-0 bottom-0 left-[86.7%] w-0.5 bg-white z-10" />
             </div>
 
-            <p className="text-[10.5px] font-mono mt-2 text-zinc-400">
+            <p className="text-xs font-mono mt-2 text-zinc-400">
               {isProtected 
-                ? '🟢 SAFE: Herd barrier shields community. Local transmission halts.' 
-                : `🚨 DEFICIENT: Gaps exist. Outbreak chains will penetrate across the grid.`
+                ? 'Threshold met: community immunity barrier prevents sustained transmission.' 
+                : 'Threshold deficient: transmission chains penetrate through vulnerable nodes.'
               }
             </p>
           </div>
@@ -4007,28 +4043,28 @@ function ViralTippingVisualizer({ state, activeStep, controls, history = [] }: a
 
           {/* Semicircle Gauge / Population Card */}
           <div className="my-2 p-3 bg-slate-900/65 rounded border border-slate-900 text-center relative overflow-hidden">
-            <div className="absolute top-2 left-2 text-[8px] font-mono font-bold tracking-widest text-zinc-500 uppercase">Population Bar</div>
-            <div className="mt-2 text-3xl font-extrabold font-mono tracking-tight text-white flex items-center justify-center gap-1">
-              <span className={isViral ? 'text-emerald-400 animate-pulse' : 'text-zinc-400'}>
+            <span className="text-xs font-mono text-zinc-500 block text-left mb-1">Adoption level</span>
+            <div className="mt-1 text-3xl font-extrabold font-mono tracking-tight text-white flex items-center justify-center gap-1">
+              <span className={isViral ? 'text-emerald-400' : 'text-zinc-400'}>
                 {rate}%
               </span>
               <span className="text-xs text-zinc-500 font-sans">Adopters</span>
             </div>
 
-            {/* Semicircle pie-gauge / population bar filling up */}
-            <div className="w-full h-2.5 bg-slate-950 rounded-full mt-2.5 overflow-hidden relative border border-slate-900/80">
+            {/* Population bar */}
+            <div className="w-full h-2.5 bg-slate-950 rounded mt-2.5 overflow-hidden relative border border-slate-900/80">
               <div 
-                className={`h-full rounded-full transition-all duration-350 ${isViral ? 'bg-gradient-to-r from-emerald-500 to-green-400' : 'bg-slate-650'}`}
+                className={`h-full transition-all duration-350 ${isViral ? 'bg-emerald-600' : 'bg-slate-700'}`}
                 style={{ width: `${Math.min(rate, 100)}%` }}
               />
               {/* Tipping threshold locator line at 25% of width */}
-              <div className="absolute top-0 bottom-0 left-[25%] w-0.5 bg-white shadow-[0_0_8px_white] z-10" />
+              <div className="absolute top-0 bottom-0 left-[25%] w-0.5 bg-white z-10" />
             </div>
 
-            <p className="text-[10px] font-mono mt-2 text-zinc-400 leading-relaxed">
+            <p className="text-xs font-mono mt-2 text-zinc-400 leading-relaxed">
               {isViral 
-                ? '🟢 SUCCESS: Crossed tipping boundary! Bandwagon cascade is active.' 
-                : `🚨 STAGNATED: Below 25% threshold. Momentum decay is inevitable.`
+                ? 'Adoption threshold met (≥25%): self-reinforcing norm cascade is active.' 
+                : 'Subcritical adoption (<25%): peer pressure insufficient to sustain diffusion.'
               }
             </p>
           </div>

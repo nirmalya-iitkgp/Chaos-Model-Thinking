@@ -23,6 +23,7 @@ interface SidebarProps {
 }
 
 const DOMAIN_ICONS: Record<Domain, React.ComponentType<any>> = {
+  'Emergence & Complexity': Sparkles,
   'Economics': TrendingUp,
   'Environment': Leaf,
   'Urban': Zap,
@@ -31,16 +32,17 @@ const DOMAIN_ICONS: Record<Domain, React.ComponentType<any>> = {
 };
 
 const DOMAIN_COLORS: Record<Domain, { bg: string; text: string; border: string }> = {
-  'Economics': { bg: 'bg-indigo-55 bg-opacity-70 text-indigo-700', text: 'text-indigo-800', border: 'border-indigo-100' },
-  'Environment': { bg: 'bg-emerald-55 bg-opacity-70 text-emerald-700', text: 'text-emerald-800', border: 'border-emerald-100' },
-  'Urban': { bg: 'bg-amber-55 bg-opacity-70 text-amber-700', text: 'text-amber-800', border: 'border-amber-100' },
-  'Public Health': { bg: 'bg-rose-55 bg-opacity-70 text-rose-700', text: 'text-rose-800', border: 'border-rose-100' },
-  'Social': { bg: 'bg-blue-55 bg-opacity-70 text-blue-700', text: 'text-blue-800', border: 'border-blue-100' },
+  'Emergence & Complexity': { bg: 'bg-purple-50 text-purple-700', text: 'text-purple-800', border: 'border-purple-200' },
+  'Economics': { bg: 'bg-indigo-50 text-indigo-700', text: 'text-indigo-800', border: 'border-indigo-100' },
+  'Environment': { bg: 'bg-emerald-50 text-emerald-700', text: 'text-emerald-800', border: 'border-emerald-100' },
+  'Urban': { bg: 'bg-amber-50 text-amber-700', text: 'text-amber-800', border: 'border-amber-100' },
+  'Public Health': { bg: 'bg-rose-50 text-rose-700', text: 'text-rose-800', border: 'border-rose-100' },
+  'Social': { bg: 'bg-blue-50 text-blue-700', text: 'text-blue-800', border: 'border-blue-100' },
 };
 
 export default function ScenarioSidebar({ scenarios, currentId, onSelect }: SidebarProps) {
   // Group scenarios by domain
-  const domains: Domain[] = ['Economics', 'Environment', 'Urban', 'Public Health', 'Social'];
+  const domains: Domain[] = ['Emergence & Complexity', 'Economics', 'Environment', 'Urban', 'Public Health', 'Social'];
 
   return (
     <div id="scenario-sidebar" className="w-full lg:w-80 bg-white border-r border-slate-200 flex flex-col h-full">

@@ -5,25 +5,20 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { 
-  Lightbulb,
-  AlertTriangle,
-  Menu,
-  X,
-  Layers,
-  Sparkles,
-  HelpCircle,
-  Play
+  ChevronLeft,
+  ChevronRight,
+  ArrowLeft
 } from 'lucide-react';
 import { SCENARIO_LIST } from './data/scenarios';
-import ScenarioSidebar from './components/ScenarioSidebar';
+import HeroCatalog from './components/HeroCatalog';
 import SimulationControls from './components/SimulationControls';
 import MetricCards from './components/MetricCards';
 import Visualizer from './components/Visualizer';
 
 export default function App() {
-  // Scenario selection
-  const [currentScenarioId, setCurrentScenarioId] = useState('market-panic');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // View mode: 'catalog' shows the rich Hero page with all models; 'simulation' runs the model in full width
+  const [viewMode, setViewMode] = useState<'catalog' | 'simulation'>('catalog');
+  const [currentScenarioId, setCurrentScenarioId] = useState<string>('conway-life');
 
   // Find active definition
   const scenario = SCENARIO_LIST.find((s) => s.id === currentScenarioId) || SCENARIO_LIST[0];
@@ -45,12 +40,12 @@ export default function App() {
   // Track the timer ref for auto-play
   const playTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Helper to align defaults when switching scenarios
-  const selectScenario = useCallback((id: string) => {
+  // Helper to select and launch a scenario
+  const launchScenario = useCallback((id: string) => {
     const nextScenario = SCENARIO_LIST.find((s) => s.id === id) || SCENARIO_LIST[0];
     setCurrentScenarioId(id);
-    setIsMobileMenuOpen(false);
     setIsPlaying(false);
+    setViewMode('simulation');
 
     // Bootstrap defaults
     const defaults: Record<string, number | boolean> = {};
@@ -62,7 +57,13 @@ export default function App() {
     // Reset trajectory
     setActiveStep(0);
     setHistory([nextScenario.initialState]);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
+
+  // Quick switch between next and previous scenarios
+  const currentIdx = SCENARIO_LIST.findIndex(s => s.id === currentScenarioId);
+  const prevScenario = currentIdx > 0 ? SCENARIO_LIST[currentIdx - 1] : SCENARIO_LIST[SCENARIO_LIST.length - 1];
+  const nextScenario = currentIdx < SCENARIO_LIST.length - 1 ? SCENARIO_LIST[currentIdx + 1] : SCENARIO_LIST[0];
 
   // Set control inputs dynamically
   const changeControl = useCallback((controlId: string, value: number | boolean) => {
@@ -93,8 +94,6 @@ export default function App() {
 
     const nextStep = activeStep + 1;
     const previousState = history[activeStep];
-    
-    // Evaluate the new mathematical state based on step, previous, and current sliders
     const nextState = scenario.calculateStep(nextStep, previousState, controlValues);
 
     setHistory((prevHistory) => {
@@ -150,94 +149,106 @@ export default function App() {
     }
   };
 
-  // Get active step results
+  // If in catalog mode, render the rich Hero catalog
+  if (viewMode === 'catalog') {
+    return (
+      <HeroCatalog
+        scenarios={SCENARIO_LIST}
+        onSelectModel={launchScenario}
+        activeModelId={currentScenarioId}
+      />
+    );
+  }
+
+  // Active step state & analysis report
   const currentState = history[activeStep] || scenario.initialState;
   const analysisReport = scenario.analysis(currentState, controlValues);
 
   return (
-    <div id="systems-chaos-dashboard" className="flex flex-col lg:flex-row h-screen w-screen bg-slate-50 overflow-hidden font-sans text-slate-800 antialiased">
+    <div id="systems-chaos-dashboard" className="min-h-screen w-full bg-slate-950 font-sans text-slate-100 antialiased flex flex-col">
       
-      {/* MOBILE CONTROL BAR (Hidden on large screens) */}
-      <div id="mobile-control-bar" className="lg:hidden flex items-center justify-between px-4 py-3 bg-slate-900 text-white z-40 border-b border-slate-800 shadow-md shrink-0">
-        <div className="flex items-center gap-2">
-          <img 
-            src="/logo.png" 
-            alt="Chaos model Thinking Logo" 
-            className="h-6 w-6 object-contain rounded-md" 
-            referrerPolicy="no-referrer"
-          />
-          <span className="font-semibold text-sm tracking-tight">Chaos model Thinking</span>
-        </div>
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="p-1 rounded hover:bg-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-700 cursor-pointer"
-          aria-label="Toggle navigation drawer"
-        >
-          {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
-      </div>
-
-      {/* OVERLAY NAVIGATION DRAWER FOR MOBILE */}
-      {isMobileMenuOpen && (
-        <div 
-          onClick={() => setIsMobileMenuOpen(false)}
-          className="lg:hidden fixed inset-0 bg-black/45 z-30 transition-opacity duration-200"
-        >
-          <div 
-            onClick={(e) => e.stopPropagation()}
-            className="w-72 max-w-[80vw] h-full bg-white shadow-2xl relative z-40 overflow-y-auto"
+      {/* SIMULATION TOP NAVIGATION BAR */}
+      <header className="sticky top-0 z-40 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-4 md:px-8 py-3 flex items-center justify-between shadow-md shrink-0">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setViewMode('catalog')}
+            className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium flex items-center gap-1.5 border border-slate-700 transition-colors"
           >
-            <ScenarioSidebar
-              scenarios={SCENARIO_LIST}
-              currentId={currentScenarioId}
-              onSelect={selectScenario}
+            <ArrowLeft className="h-3.5 w-3.5" />
+            <span className="hidden sm:inline">All Models Catalog</span>
+            <span className="sm:hidden">All</span>
+          </button>
+
+          <div className="h-4 w-px bg-slate-800 hidden sm:block" />
+
+          <div className="flex items-center gap-2">
+            <img 
+              src="/logo.png" 
+              alt="Chaos model Thinking" 
+              className="h-6 w-6 object-contain rounded" 
+              referrerPolicy="no-referrer"
             />
+            <span className="font-bold text-sm tracking-tight text-white hidden md:inline">
+              Chaos model Thinking
+            </span>
           </div>
         </div>
-      )}
 
-      {/* DESKTOP SIDEBAR MENU (Permanent) */}
-      <div className="hidden lg:block shrink-0 h-full">
-        <ScenarioSidebar
-          scenarios={SCENARIO_LIST}
-          currentId={currentScenarioId}
-          onSelect={selectScenario}
-        />
-      </div>
+        {/* Center: Quick Switcher Dropdown & Next/Prev */}
+        <div className="flex items-center gap-1.5 max-w-[50vw]">
+          <button
+            onClick={() => launchScenario(prevScenario.id)}
+            title={`Previous: ${prevScenario.name}`}
+            className="p-1.5 rounded bg-slate-800 hover:bg-slate-750 text-slate-300 border border-slate-700 transition-colors"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
 
-      {/* MAIN MAIN VIEWPORT AREA */}
-      <main id="simulation-viewport" className="flex-1 overflow-y-auto flex flex-col p-4 md:p-6 lg:p-8 space-y-6 max-w-7xl mx-auto w-full">
+          <select
+            value={currentScenarioId}
+            onChange={(e) => launchScenario(e.target.value)}
+            className="bg-slate-800 border border-slate-700 text-slate-200 text-xs rounded-lg px-2.5 py-1.5 font-medium truncate focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer max-w-[200px] sm:max-w-[280px]"
+          >
+            {SCENARIO_LIST.map((s) => (
+              <option key={s.id} value={s.id}>
+                {s.name} ({s.domain})
+              </option>
+            ))}
+          </select>
+
+          <button
+            onClick={() => launchScenario(nextScenario.id)}
+            title={`Next: ${nextScenario.name}`}
+            className="p-1.5 rounded bg-slate-800 hover:bg-slate-750 text-slate-300 border border-slate-700 transition-colors"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+
+        {/* Right: Domain Label */}
+        <div className="hidden lg:flex items-center gap-2">
+          <span className="text-xs font-mono text-slate-400">
+            {scenario.domain}
+          </span>
+        </div>
+      </header>
+
+      {/* FULL-WIDTH SIMULATION VIEWPORT */}
+      <main id="simulation-viewport" className="flex-1 overflow-y-auto flex flex-col p-4 md:p-6 space-y-4 max-w-6xl mx-auto w-full">
         
-        {/* SCENARIO HEADER SUMMARY CARD */}
-        <section id="scenario-explanation-card" className="bg-white border border-slate-200 rounded-xl p-5 md:p-6 shadow-sm flex flex-col gap-3 relative overflow-hidden">
-          {/* Subtle category tag top-left decoration */}
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[10px] font-mono font-bold tracking-widest text-indigo-700 uppercase bg-indigo-50 border border-indigo-100 px-2.5 py-0.5 rounded-full">
-              {scenario.domain} Domain
-            </span>
-            <span className="text-[10px] font-mono font-medium text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full flex items-center gap-1.5 border border-slate-150">
-              <Sparkles className="h-3 w-3 text-amber-500" />
-              Focus: {scenario.chaosConcept}
-            </span>
+        {/* Compact Scenario Title Bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-slate-800 pb-2">
+          <h1 className="text-lg font-bold tracking-tight text-white">
+            {scenario.name}
+          </h1>
+          <div className="text-xs text-slate-400 font-mono flex items-center gap-2">
+            <span>{scenario.domain}</span>
+            <span aria-hidden="true">·</span>
+            <span>{scenario.chaosConcept}</span>
           </div>
+        </div>
 
-          <div className="mt-1">
-            <h2 className="text-xl md:text-2xl font-bold tracking-tight text-slate-900">
-              {scenario.name}
-            </h2>
-            <div className="mt-2.5 text-xs text-slate-600 leading-relaxed font-normal flex gap-2">
-              <HelpCircle className="h-4.5 w-4.5 text-slate-400 shrink-0 mt-0.5" />
-              <p>
-                <strong className="text-slate-800 font-semibold font-mono">Learning Objective:</strong> {scenario.learningObjective}
-              </p>
-            </div>
-          </div>
-
-          {/* Graphic corner flair */}
-          <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-indigo-50 to-transparent rounded-bl-full opacity-60 pointer-events-none" />
-        </section>
-
-        {/* INPUTS PANEL AND TIMELINE ACTION CONTROLS */}
+        {/* CONTROLS */}
         <section id="interaction-controls-panel">
           <SimulationControls
             controls={scenario.controls}
@@ -253,22 +264,16 @@ export default function App() {
           />
         </section>
 
-        {/* METRICS DASHBOARD VIEW */}
-        <section id="outflow-parameter-cards" className="space-y-2">
-          <div className="text-[10px] font-mono text-slate-400 tracking-widest font-bold uppercase ml-1">
-            Dynamic State Metrics ({scenario.timeLabel} {activeStep})
-          </div>
+        {/* METRICS */}
+        <section id="outflow-parameter-cards">
           <MetricCards
             metrics={scenario.metrics}
             state={currentState}
           />
         </section>
 
-        {/* THE VISUAL CANVAS PLATFORM */}
-        <section id="visualization-canvas-platform" className="space-y-2">
-          <div className="text-[10px] font-mono text-slate-400 tracking-widest font-bold uppercase ml-1">
-            Structural System Visualizer
-          </div>
+        {/* VISUALIZER */}
+        <section id="visualization-canvas-platform">
           <Visualizer
             scenarioId={currentScenarioId}
             activeStep={activeStep}
@@ -278,33 +283,15 @@ export default function App() {
           />
         </section>
 
-        {/* REAL-TIME SIMULATION RUN CHAOS ANALYSIS BOX */}
+        {/* STATUS BAR */}
         <section id="real-time-feedback-box">
-          <div className={`p-5 rounded-xl border flex flex-col md:flex-row gap-4 items-start transition-all duration-300 ${
+          <div className={`px-3.5 py-2.5 rounded border text-xs flex items-center gap-2.5 ${
             analysisReport.isCritical
-              ? 'bg-rose-50/70 border-rose-150 text-rose-950'
-              : 'bg-indigo-50/50 border-indigo-100 text-indigo-950'
+              ? 'bg-rose-950/30 border-rose-900/60 text-rose-200'
+              : 'bg-slate-900 border-slate-800 text-slate-300'
           }`}>
-            <div className={`p-2 rounded-lg shrink-0 ${
-              analysisReport.isCritical
-                ? 'bg-rose-100 text-rose-700'
-                : 'bg-indigo-100 text-indigo-700'
-            }`}>
-              {analysisReport.isCritical ? (
-                <AlertTriangle className="h-5 w-5 shrink-0" />
-              ) : (
-                <Lightbulb className="h-5 w-5 shrink-0" />
-              )}
-            </div>
-
-            <div className="space-y-1">
-              <h4 className="text-sm font-bold tracking-tight">
-                {analysisReport.title}
-              </h4>
-              <p className="text-xs leading-relaxed font-normal opacity-90">
-                {analysisReport.text}
-              </p>
-            </div>
+            <span className="font-semibold text-white shrink-0">{analysisReport.title}:</span>
+            <span className="truncate">{analysisReport.text}</span>
           </div>
         </section>
 

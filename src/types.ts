@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export type Domain = 'Economics' | 'Environment' | 'Urban' | 'Public Health' | 'Social';
+export type Domain = 'Emergence & Complexity' | 'Economics' | 'Environment' | 'Urban' | 'Public Health' | 'Social';
 
 export interface ScenarioControl {
   id: string;
