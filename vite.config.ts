@@ -5,7 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
-    base: '/chaos-model-thinking/',
+    base: '/Chaos-Model-Thinking/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
