@@ -183,7 +183,7 @@ export default function App() {
 
           <div className="flex items-center gap-2">
             <img 
-              src="/logo.png" 
+              src="./logo.png" 
               alt="Chaos model Thinking" 
               className="h-6 w-6 object-contain rounded" 
               referrerPolicy="no-referrer"

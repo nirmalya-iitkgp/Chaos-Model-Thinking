@@ -144,14 +144,14 @@ An interactive complex systems simulator for non-linear dynamics, cellular autom
 ## 🧭 Hero Catalog & Simulation Workspace UX
 
 The application is structured into two focused navigation modes designed under strict, restrained aesthetic principles:
-- **Hero Models Hub (`viewMode === 'catalog'`)**: A fast, scannable simulation directory showcasing all 22 models. Stripped of non-priority text and filler paragraphs, displaying only the simulation name, domain, core mechanism, control count, and direct launch action.
-- **Full-Width Simulation Workspace (`viewMode === 'simulation'`)**: Maximizes interactive canvas space. Features a compact title bar, lean slider controls with immediate value feedback (no redundant description paragraphs), concise metric cards, and a one-line real-time status bar.
+- **Hero Carousel (`viewMode === 'catalog'`)**: An editorial split-panel carousel showcasing all 22 models across flat print-inspired color spreads (ice blue, crisp paper, sage teal, warm mustard, and vermilion accents). Each slide pairs concise display typography with a bespoke, model-specific line-art and geometric collage SVG illustration, supported by keyboard arrow navigation, a horizontal thumbnail filmstrip, and a vermilion index/search drawer.
+- **Full-Width Simulation Workspace (`viewMode === 'simulation'`)**: Maximizes interactive canvas space. Features a compact title bar, lean slider controls with immediate value feedback, concise metric cards, and a one-line real-time status bar.
 
 ### 📐 Design Constitution & Principles
-- **Restrained Color Palette**: Banned neon gradients, fluorescent halos, and multi-color fades. Built on deep matte zinc/slate tones (`bg-zinc-950`, `border-zinc-800`) with solid single-hue accents.
-- **Minimal Text & Concrete Prose**: Deleted all non-priority informational text, instructional paragraphs, and filler copy.
-- **Zero Floating Badges**: Eliminated empty pill capsules and all-caps eyebrow headers.
-- **High-Density Usability**: Direct access to sliders, interactive physics canvases, and metrics without scrolling past text walls.
+- **Restrained Print Palette**: Flat editorial color-blocking (`#E3EBF3`, `#FFFFFF`, `#8BC3B8`, `#E8DC7B`, `#D94126`, `#1C1D21`) with zero neon gradients or glowing halos.
+- **Minimal Text & Concrete Prose**: Concise titles and mechanism callouts without filler paragraphs.
+- **Zero Floating Badges**: Clean unboxed inline metadata (`01 / 22 · Domain`) and typographic rules.
+- **Custom Model Line-Art**: Dedicated vector line-art and geometric print illustration for every one of the 22 complex systems models.
 
 ---
 
