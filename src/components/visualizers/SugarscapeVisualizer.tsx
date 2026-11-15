@@ -212,12 +212,12 @@ export default function SugarscapeVisualizer({ state, activeStep, controls }: Vi
 
     // Sugar terrain background
     const sugar = sugarGridRef.current;
-    const sugarColors = ['#090d16', '#1e293b', '#3b2f15', '#604212', '#92570b'];
+    const sugarColors = ['#0F0E47', '#505081', '#3b2f15', '#604212', '#92570b'];
 
     for (let r = 0; r < ROWS; r++) {
       for (let c = 0; c < COLS; c++) {
         const amt = sugar[r][c];
-        ctx.fillStyle = sugarColors[Math.min(4, amt)] || '#090d16';
+        ctx.fillStyle = sugarColors[Math.min(4, amt)] || '#0F0E47';
         ctx.fillRect(c * cellW, r * cellH, cellW, cellH);
       }
     }
@@ -244,7 +244,7 @@ export default function SugarscapeVisualizer({ state, activeStep, controls }: Vi
       ctx.arc(x, y, radius, 0, Math.PI * 2);
       ctx.fill();
 
-      ctx.strokeStyle = '#020617';
+      ctx.strokeStyle = '#0F0E47';
       ctx.lineWidth = 1;
       ctx.stroke();
     }

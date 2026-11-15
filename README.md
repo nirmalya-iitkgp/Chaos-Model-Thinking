@@ -144,14 +144,14 @@ An interactive complex systems simulator for non-linear dynamics, cellular autom
 ## 🧭 Hero Catalog & Simulation Workspace UX
 
 The application is structured into two focused navigation modes designed under strict, restrained aesthetic principles:
-- **Hero Carousel (`viewMode === 'catalog'`)**: An editorial split-panel carousel showcasing all 22 models across flat print-inspired color spreads (ice blue, crisp paper, sage teal, warm mustard, and vermilion accents). Each slide pairs concise display typography with a bespoke, model-specific line-art and geometric collage SVG illustration, supported by keyboard arrow navigation, a horizontal thumbnail filmstrip, and a vermilion index/search drawer.
-- **Full-Width Simulation Workspace (`viewMode === 'simulation'`)**: Maximizes interactive canvas space. Features a compact title bar, lean slider controls with immediate value feedback, concise metric cards, and a one-line real-time status bar.
+- **Hero Carousel (`viewMode === 'catalog'`)**: An editorial split-panel carousel showcasing all 22 models inside a unified dark Blue Eclipse theme (`#0F0E47`, `#272757`, `#505081`, `#8686AC`). Each slide pairs concise display typography with a bespoke, flowy running line-art SVG illustration, supported by keyboard arrow navigation, a horizontal thumbnail filmstrip, and an index/search drawer.
+- **Full-Width Simulation Workspace (`viewMode === 'simulation'`)**: Maximizes interactive canvas space. Outer containers, slider controls, metric cards, and internal simulation canvases/SVG grids are strictly synchronized to the same Blue Eclipse palette (`#0F0E47` void, `#272757` elevated panels, `#505081` borders, `#8686AC` secondary accents).
 
 ### 📐 Design Constitution & Principles
-- **Restrained Print Palette**: Flat editorial color-blocking (`#E3EBF3`, `#FFFFFF`, `#8BC3B8`, `#E8DC7B`, `#D94126`, `#1C1D21`) with zero neon gradients or glowing halos.
+- **Unified Blue Eclipse Dark Theme**: Eliminated light/dark contrast clashes. Deep midnight navy (`#0F0E47`), twilight indigo (`#272757`), slate-violet (`#505081`), and mist periwinkle (`#8686AC`) harmonize across both outer UI chrome and internal simulation canvases.
+- **Flowy Running Line-Art**: Dedicated continuous-stroke Bezier vector illustrations for all 22 complex systems models with subtle motion flow.
 - **Minimal Text & Concrete Prose**: Concise titles and mechanism callouts without filler paragraphs.
 - **Zero Floating Badges**: Clean unboxed inline metadata (`01 / 22 · Domain`) and typographic rules.
-- **Custom Model Line-Art**: Dedicated vector line-art and geometric print illustration for every one of the 22 complex systems models.
 
 ---
 

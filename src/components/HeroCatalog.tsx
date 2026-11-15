@@ -19,47 +19,27 @@ interface HeroCatalogProps {
   activeModelId?: string;
 }
 
-interface SlideTheme {
+interface SlideTone {
   panelBg: string;
   artBg: string;
-  titleColor: string;
-  metaColor: string;
-  bodyColor: string;
   borderColor: string;
 }
 
-const SLIDE_THEMES: SlideTheme[] = [
+const SLIDE_TONES: SlideTone[] = [
   {
-    panelBg: 'bg-[#E3EBF3]',
-    artBg: 'bg-[#FAF8F3]',
-    titleColor: 'text-[#D94126]',
-    metaColor: 'text-zinc-600',
-    bodyColor: 'text-zinc-800',
-    borderColor: 'border-zinc-300',
+    panelBg: 'bg-[#272757]',
+    artBg: 'bg-[#0F0E47]',
+    borderColor: 'border-[#505081]',
   },
   {
-    panelBg: 'bg-white',
-    artBg: 'bg-[#F4F1EA]',
-    titleColor: 'text-[#D94126]',
-    metaColor: 'text-zinc-500',
-    bodyColor: 'text-zinc-700',
-    borderColor: 'border-zinc-300',
+    panelBg: 'bg-[#1D1C50]',
+    artBg: 'bg-[#0F0E47]',
+    borderColor: 'border-[#505081]',
   },
   {
-    panelBg: 'bg-[#8BC3B8]',
-    artBg: 'bg-[#FAF8F3]',
-    titleColor: 'text-white',
-    metaColor: 'text-zinc-900/75',
-    bodyColor: 'text-zinc-900',
-    borderColor: 'border-[#73AA9F]',
-  },
-  {
-    panelBg: 'bg-[#E8DC7B]',
-    artBg: 'bg-[#FAF8F3]',
-    titleColor: 'text-zinc-950',
-    metaColor: 'text-zinc-700',
-    bodyColor: 'text-zinc-800',
-    borderColor: 'border-[#D1C462]',
+    panelBg: 'bg-[#2E2D62]',
+    artBg: 'bg-[#0F0E47]',
+    borderColor: 'border-[#8686AC]/50',
   },
 ];
 
@@ -134,7 +114,7 @@ export default function HeroCatalog({ scenarios, onSelectModel, activeModelId }:
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [filteredScenarios.length, isDrawerOpen]);
 
-  // Focus search input when vermilion drawer opens
+  // Focus search input when drawer opens
   useEffect(() => {
     if (isDrawerOpen) {
       setTimeout(() => searchInputRef.current?.focus(), 50);
@@ -142,7 +122,7 @@ export default function HeroCatalog({ scenarios, onSelectModel, activeModelId }:
   }, [isDrawerOpen]);
 
   const currentScenario = filteredScenarios[activeIndex] || filteredScenarios[0];
-  const currentTheme = SLIDE_THEMES[activeIndex % SLIDE_THEMES.length];
+  const currentTone = SLIDE_TONES[activeIndex % SLIDE_TONES.length];
 
   const handlePrev = () => {
     if (filteredScenarios.length === 0) return;
@@ -157,18 +137,18 @@ export default function HeroCatalog({ scenarios, onSelectModel, activeModelId }:
   const formatIndex = (idx: number) => String(idx + 1).padStart(2, '0');
 
   return (
-    <div id="hero-models-catalog" className="w-full min-h-screen bg-[#1C1D21] text-zinc-900 flex flex-col font-sans selection:bg-[#D94126] selection:text-white">
+    <div id="hero-models-catalog" className="w-full min-h-screen bg-[#0F0E47] text-[#F2F2FA] flex flex-col font-sans selection:bg-[#505081] selection:text-white">
       
-      {/* Editorial Top Bar */}
-      <header className="w-full bg-white border-b border-zinc-200 sticky top-0 z-40 px-4 md:px-10 py-3.5 flex items-center justify-between">
+      {/* Unified Dark Blue Eclipse Header */}
+      <header className="w-full bg-[#0F0E47]/95 backdrop-blur border-b border-[#505081]/60 sticky top-0 z-40 px-4 md:px-10 py-3.5 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <img
             src="./logo.png"
             alt="Chaos model Thinking"
-            className="h-6 w-6 object-contain"
+            className="h-6 w-6 object-contain rounded"
             referrerPolicy="no-referrer"
           />
-          <span className="font-display font-bold text-base tracking-tight text-[#D94126]">
+          <span className="font-display font-bold text-base tracking-tight text-white">
             Chaos model Thinking
           </span>
         </div>
@@ -184,8 +164,8 @@ export default function HeroCatalog({ scenarios, onSelectModel, activeModelId }:
                 onClick={() => setSelectedDomain(domain)}
                 className={`py-1 border-b-2 transition-colors cursor-pointer ${
                   isSelected
-                    ? 'border-[#D94126] text-zinc-950 font-semibold'
-                    : 'border-transparent text-zinc-500 hover:text-zinc-900'
+                    ? 'border-[#8686AC] text-white font-semibold'
+                    : 'border-transparent text-[#8686AC] hover:text-white'
                 }`}
               >
                 {shortLabel}
@@ -199,7 +179,7 @@ export default function HeroCatalog({ scenarios, onSelectModel, activeModelId }:
           {activeModelId && (
             <button
               onClick={() => onSelectModel(activeModelId)}
-              className="hidden sm:flex items-center gap-1.5 text-xs font-medium text-zinc-700 hover:text-[#D94126] transition-colors cursor-pointer"
+              className="hidden sm:flex items-center gap-1.5 text-xs font-medium text-[#8686AC] hover:text-white transition-colors cursor-pointer"
             >
               <span>Resume active</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -208,7 +188,7 @@ export default function HeroCatalog({ scenarios, onSelectModel, activeModelId }:
           <button
             onClick={() => setIsDrawerOpen(true)}
             aria-label="Open model search and index"
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-[#D94126] hover:bg-[#C1361D] text-white text-xs font-medium transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 bg-[#505081] hover:bg-[#8686AC] hover:text-[#0F0E47] text-white text-xs font-medium transition-colors cursor-pointer rounded"
           >
             <Search className="h-3.5 w-3.5" />
             <span>Index</span>
@@ -217,7 +197,7 @@ export default function HeroCatalog({ scenarios, onSelectModel, activeModelId }:
       </header>
 
       {/* Mobile Domain Filter Strip */}
-      <div className="lg:hidden bg-white border-b border-zinc-200 px-4 py-2 flex items-center gap-4 overflow-x-auto scrollbar-none text-xs">
+      <div className="lg:hidden bg-[#0F0E47] border-b border-[#505081]/50 px-4 py-2 flex items-center gap-4 overflow-x-auto scrollbar-none text-xs">
         {domains.map((domain) => {
           const isSelected = selectedDomain === domain;
           const shortLabel = domain === 'Emergence & Complexity' ? 'Emergence' : domain;
@@ -227,8 +207,8 @@ export default function HeroCatalog({ scenarios, onSelectModel, activeModelId }:
               onClick={() => setSelectedDomain(domain)}
               className={`py-1 whitespace-nowrap border-b-2 transition-colors ${
                 isSelected
-                  ? 'border-[#D94126] text-zinc-950 font-semibold'
-                  : 'border-transparent text-zinc-500'
+                  ? 'border-[#8686AC] text-white font-semibold'
+                  : 'border-transparent text-[#8686AC]'
               }`}
             >
               {shortLabel}
@@ -245,22 +225,22 @@ export default function HeroCatalog({ scenarios, onSelectModel, activeModelId }:
             <section
               aria-roledescription="carousel"
               aria-label="Simulation models carousel"
-              className={`w-full grid grid-cols-1 lg:grid-cols-12 border ${currentTheme.borderColor} shadow-2xl overflow-hidden min-h-[430px] md:min-h-[480px] transition-colors duration-300`}
+              className={`w-full grid grid-cols-1 lg:grid-cols-12 border ${currentTone.borderColor} rounded-lg overflow-hidden min-h-[420px] md:min-h-[460px] transition-colors duration-300`}
             >
               {/* Left Typography & Action Panel */}
-              <div className={`lg:col-span-6 ${currentTheme.panelBg} p-7 sm:p-10 md:p-12 flex flex-col justify-between transition-colors duration-300`}>
+              <div className={`lg:col-span-6 ${currentTone.panelBg} p-7 sm:p-10 md:p-12 flex flex-col justify-between transition-colors duration-300`}>
                 <div className="space-y-4">
-                  <div className={`text-xs font-mono flex items-center gap-2 ${currentTheme.metaColor}`}>
+                  <div className="text-xs font-mono flex items-center gap-2 text-[#8686AC]">
                     <span>{formatIndex(activeIndex)} / {formatIndex(filteredScenarios.length - 1)}</span>
                     <span aria-hidden="true">·</span>
                     <span>{currentScenario.domain}</span>
                   </div>
 
-                  <h1 className={`font-display text-3xl sm:text-4xl md:text-[42px] font-bold tracking-tight leading-[1.08] ${currentTheme.titleColor}`}>
+                  <h1 className="font-display text-3xl sm:text-4xl md:text-[42px] font-bold tracking-tight leading-[1.08] text-white">
                     {currentScenario.name}
                   </h1>
 
-                  <p className={`text-sm md:text-base font-normal leading-relaxed max-w-md pt-1 ${currentTheme.bodyColor}`}>
+                  <p className="text-sm md:text-base font-normal leading-relaxed max-w-md pt-1 text-[#C5C5DF]">
                     {currentScenario.chaosConcept}
                   </p>
                 </div>
@@ -269,7 +249,7 @@ export default function HeroCatalog({ scenarios, onSelectModel, activeModelId }:
                 <div className="pt-8 flex flex-wrap items-center justify-between gap-4">
                   <button
                     onClick={() => onSelectModel(currentScenario.id)}
-                    className="px-5 py-3 bg-[#D94126] hover:bg-[#B9321B] text-white text-xs font-semibold flex items-center gap-2.5 transition-colors cursor-pointer"
+                    className="px-5 py-3 bg-[#505081] hover:bg-[#8686AC] hover:text-[#0F0E47] text-white text-xs font-semibold rounded flex items-center gap-2.5 transition-colors cursor-pointer"
                   >
                     <span>Open Simulator</span>
                     <ArrowRight className="h-4 w-4" />
@@ -279,14 +259,14 @@ export default function HeroCatalog({ scenarios, onSelectModel, activeModelId }:
                     <button
                       onClick={handlePrev}
                       aria-label="Previous model"
-                      className="p-2.5 bg-white/85 hover:bg-white text-zinc-900 border border-zinc-900/15 transition-colors cursor-pointer"
+                      className="p-2.5 bg-[#0F0E47]/60 hover:bg-[#505081] text-[#F2F2FA] border border-[#505081] rounded transition-colors cursor-pointer"
                     >
                       <ArrowLeft className="h-4 w-4" />
                     </button>
                     <button
                       onClick={handleNext}
                       aria-label="Next model"
-                      className="p-2.5 bg-white/85 hover:bg-white text-zinc-900 border border-zinc-900/15 transition-colors cursor-pointer"
+                      className="p-2.5 bg-[#0F0E47]/60 hover:bg-[#505081] text-[#F2F2FA] border border-[#505081] rounded transition-colors cursor-pointer"
                     >
                       <ArrowRight className="h-4 w-4" />
                     </button>
@@ -294,10 +274,10 @@ export default function HeroCatalog({ scenarios, onSelectModel, activeModelId }:
                 </div>
               </div>
 
-              {/* Right Editorial Line-Art Illustration Panel */}
+              {/* Right Flowy Running Line-Art Panel */}
               <div
                 onClick={() => onSelectModel(currentScenario.id)}
-                className={`lg:col-span-6 ${currentTheme.artBg} p-6 md:p-8 flex items-center justify-center relative cursor-pointer group border-t lg:border-t-0 lg:border-l border-zinc-900/10`}
+                className={`lg:col-span-6 ${currentTone.artBg} p-6 md:p-8 flex items-center justify-center relative cursor-pointer group border-t lg:border-t-0 lg:border-l border-[#505081]/60`}
               >
                 <div className="w-full max-w-[440px] aspect-[4/3] transition-transform duration-300 group-hover:scale-[1.02]">
                   <ModelIllustration scenarioId={currentScenario.id} className="w-full h-full" />
@@ -307,41 +287,40 @@ export default function HeroCatalog({ scenarios, onSelectModel, activeModelId }:
 
             {/* Horizontal Carousel Peek Filmstrip */}
             <section aria-label="Model slides navigation" className="w-full space-y-2">
-              <div className="flex items-center justify-between text-xs font-mono text-zinc-400 px-0.5">
+              <div className="flex items-center justify-between text-xs font-mono text-[#8686AC] px-0.5">
                 <span>Browse slides ({filteredScenarios.length})</span>
-                <span className="hidden sm:inline text-zinc-500">Use ← / → keys or select a slide</span>
+                <span className="hidden sm:inline">Use ← / → keys or select a slide</span>
               </div>
 
               <div
                 ref={stripRef}
-                className="flex items-stretch gap-3 overflow-x-auto pb-3 pt-1 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-zinc-700"
+                className="flex items-stretch gap-3 overflow-x-auto pb-3 pt-1 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-[#505081]"
               >
                 {filteredScenarios.map((scenario, idx) => {
                   const isActive = idx === activeIndex;
-                  const slideTheme = SLIDE_THEMES[idx % SLIDE_THEMES.length];
 
                   return (
                     <button
                       key={scenario.id}
                       onClick={() => setActiveIndex(idx)}
                       onDoubleClick={() => onSelectModel(scenario.id)}
-                      className={`snap-center shrink-0 w-56 sm:w-64 text-left flex flex-col border transition-all cursor-pointer group ${
+                      className={`snap-center shrink-0 w-56 sm:w-64 text-left flex flex-col border rounded overflow-hidden transition-all cursor-pointer group ${
                         isActive
-                          ? 'border-[#D94126] ring-2 ring-[#D94126] -translate-y-0.5'
-                          : 'border-zinc-800 hover:border-zinc-500 opacity-85 hover:opacity-100'
+                          ? 'border-[#8686AC] ring-1 ring-[#8686AC] bg-[#272757] -translate-y-0.5'
+                          : 'border-[#505081]/60 bg-[#272757]/60 hover:bg-[#272757] hover:border-[#8686AC]/70 opacity-85 hover:opacity-100'
                       }`}
                     >
-                      {/* Mini Illustration Preview */}
-                      <div className={`w-full h-28 ${slideTheme.artBg} p-2 border-b border-zinc-200 flex items-center justify-center overflow-hidden`}>
+                      {/* Mini Flowing Line-Art Preview */}
+                      <div className="w-full h-28 bg-[#0F0E47] p-2 border-b border-[#505081]/50 flex items-center justify-center overflow-hidden">
                         <ModelIllustration scenarioId={scenario.id} className="w-full h-full" />
                       </div>
 
-                      {/* Mini Editorial Caption */}
-                      <div className={`p-3 flex-1 w-full flex flex-col justify-between ${slideTheme.panelBg}`}>
-                        <div className={`text-[11px] font-mono ${slideTheme.metaColor}`}>
+                      {/* Mini Caption */}
+                      <div className="p-3 flex-1 w-full flex flex-col justify-between">
+                        <div className="text-[11px] font-mono text-[#8686AC]">
                           {formatIndex(idx)} · {scenario.domain}
                         </div>
-                        <div className={`font-display font-bold text-sm leading-snug mt-1 line-clamp-2 ${slideTheme.titleColor}`}>
+                        <div className="font-display font-semibold text-sm leading-snug mt-1 line-clamp-2 text-white">
                           {scenario.name}
                         </div>
                       </div>
@@ -352,13 +331,13 @@ export default function HeroCatalog({ scenarios, onSelectModel, activeModelId }:
             </section>
           </>
         ) : (
-          /* Empty State matching Reference "Nothing found" White Spread */
-          <section className="w-full bg-white border border-zinc-200 p-10 md:p-16 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          /* Empty State matching Unified Blue Eclipse Theme */
+          <section className="w-full bg-[#272757] border border-[#505081] rounded-lg p-10 md:p-16 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             <div className="md:col-span-6 space-y-4">
-              <h2 className="font-display text-2xl font-bold text-[#D94126]">
+              <h2 className="font-display text-2xl font-bold text-white">
                 Nothing found
               </h2>
-              <p className="text-sm text-zinc-600">
+              <p className="text-sm text-[#C5C5DF]">
                 Try clearing the search query or switching model category.
               </p>
               <button
@@ -366,13 +345,13 @@ export default function HeroCatalog({ scenarios, onSelectModel, activeModelId }:
                   setSelectedDomain('All');
                   setSearchQuery('');
                 }}
-                className="px-4 py-2 bg-[#D94126] text-white text-xs font-semibold cursor-pointer"
+                className="px-4 py-2 bg-[#505081] hover:bg-[#8686AC] hover:text-[#0F0E47] text-white text-xs font-semibold rounded cursor-pointer transition-colors"
               >
                 Reset filter
               </button>
             </div>
             <div className="md:col-span-6 flex justify-center">
-              <div className="w-56 h-44 bg-[#FAF8F3] p-3 border border-zinc-200">
+              <div className="w-56 h-44 bg-[#0F0E47] p-3 border border-[#505081] rounded">
                 <ModelIllustration scenarioId="watts-strogatz" className="w-full h-full" />
               </div>
             </div>
@@ -380,34 +359,34 @@ export default function HeroCatalog({ scenarios, onSelectModel, activeModelId }:
         )}
       </main>
 
-      {/* Vermilion Editorial Search & Index Drawer (inspired by red panel in reference) */}
+      {/* Unified Blue Eclipse Search & Index Drawer */}
       {isDrawerOpen && (
         <div
           role="dialog"
           aria-modal="true"
           aria-label="Models index and search"
-          className="fixed inset-0 z-50 bg-zinc-950/60 flex justify-end"
+          className="fixed inset-0 z-50 bg-[#0F0E47]/75 backdrop-blur-sm flex justify-end"
           onClick={() => setIsDrawerOpen(false)}
         >
           <div
-            className="w-full max-w-xl bg-[#D94126] text-white h-full overflow-y-auto p-6 sm:p-10 flex flex-col justify-between shadow-2xl"
+            className="w-full max-w-xl bg-[#272757] border-l border-[#505081] text-white h-full overflow-y-auto p-6 sm:p-10 flex flex-col justify-between shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="space-y-8">
               {/* Top Search Input Row */}
-              <div className="flex items-center justify-between gap-4 border-b border-white/40 pb-3">
+              <div className="flex items-center justify-between gap-4 border-b border-[#505081] pb-3">
                 <input
                   ref={searchInputRef}
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search models..."
-                  className="w-full bg-transparent text-lg font-display font-semibold text-white placeholder-white/60 focus:outline-none"
+                  className="w-full bg-transparent text-lg font-display font-semibold text-white placeholder-[#8686AC] focus:outline-none"
                 />
                 {searchQuery ? (
                   <button
                     onClick={() => setSearchQuery('')}
-                    className="text-xs text-white/80 hover:text-white underline shrink-0 cursor-pointer"
+                    className="text-xs text-[#8686AC] hover:text-white underline shrink-0 cursor-pointer"
                   >
                     Clear
                   </button>
@@ -415,14 +394,14 @@ export default function HeroCatalog({ scenarios, onSelectModel, activeModelId }:
                 <button
                   onClick={() => setIsDrawerOpen(false)}
                   aria-label="Close index"
-                  className="p-1 text-white/85 hover:text-white cursor-pointer"
+                  className="p-1 text-[#8686AC] hover:text-white cursor-pointer"
                 >
                   <X className="h-5 w-5" />
                 </button>
               </div>
 
               {/* Filter Tabs inside Drawer */}
-              <div className="flex flex-wrap gap-3 text-xs">
+              <div className="flex flex-wrap gap-2 text-xs">
                 {domains.map((domain) => {
                   const isSelected = selectedDomain === domain;
                   const shortLabel = domain === 'Emergence & Complexity' ? 'Emergence' : domain;
@@ -430,10 +409,10 @@ export default function HeroCatalog({ scenarios, onSelectModel, activeModelId }:
                     <button
                       key={domain}
                       onClick={() => setSelectedDomain(domain)}
-                      className={`px-2 py-1 transition-colors cursor-pointer ${
+                      className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
                         isSelected
-                          ? 'bg-white text-[#D94126] font-semibold'
-                          : 'text-white/85 hover:text-white'
+                          ? 'bg-[#8686AC] text-[#0F0E47] font-semibold'
+                          : 'bg-[#0F0E47]/60 text-[#C5C5DF] hover:text-white border border-[#505081]/60'
                       }`}
                     >
                       {shortLabel}
@@ -444,7 +423,7 @@ export default function HeroCatalog({ scenarios, onSelectModel, activeModelId }:
 
               {/* Two-Column Clean Index List */}
               <div className="space-y-3">
-                <div className="text-xs font-mono text-white/75">
+                <div className="text-xs font-mono text-[#8686AC]">
                   Models ({filteredScenarios.length})
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5">
@@ -455,19 +434,19 @@ export default function HeroCatalog({ scenarios, onSelectModel, activeModelId }:
                         setActiveIndex(idx);
                         setIsDrawerOpen(false);
                       }}
-                      className="text-left group py-1 border-b border-white/15 hover:border-white flex items-baseline justify-between gap-2 cursor-pointer"
+                      className="text-left group py-1.5 border-b border-[#505081]/50 hover:border-[#8686AC] flex items-baseline justify-between gap-2 cursor-pointer"
                     >
-                      <span className="text-xs font-medium text-white group-hover:translate-x-0.5 transition-transform truncate">
+                      <span className="text-xs font-medium text-[#E5E5F2] group-hover:text-white transition-colors truncate">
                         {formatIndex(idx)} · {scenario.name}
                       </span>
-                      <ArrowRight className="h-3 w-3 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <ArrowRight className="h-3 w-3 shrink-0 text-[#8686AC] opacity-0 group-hover:opacity-100 transition-opacity" />
                     </button>
                   ))}
                 </div>
               </div>
             </div>
 
-            <div className="pt-8 border-t border-white/25 flex items-center justify-between text-xs text-white/80 font-mono">
+            <div className="pt-8 border-t border-[#505081]/60 flex items-center justify-between text-xs text-[#8686AC] font-mono">
               <span>Chaos model Thinking</span>
               <span>{scenarios.length} simulations</span>
             </div>

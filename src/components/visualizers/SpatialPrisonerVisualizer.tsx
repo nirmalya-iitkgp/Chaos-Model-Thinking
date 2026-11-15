@@ -114,7 +114,7 @@ export default function SpatialPrisonerVisualizer({ state, activeStep, controls 
     const cellW = canvas.width / COLS;
     const cellH = canvas.height / ROWS;
 
-    ctx.fillStyle = '#090d16';
+    ctx.fillStyle = '#0F0E47';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     const g = gridRef.current;

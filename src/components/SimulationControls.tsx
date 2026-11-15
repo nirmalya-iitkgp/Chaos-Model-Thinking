@@ -41,7 +41,7 @@ export default function SimulationControls({
   const canStepType = activeStep < maxSteps;
 
   return (
-    <div id="simulation-controls" className="w-full bg-white border border-slate-200 rounded-lg p-4 shadow-sm space-y-4">
+    <div id="simulation-controls" className="w-full bg-[#272757] border border-[#505081] rounded-lg p-4 space-y-4 text-[#F2F2FA]">
       {/* Controls */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {controls.map((ctrl) => {
@@ -49,12 +49,12 @@ export default function SimulationControls({
 
           if (ctrl.type === 'slider') {
             return (
-              <div key={ctrl.id} className="bg-slate-50 p-3 rounded flex flex-col gap-1.5 border border-slate-100">
+              <div key={ctrl.id} className="bg-[#0F0E47]/70 p-3 rounded flex flex-col gap-1.5 border border-[#505081]/70">
                 <div className="flex items-center justify-between">
-                  <label htmlFor={`input-${ctrl.id}`} className="text-xs font-medium text-slate-800">
+                  <label htmlFor={`input-${ctrl.id}`} className="text-xs font-medium text-[#E5E5F2]">
                     {ctrl.label}
                   </label>
-                  <span className="text-xs font-mono font-semibold text-slate-900 bg-white px-2 py-0.5 rounded border border-slate-200">
+                  <span className="text-xs font-mono font-semibold text-white bg-[#272757] px-2 py-0.5 rounded border border-[#505081]">
                     {val}{ctrl.unit || ''}
                   </span>
                 </div>
@@ -66,15 +66,14 @@ export default function SimulationControls({
                   step={ctrl.step}
                   value={val as number}
                   onChange={(e) => onChangeControl(ctrl.id, Number(e.target.value))}
-                  className="w-full accent-slate-900 cursor-pointer h-1.5 bg-slate-200 rounded appearance-none"
+                  className="w-full accent-[#8686AC] cursor-pointer h-1.5 bg-[#505081]/60 rounded appearance-none"
                 />
               </div>
             );
           } else {
-            // TOGGLE / SWITCH
             return (
-              <div key={ctrl.id} className="bg-slate-50 p-3 rounded flex items-center justify-between border border-slate-100">
-                <label htmlFor={`input-${ctrl.id}`} className="text-xs font-medium text-slate-800">
+              <div key={ctrl.id} className="bg-[#0F0E47]/70 p-3 rounded flex items-center justify-between border border-[#505081]/70">
+                <label htmlFor={`input-${ctrl.id}`} className="text-xs font-medium text-[#E5E5F2]">
                   {ctrl.label}
                 </label>
                 <button
@@ -83,7 +82,7 @@ export default function SimulationControls({
                   aria-checked={!!val}
                   onClick={() => onChangeControl(ctrl.id, !val)}
                   className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 focus:outline-none ${
-                    val ? 'bg-slate-900' : 'bg-slate-300'
+                    val ? 'bg-[#8686AC]' : 'bg-[#505081]/60'
                   }`}
                 >
                   <span
@@ -99,15 +98,15 @@ export default function SimulationControls({
       </div>
 
       {/* Action Bar & Step Tracker */}
-      <div className="pt-2 border-t border-slate-100 flex flex-wrap gap-2 items-center justify-between text-xs">
+      <div className="pt-2.5 border-t border-[#505081]/60 flex flex-wrap gap-2 items-center justify-between text-xs">
         <div className="flex items-center gap-2">
           <button
             id="btn-simulation-toggle-play"
             onClick={onPlayToggle}
-            className={`px-3 py-1.5 rounded text-xs font-medium cursor-pointer flex items-center gap-1.5 transition-colors ${
+            className={`px-3.5 py-1.5 rounded text-xs font-semibold cursor-pointer flex items-center gap-1.5 transition-colors ${
               isPlaying
-                ? 'bg-amber-600 hover:bg-amber-700 text-white'
-                : 'bg-slate-900 hover:bg-slate-800 text-white'
+                ? 'bg-[#8686AC] hover:bg-[#9D9DC0] text-[#0F0E47]'
+                : 'bg-[#505081] hover:bg-[#8686AC] hover:text-[#0F0E47] text-white'
             }`}
           >
             {isPlaying ? (
@@ -127,8 +126,8 @@ export default function SimulationControls({
             disabled={!canStepType}
             className={`px-3 py-1.5 rounded text-xs font-medium cursor-pointer flex items-center gap-1 border transition-colors ${
               canStepType
-                ? 'bg-white text-slate-800 border-slate-200 hover:bg-slate-50'
-                : 'bg-slate-50 text-slate-300 border-slate-100 cursor-not-allowed'
+                ? 'bg-[#0F0E47]/70 text-[#F2F2FA] border-[#505081] hover:bg-[#505081]'
+                : 'bg-[#0F0E47]/30 text-[#8686AC]/40 border-[#505081]/40 cursor-not-allowed'
             }`}
           >
             <ArrowRight className="h-3.5 w-3.5" /> Next {timeLabel}
@@ -137,13 +136,13 @@ export default function SimulationControls({
           <button
             id="btn-simulation-reset"
             onClick={onReset}
-            className="px-3 py-1.5 rounded text-xs font-medium border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-colors flex items-center gap-1"
+            className="px-3 py-1.5 rounded text-xs font-medium border border-[#505081] text-[#C5C5DF] bg-[#0F0E47]/70 hover:bg-[#505081] hover:text-white transition-colors flex items-center gap-1 cursor-pointer"
           >
             <RotateCcw className="h-3.5 w-3.5" /> Reset
           </button>
         </div>
 
-        <div className="text-slate-500 font-mono text-xs">
+        <div className="text-[#8686AC] font-mono text-xs">
           {activeStep === 0 ? 'Initial' : `${timeLabel} ${activeStep}/${maxSteps}`}
         </div>
       </div>

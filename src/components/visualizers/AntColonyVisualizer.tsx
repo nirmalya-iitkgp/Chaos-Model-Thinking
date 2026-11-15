@@ -242,7 +242,7 @@ export default function AntColonyVisualizer({ state, activeStep, controls }: Vis
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    ctx.fillStyle = '#090d16';
+    ctx.fillStyle = '#0F0E47';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Draw Pheromone trails
@@ -292,7 +292,7 @@ export default function AntColonyVisualizer({ state, activeStep, controls }: Vis
     ctx.strokeStyle = '#ffffff';
     ctx.lineWidth = 2;
     ctx.stroke();
-    ctx.fillStyle = '#020617';
+    ctx.fillStyle = '#0F0E47';
     ctx.font = 'bold 9px monospace';
     ctx.textAlign = 'center';
     ctx.fillText('FOOD', food.x, food.y + 3);

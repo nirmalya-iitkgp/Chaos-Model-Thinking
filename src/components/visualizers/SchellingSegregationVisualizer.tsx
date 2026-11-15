@@ -114,7 +114,7 @@ export default function SchellingSegregationVisualizer({ state, activeStep, cont
     const cellW = canvas.width / COLS;
     const cellH = canvas.height / ROWS;
 
-    ctx.fillStyle = '#090d16';
+    ctx.fillStyle = '#0F0E47';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     const g = gridRef.current;
@@ -136,7 +136,7 @@ export default function SchellingSegregationVisualizer({ state, activeStep, cont
           ctx.fill();
         } else {
           // Vacant lot marker
-          ctx.strokeStyle = '#1e293b';
+          ctx.strokeStyle = '#505081';
           ctx.strokeRect(x + 2, y + 2, cellW - 4, cellH - 4);
         }
       }

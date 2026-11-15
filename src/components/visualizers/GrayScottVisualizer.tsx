@@ -179,10 +179,10 @@ export default function GrayScottVisualizer({ state, activeStep, controls }: Vis
       const pIdx = i * 4;
 
       if (vVal < 0.05) {
-        // Deep indigo / dark slate background
-        data[pIdx] = 9;
-        data[pIdx + 1] = 13;
-        data[pIdx + 2] = 22;
+        // Blue Eclipse void (#0F0E47) background
+        data[pIdx] = 15;
+        data[pIdx + 1] = 14;
+        data[pIdx + 2] = 71;
         data[pIdx + 3] = 255;
       } else if (vVal < 0.25) {
         // Cyan / teal transition

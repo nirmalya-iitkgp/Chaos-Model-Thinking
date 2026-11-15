@@ -94,8 +94,8 @@ export default function Visualizer({ scenarioId, activeStep, state, controls, hi
       return <ViralTippingVisualizer state={state} activeStep={activeStep} controls={controls} history={history} />;
     default:
       return (
-        <div id="visualizer-fallback" className="h-80 bg-slate-100 rounded-xl flex items-center justify-center border border-dashed border-slate-200">
-          <p className="text-sm text-slate-500">Visualization canvas ready.</p>
+        <div id="visualizer-fallback" className="h-80 bg-[#272757] rounded-xl flex items-center justify-center border border-dashed border-[#505081]">
+          <p className="text-sm text-[#8686AC]">Visualization canvas ready.</p>
         </div>
       );
   }
@@ -184,7 +184,7 @@ function MarketPanicVisualizer({ state, history, activeStep, controls }: any) {
           <div className="relative w-40 h-24 flex items-center justify-center mt-3">
             <svg className="w-full h-full" viewBox="0 0 100 55">
               {/* Core Arc Background */}
-              <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#27272a" strokeWidth="12" strokeLinecap="round" />
+              <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#505081" strokeWidth="12" strokeLinecap="round" />
               
               {/* Segmented Sentiment Color Indicators */}
               {/* Fear segment */}
@@ -244,10 +244,10 @@ function MarketPanicVisualizer({ state, history, activeStep, controls }: any) {
           <div className="relative flex-1 min-h-[170px] mt-1">
             <svg className="w-full h-full min-h-[170px]" viewBox="0 0 350 250" preserveAspectRatio="none">
               {/* X and Y Axis helpers */}
-              <line x1="40" y1="40" x2="330" y2="40" stroke="#1e293b" strokeDasharray="3" />
+              <line x1="40" y1="40" x2="330" y2="40" stroke="#505081" strokeDasharray="3" />
               {/* Panic selling threshold reference line at 800 pts (Y = 130) */}
               <line x1="40" y1="130" x2="330" y2="130" stroke="#ef4444" strokeWidth="1.5" strokeDasharray="4 3" />
-              <line x1="40" y1="220" x2="330" y2="220" stroke="#1e293b" />
+              <line x1="40" y1="220" x2="330" y2="220" stroke="#505081" />
               <line x1="40" y1="40" x2="40" y2="220" stroke="#334155" />
 
               {/* Axis labels */}
@@ -492,10 +492,10 @@ function BullwhipVisualizer({ state, activeStep, controls, history = [] }: any) 
           <div className="relative flex-1 min-h-[160px] my-3">
             <svg className="w-full h-full min-h-[160px]" viewBox="0 0 350 160" preserveAspectRatio="none">
               {/* Guides */}
-              <line x1="35" y1="25" x2="330" y2="25" stroke="#101827" strokeDasharray="2" />
-              <line x1="35" y1="80" x2="330" y2="80" stroke="#101827" strokeDasharray="3" strokeWidth="0.5" />
-              <line x1="35" y1="135" x2="330" y2="135" stroke="#1e293b" />
-              <line x1="35" y1="25" x2="35" y2="135" stroke="#1e293b" />
+              <line x1="35" y1="25" x2="330" y2="25" stroke="#272757" strokeDasharray="2" />
+              <line x1="35" y1="80" x2="330" y2="80" stroke="#272757" strokeDasharray="3" strokeWidth="0.5" />
+              <line x1="35" y1="135" x2="330" y2="135" stroke="#505081" />
+              <line x1="35" y1="25" x2="35" y2="135" stroke="#505081" />
 
               {/* Y coordinates helpers */}
               <text x="5" y="29" className="text-[8px] fill-slate-500 font-mono">220 U</text>
@@ -576,7 +576,7 @@ function BullwhipVisualizer({ state, activeStep, controls, history = [] }: any) 
                     cy={y}
                     r="4"
                     fill={tier.color}
-                    stroke="#020617"
+                    stroke="#0F0E47"
                     strokeWidth="1.5"
                   />
                 );
@@ -803,11 +803,11 @@ function ClimateTippingVisualizer({ state, activeStep, controls, history = [] }:
   }));
 
   // Render sky color background reflecting temperature severity
-  let skyBg = 'bg-slate-950 border-slate-800';
+  let skyBg = 'bg-[#0F0E47] border-[#505081]';
   if (temperature >= 2.5) {
-    skyBg = 'bg-stone-950 border-stone-800';
+    skyBg = 'bg-[#272757] border-[#8686AC]';
   } else if (temperature >= 1.7) {
-    skyBg = 'bg-zinc-950 border-zinc-800';
+    skyBg = 'bg-[#1D1C50] border-[#505081]';
   }
 
   return (
@@ -853,7 +853,7 @@ function ClimateTippingVisualizer({ state, activeStep, controls, history = [] }:
                 y={200 - seaWaterHeight} 
                 width="350" 
                 height={seaWaterHeight} 
-                fill={isTipped ? "#7f2d1d" : "#0f172a"} 
+                fill={isTipped ? "#7f2d1d" : "#0F0E47"} 
                 className="transition-all duration-500" 
                 opacity="0.85"
                 stroke={isTipped ? "#f43f5e" : "#38bdf8"}
@@ -893,7 +893,7 @@ function ClimateTippingVisualizer({ state, activeStep, controls, history = [] }:
               <defs>
                 <linearGradient id="blueRadiance" x1="0%" y1="0%" x2="0%" y2="100%">
                   <stop offset="0%" stopColor="#0284c7" stopOpacity="0.4" />
-                  <stop offset="100%" stopColor="#0f172a" stopOpacity="0" />
+                  <stop offset="100%" stopColor="#0F0E47" stopOpacity="0" />
                 </linearGradient>
                 <linearGradient id="redRadiance" x1="0%" y1="0%" x2="0%" y2="100%">
                   <stop offset="0%" stopColor="#ef4444" stopOpacity="0.6" />
@@ -1007,12 +1007,12 @@ function ClimateTippingVisualizer({ state, activeStep, controls, history = [] }:
         <div className="relative min-h-[140px]">
           <svg className="w-full h-full min-h-[140px]" viewBox="0 0 350 160" preserveAspectRatio="none">
             {/* Horizontal target guide lines */}
-            <line x1="35" y1="140" x2="330" y2="140" stroke="#101827" />
-            <line x1="35" y1="115.5" x2="330" y2="115.5" stroke="#1e293b" strokeDasharray="2" />
+            <line x1="35" y1="140" x2="330" y2="140" stroke="#272757" />
+            <line x1="35" y1="115.5" x2="330" y2="115.5" stroke="#505081" strokeDasharray="2" />
             {/* The tipping point boundary at +1.7C (Y = 115.5) */}
             <line x1="35" y1="115.5" x2="330" y2="115.5" stroke="#f43f5e" strokeWidth="1.5" strokeDasharray="4 2" />
             
-            <line x1="35" y1="140" x2="35" y2="30" stroke="#1e293b" />
+            <line x1="35" y1="140" x2="35" y2="30" stroke="#505081" />
 
             {/* Labels */}
             <text x="5" y="142" className="text-[8px] fill-slate-500 font-mono">1.0°C</text>
@@ -1335,12 +1335,12 @@ function PredatorPreyVisualizer({ state, activeStep, controls, history = [] }: a
               /* TIME SERIES CHART */
               <svg className="w-full h-full min-h-[175px]" viewBox="0 0 380 160" preserveAspectRatio="none">
                 {/* Horizontal guide lines */}
-                <line x1="45" y1="150" x2="360" y2="150" stroke="#101827" />
+                <line x1="45" y1="150" x2="360" y2="150" stroke="#272757" />
                 <line x1="45" y1="85" x2="360" y2="85" stroke="#161f30" strokeDasharray="3 3" />
-                <line x1="45" y1="20" x2="360" y2="20" stroke="#1e293b" strokeDasharray="1 4" />
+                <line x1="45" y1="20" x2="360" y2="20" stroke="#505081" strokeDasharray="1 4" />
                 
                 {/* Axes lines */}
-                <line x1="40" y1="150" x2="40" y2="15" stroke="#1e293b" />
+                <line x1="40" y1="150" x2="40" y2="15" stroke="#505081" />
 
                 {/* Y scale labels */}
                 <text x="5" y="153" className="text-[8px] fill-slate-500 font-mono">0k</text>
@@ -1412,8 +1412,8 @@ function PredatorPreyVisualizer({ state, activeStep, controls, history = [] }: a
               /* ATTRACTOR PHASE-SPACE ATTRACTOR PLOT (Rabbits X vs Foxes Y) */
               <svg className="w-full h-full min-h-[175px]" viewBox="0 0 380 160" preserveAspectRatio="none">
                 {/* Horizontal & Vertical grid guides of phase state */}
-                <line x1="55" y1="150" x2="360" y2="150" stroke="#101827" />
-                <line x1="55" y1="15" x2="55" y2="150" stroke="#101827" />
+                <line x1="55" y1="150" x2="360" y2="150" stroke="#272757" />
+                <line x1="55" y1="15" x2="55" y2="150" stroke="#272757" />
 
                 {/* Y and X Axis limits labels */}
                 <text x="5" y="20" className="text-[8px] fill-indigo-400 font-mono">Foxes: 95k (Y-max)</text>
@@ -1648,7 +1648,7 @@ function PhantomTrafficVisualizer({ state, activeStep, controls, history = [] }:
               <div className="relative flex flex-col items-center">
                 <svg className="w-52 h-52" viewBox="0 0 200 200">
                   {/* The asphalt physical ring with road line details */}
-                  <circle cx={cx} cy={cy} r={rad} fill="none" stroke="#1e293b" strokeWidth="22" />
+                  <circle cx={cx} cy={cy} r={rad} fill="none" stroke="#505081" strokeWidth="22" />
                   <circle cx={cx} cy={cy} r={rad} fill="none" stroke="#334155" strokeWidth="18" />
                   <circle cx={cx} cy={cy} r={rad} fill="none" stroke="#f1f5f9" strokeWidth="1" strokeDasharray="4,4" strokeOpacity="0.4" />
                   
@@ -1682,7 +1682,7 @@ function PhantomTrafficVisualizer({ state, activeStep, controls, history = [] }:
                           cy={carY}
                           r={isLeadTrigger ? "5.5" : "4.5"}
                           fill={cColor}
-                          stroke={isLeadTrigger ? "#ffffff" : "#0f172a"}
+                          stroke={isLeadTrigger ? "#ffffff" : "#0F0E47"}
                           strokeWidth={isLeadTrigger ? "1.5" : "1"}
                           className="transition-all duration-300"
                         />
@@ -1855,10 +1855,10 @@ function PhantomTrafficVisualizer({ state, activeStep, controls, history = [] }:
             <svg className="w-full h-full min-h-[160px]" viewBox="0 0 240 120" preserveAspectRatio="none">
               {/* Grid Lines */}
               <line x1="30" y1="10" x2="230" y2="10" stroke="#161f30" strokeDasharray="1 4" />
-              <line x1="30" y1="55" x2="230" y2="55" stroke="#101827" strokeDasharray="3 3" />
-              <line x1="30" y1="100" x2="230" y2="100" stroke="#1e293b" />
+              <line x1="30" y1="55" x2="230" y2="55" stroke="#272757" strokeDasharray="3 3" />
+              <line x1="30" y1="100" x2="230" y2="100" stroke="#505081" />
               
-              <line x1="30" y1="10" x2="30" y2="100" stroke="#1e293b" />
+              <line x1="30" y1="10" x2="30" y2="100" stroke="#505081" />
 
               {/* Y Axis speed labels */}
               <text x="5" y="14" className="text-[7.5px] fill-slate-500 font-mono">75km/h</text>
@@ -2105,7 +2105,7 @@ function PowerGridVisualizer({ state, activeStep, controls, history = [] }: any)
                   const isEdgeTripped = startNode.status === 'tripped' || endNode.status === 'tripped';
                   const isEdgeOverloaded = startNode.status === 'overloaded' || endNode.status === 'overloaded';
 
-                  let stroke = '#1e293b';
+                  let stroke = '#505081';
                   let strokeWidth = '2';
                   let isDash = false;
                   let colorClass = '';
@@ -2160,7 +2160,7 @@ function PowerGridVisualizer({ state, activeStep, controls, history = [] }: any)
                   let isDrawnTripped = false;
 
                   if (sub.status === 'tripped') {
-                    fill = '#0f172a';
+                    fill = '#0F0E47';
                     border = '#f43f5e';
                     isDrawnTripped = true;
                   } else if (sub.status === 'overloaded') {
@@ -2348,10 +2348,10 @@ function PowerGridVisualizer({ state, activeStep, controls, history = [] }: any)
             <svg className="w-full h-full min-h-[110px]" viewBox="0 0 240 90" preserveAspectRatio="none">
               {/* Grid indicators */}
               <line x1="30" y1="10" x2="230" y2="10" stroke="#161f30" strokeDasharray="1 3" />
-              <line x1="30" y1="45" x2="230" y2="45" stroke="#101827" strokeDasharray="2 2" />
-              <line x1="30" y1="80" x2="230" y2="80" stroke="#1e293b" />
+              <line x1="30" y1="45" x2="230" y2="45" stroke="#272757" strokeDasharray="2 2" />
+              <line x1="30" y1="80" x2="230" y2="80" stroke="#505081" />
               
-              <line x1="30" y1="10" x2="30" y2="80" stroke="#1e293b" />
+              <line x1="30" y1="10" x2="30" y2="80" stroke="#505081" />
 
               {/* Y Axis percentage markers */}
               <text x="4" y="13" className="text-[7.5px] fill-zinc-500 font-mono">100%</text>
@@ -2625,7 +2625,7 @@ function PandemicVisualizer({ state, history = [], activeStep, controls }: any) 
                         y1={start.y}
                         x2={end.x}
                         y2={end.y}
-                        stroke={activeInfectionExits ? '#ef4444' : '#1e293b'}
+                        stroke={activeInfectionExits ? '#ef4444' : '#505081'}
                         strokeWidth={activeInfectionExits ? '1.5' : '1.0'}
                         strokeDasharray={activeInfectionExits ? '3 3' : undefined}
                         className="transition-all duration-300"
@@ -2656,13 +2656,13 @@ function PandemicVisualizer({ state, history = [], activeStep, controls }: any) 
 
                   const isHeavilyInfected = localCases > 4000;
                   let fill = '#334155';
-                  let stroke = '#1e293b';
+                  let stroke = '#505081';
 
                   if (localCases > 0) {
                     fill = isContainmentActive ? '#991b1b' : '#ef4444';
                     stroke = isHeavilyInfected ? '#ffffff' : '#f43f5e';
                   } else {
-                    fill = '#0f172a';
+                    fill = '#0F0E47';
                     stroke = isContainmentActive ? '#059669' : '#475569';
                   }
 
@@ -2836,10 +2836,10 @@ function PandemicVisualizer({ state, history = [], activeStep, controls }: any) 
           <div className="relative min-h-[145px] my-2 bg-slate-950 p-1">
             <svg className="w-full h-full min-h-[145px]" viewBox="0 0 280 140" preserveAspectRatio="none">
               {/* Draw grids */}
-              <line x1="40" y1="10" x2="270" y2="10" stroke="#101827" strokeDasharray="1 3" />
+              <line x1="40" y1="10" x2="270" y2="10" stroke="#272757" strokeDasharray="1 3" />
               <line x1="40" y1="70" x2="270" y2="70" stroke="#161f30" strokeDasharray="2 2" />
-              <line x1="40" y1="130" x2="270" y2="130" stroke="#1e293b" />
-              <line x1="40" y1="10" x2="40" y2="130" stroke="#1e293b" />
+              <line x1="40" y1="130" x2="270" y2="130" stroke="#505081" />
+              <line x1="40" y1="10" x2="40" y2="130" stroke="#505081" />
 
               {/* ICU Overflow capacity limit floor at 30,000 cases */}
               <line 
@@ -3198,10 +3198,10 @@ function VaccinationVisualizer({ state, activeStep, controls, history = [] }: an
           {/* Cartisian infection trend graph */}
           <div className="relative min-h-[110px] my-2 p-1 bg-slate-950">
             <svg className="w-full h-full min-h-[110px]" viewBox="0 0 250 115" preserveAspectRatio="none">
-              <line x1="35" y1="10" x2="240" y2="10" stroke="#101827" strokeDasharray="1 3" />
+              <line x1="35" y1="10" x2="240" y2="10" stroke="#272757" strokeDasharray="1 3" />
               <line x1="35" y1="57" x2="240" y2="57" stroke="#161f30" strokeDasharray="2 2" />
-              <line x1="35" y1="105" x2="240" y2="105" stroke="#1e293b" />
-              <line x1="35" y1="10" x2="35" y2="105" stroke="#1e293b" />
+              <line x1="35" y1="105" x2="240" y2="105" stroke="#505081" />
+              <line x1="35" y1="10" x2="35" y2="105" stroke="#505081" />
 
               {/* Y Axis scales */}
               <text x="2" y="14" className="text-[7.5px] fill-zinc-500 font-mono">{maxInfectionScale}</text>
@@ -3505,7 +3505,7 @@ function FakeNewsVisualizer({ state, activeStep, controls, history = [] }: any) 
                   const infectedLine = isLineInfected(c.from, c.to);
                   const representsLeak = (c.from === 0 && isModerated);
 
-                  let strokeColor = '#1e293b';
+                  let strokeColor = '#505081';
                   let strokeWidth = '1.0';
 
                   if (infectedLine) {
@@ -3546,7 +3546,7 @@ function FakeNewsVisualizer({ state, activeStep, controls, history = [] }: any) 
                 {positions.map((node, i) => {
                   const status = getNodeStatus(i);
                   let nodeColor = '#334155';
-                  let strokeColor = '#1e293b';
+                  let strokeColor = '#505081';
                   let customRadius = 6.5;
 
                   if (status === 'infected') {
@@ -3699,10 +3699,10 @@ function FakeNewsVisualizer({ state, activeStep, controls, history = [] }: any) 
           {/* Belief scale comparison line graph */}
           <div className="relative min-h-[110px] my-2 p-1 bg-slate-950">
             <svg className="w-full h-full min-h-[110px]" viewBox="0 0 250 115" preserveAspectRatio="none">
-              <line x1="35" y1="10" x2="240" y2="10" stroke="#101827" strokeDasharray="1 3" />
+              <line x1="35" y1="10" x2="240" y2="10" stroke="#272757" strokeDasharray="1 3" />
               <line x1="35" y1="57" x2="240" y2="57" stroke="#161f30" strokeDasharray="2 2" />
-              <line x1="35" y1="105" x2="240" y2="105" stroke="#1e293b" />
-              <line x1="35" y1="10" x2="35" y2="105" stroke="#1e293b" />
+              <line x1="35" y1="105" x2="240" y2="105" stroke="#505081" />
+              <line x1="35" y1="10" x2="35" y2="105" stroke="#505081" />
 
               {/* Y Axis marks */}
               <text x="2" y="14" className="text-[7.5px] fill-zinc-500 font-mono">{maxHistoryValue >= 1000 ? `${Math.round(maxHistoryValue/1000)}k` : maxHistoryValue}</text>
@@ -4072,10 +4072,10 @@ function ViralTippingVisualizer({ state, activeStep, controls, history = [] }: a
           {/* Dynamic Cartesian Trend Line */}
           <div className="relative min-h-[110px] my-2 p-1 bg-slate-955">
             <svg className="w-full h-full min-h-[110px]" viewBox="0 0 250 115" preserveAspectRatio="none">
-              <line x1="35" y1="10" x2="240" y2="10" stroke="#101827" strokeDasharray="1 3" />
+              <line x1="35" y1="10" x2="240" y2="10" stroke="#272757" strokeDasharray="1 3" />
               <line x1="35" y1="57" x2="240" y2="57" stroke="#161f30" strokeDasharray="2 2" />
-              <line x1="35" y1="105" x2="240" y2="105" stroke="#1e293b" />
-              <line x1="35" y1="10" x2="35" y2="105" stroke="#1e293b" />
+              <line x1="35" y1="105" x2="240" y2="105" stroke="#505081" />
+              <line x1="35" y1="10" x2="35" y2="105" stroke="#505081" />
 
               {/* Y Axis designations */}
               <text x="2" y="14" className="text-[7.5px] fill-zinc-500 font-mono">100%</text>

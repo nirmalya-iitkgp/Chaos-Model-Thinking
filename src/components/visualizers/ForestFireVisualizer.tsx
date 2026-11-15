@@ -159,7 +159,7 @@ export default function ForestFireVisualizer({ state, activeStep, controls }: Vi
     const cellW = canvas.width / COLS;
     const cellH = canvas.height / ROWS;
 
-    ctx.fillStyle = '#090d16';
+    ctx.fillStyle = '#0F0E47';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     const g = gridRef.current;
@@ -179,7 +179,7 @@ export default function ForestFireVisualizer({ state, activeStep, controls }: Vi
           ctx.fillRect(x, y, cellW, cellH);
         } else if (state === 3) {
           // Ash
-          ctx.fillStyle = '#27272a';
+          ctx.fillStyle = '#505081';
           ctx.fillRect(x + 1, y + 1, cellW - 2, cellH - 2);
         }
       }

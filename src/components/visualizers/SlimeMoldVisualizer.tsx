@@ -211,7 +211,7 @@ export default function SlimeMoldVisualizer({ state, activeStep, controls }: Vis
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    ctx.fillStyle = '#090d16';
+    ctx.fillStyle = '#0F0E47';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Render pheromone veins

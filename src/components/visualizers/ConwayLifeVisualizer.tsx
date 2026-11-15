@@ -123,7 +123,7 @@ export default function ConwayLifeVisualizer({ state, activeStep, controls }: Vi
     const cellH = height / ROWS;
 
     // Background
-    ctx.fillStyle = '#090d16';
+    ctx.fillStyle = '#0F0E47';
     ctx.fillRect(0, 0, width, height);
 
     // Grid lines

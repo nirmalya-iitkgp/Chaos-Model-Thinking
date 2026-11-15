@@ -114,7 +114,7 @@ export default function KuramotoVisualizer({ state, activeStep, controls }: Visu
     const cy = H / 2;
     const radius = 95;
 
-    ctx.fillStyle = '#090d16';
+    ctx.fillStyle = '#0F0E47';
     ctx.fillRect(0, 0, W, H);
 
     // Unit circle boundary
@@ -125,7 +125,7 @@ export default function KuramotoVisualizer({ state, activeStep, controls }: Visu
     ctx.stroke();
 
     // Center crosshair axes
-    ctx.strokeStyle = '#1e293b';
+    ctx.strokeStyle = '#505081';
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(cx - radius - 10, cy);
@@ -180,7 +180,7 @@ export default function KuramotoVisualizer({ state, activeStep, controls }: Visu
 
     const W = canvas.width;
     const H = canvas.height;
-    ctx.fillStyle = '#090d16';
+    ctx.fillStyle = '#0F0E47';
     ctx.fillRect(0, 0, W, H);
 
     const oscs = oscillatorsRef.current;

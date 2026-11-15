@@ -164,7 +164,7 @@ export default function WattsStrogatzVisualizer({ state, activeStep, controls }:
         ctx.lineWidth = 2.2;
       } else {
         // Regular ring edge
-        ctx.strokeStyle = 'rgba(71, 85, 105, 0.45)';
+        ctx.strokeStyle = 'rgba(134, 134, 172, 0.45)';
         ctx.lineWidth = 1.0;
       }
 
@@ -197,7 +197,7 @@ export default function WattsStrogatzVisualizer({ state, activeStep, controls }:
       ctx.arc(pos.x, pos.y, nodeRadius, 0, Math.PI * 2);
       ctx.fill();
 
-      ctx.strokeStyle = '#020617';
+      ctx.strokeStyle = '#0F0E47';
       ctx.lineWidth = 1.5;
       ctx.stroke();
     }

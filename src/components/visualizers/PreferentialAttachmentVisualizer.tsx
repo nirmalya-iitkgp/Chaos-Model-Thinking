@@ -236,7 +236,7 @@ export default function PreferentialAttachmentVisualizer({ state, activeStep, co
       if (!s || !t) continue;
 
       const isConnectedToHover = hoveredNodeId !== null && (e.source === hoveredNodeId || e.target === hoveredNodeId);
-      ctx.strokeStyle = isConnectedToHover ? '#818cf8' : 'rgba(51, 65, 85, 0.45)';
+      ctx.strokeStyle = isConnectedToHover ? '#818cf8' : 'rgba(80, 80, 129, 0.45)';
       ctx.lineWidth = isConnectedToHover ? 2.5 : 1;
       ctx.beginPath();
       ctx.moveTo(s.x, s.y);
@@ -273,7 +273,7 @@ export default function PreferentialAttachmentVisualizer({ state, activeStep, co
       ctx.arc(n.x, n.y, radius, 0, Math.PI * 2);
       ctx.fill();
 
-      ctx.strokeStyle = isHovered ? '#ffffff' : '#0f172a';
+      ctx.strokeStyle = isHovered ? '#ffffff' : '#0F0E47';
       ctx.lineWidth = 1.5;
       ctx.stroke();
 
