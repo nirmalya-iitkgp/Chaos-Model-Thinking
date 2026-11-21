@@ -144,11 +144,11 @@ An interactive complex systems simulator for non-linear dynamics, cellular autom
 ## 🧭 Hero Catalog & Simulation Workspace UX
 
 The application is structured into two focused navigation modes designed under strict, restrained aesthetic principles:
-- **Hero Carousel (`viewMode === 'catalog'`)**: An editorial split-panel carousel showcasing all 22 models inside a unified dark Blue Eclipse theme (`#0F0E47`, `#272757`, `#505081`, `#8686AC`). Each slide pairs concise display typography with a bespoke, flowy running line-art SVG illustration, supported by keyboard arrow navigation, a horizontal thumbnail filmstrip, and an index/search drawer.
-- **Full-Width Simulation Workspace (`viewMode === 'simulation'`)**: Maximizes interactive canvas space. Outer containers, slider controls, metric cards, and internal simulation canvases/SVG grids are strictly synchronized to the same Blue Eclipse palette (`#0F0E47` void, `#272757` elevated panels, `#505081` borders, `#8686AC` secondary accents).
+- **Hero Carousel (`viewMode === 'catalog'`)**: An editorial split-panel carousel showcasing all 22 models inside a unified dark palette (`#0F0E47`, `#272757`, `#2F2F66`, `#7676AB`, `#EDEDF7`, `#B4B4D6`, `#F5B544`). Each slide pairs concise display typography with a bespoke, flowy running line-art SVG illustration, supported by keyboard arrow navigation, a horizontal thumbnail filmstrip, and an index/search drawer.
+- **Full-Width Simulation Workspace (`viewMode === 'simulation'`)**: Maximizes interactive canvas space. Outer containers, slider controls, metric cards, and internal simulation canvases/SVG grids are strictly synchronized to the exact same token palette (`#0F0E47` canvas background, `#272757` panels, `#2F2F66` active surfaces, `#7676AB` hairline borders, `#EDEDF7` / `#B4B4D6` typography, and `#F5B544` focal accents).
 
 ### 📐 Design Constitution & Principles
-- **Unified Blue Eclipse Dark Theme**: Eliminated light/dark contrast clashes. Deep midnight navy (`#0F0E47`), twilight indigo (`#272757`), slate-violet (`#505081`), and mist periwinkle (`#8686AC`) harmonize across both outer UI chrome and internal simulation canvases.
+- **Unified Dark Blue Eclipse + Gold Palette**: Eliminated light/dark contrast clashes across both outer UI chrome and internal simulation canvases using synchronized tokens (`--bg: #0F0E47`, `--panel: #272757`, `--panel-hi: #2F2F66`, `--border: #7676AB`, `--text: #EDEDF7`, `--text-dim: #B4B4D6`, `--accent: #F5B544`).
 - **Flowy Running Line-Art**: Dedicated continuous-stroke Bezier vector illustrations for all 22 complex systems models with subtle motion flow.
 - **Minimal Text & Concrete Prose**: Concise titles and mechanism callouts without filler paragraphs.
 - **Zero Floating Badges**: Clean unboxed inline metadata (`01 / 22 · Domain`) and typographic rules.

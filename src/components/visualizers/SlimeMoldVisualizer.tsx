@@ -275,14 +275,14 @@ export default function SlimeMoldVisualizer({ state, activeStep, controls }: Vis
   };
 
   return (
-    <div id="visualizer-slime-mold" className="w-full bg-slate-900 border border-slate-800 text-white rounded-xl p-5 shadow-inner flex flex-col gap-4">
+    <div id="visualizer-slime-mold" className="w-full bg-[#272757] border border-[#7676AB]/45 text-white rounded-xl p-5 shadow-inner flex flex-col gap-4">
       {/* Header bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#7676AB]/45 pb-3">
         <div>
           <span className="text-xs font-mono text-amber-400 uppercase tracking-wider block font-semibold">
             Physarum Polycephalum Slime Mold Network Optimization
           </span>
-          <h3 className="text-sm font-bold text-slate-100 mt-0.5">
+          <h3 className="text-sm font-bold text-[#EDEDF7] mt-0.5">
             Decentralized Bio-Computing & Shortest-Path Steiner Trees
           </h3>
         </div>
@@ -297,7 +297,7 @@ export default function SlimeMoldVisualizer({ state, activeStep, controls }: Vis
       </div>
 
       {/* Screen Canvas */}
-      <div className="relative rounded-lg overflow-hidden border border-slate-800 bg-slate-950 flex flex-col items-center">
+      <div className="relative rounded-lg overflow-hidden border border-[#7676AB]/45 bg-[#0F0E47] flex flex-col items-center">
         <canvas
           ref={canvasRef}
           width={W}
@@ -306,14 +306,14 @@ export default function SlimeMoldVisualizer({ state, activeStep, controls }: Vis
           onClick={handleCanvasClick}
         />
 
-        <div className="absolute top-2 left-2 pointer-events-none bg-slate-900/80 backdrop-blur-sm border border-slate-800 px-2 py-1 rounded text-[10px] font-mono text-slate-400 flex items-center gap-1.5">
+        <div className="absolute top-2 left-2 pointer-events-none bg-[#272757]/80 backdrop-blur-sm border border-[#7676AB]/45 px-2 py-1 rounded text-[10px] font-mono text-[#B4B4D6] flex items-center gap-1.5">
           <MapPin className="h-3 w-3 text-emerald-400" />
           <span>Click canvas to place new Food Nutrient Nodes (Oat Flakes)</span>
         </div>
       </div>
 
       {/* Toolbar & Presets */}
-      <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-950 p-3 rounded-lg border border-slate-800 text-xs">
+      <div className="flex flex-wrap items-center justify-between gap-3 bg-[#0F0E47] p-3 rounded-lg border border-[#7676AB]/45 text-xs">
         <div className="flex items-center gap-2">
           <button
             onClick={() => setIsRunning(!isRunning)}
@@ -327,7 +327,7 @@ export default function SlimeMoldVisualizer({ state, activeStep, controls }: Vis
 
           <button
             onClick={loadTokyoPreset}
-            className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 text-[11px]"
+            className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 text-emerald-300 border border-[#7676AB]/65 text-[11px]"
           >
             Tokyo Rail Preset
           </button>
@@ -338,28 +338,28 @@ export default function SlimeMoldVisualizer({ state, activeStep, controls }: Vis
               foodNodesRef.current = [];
               trailMapRef.current.fill(0);
             }}
-            className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-rose-300 border border-slate-700 text-[11px] flex items-center gap-1"
+            className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 text-rose-300 border border-[#7676AB]/65 text-[11px] flex items-center gap-1"
           >
             <Trash2 className="h-3.5 w-3.5" />
             <span>Clear Food</span>
           </button>
         </div>
 
-        <div className="text-[10px] font-mono text-slate-400">
+        <div className="text-[10px] font-mono text-[#B4B4D6]">
           Decay: <strong>{decayRate}%</strong> | Sensor Angle: <strong>{sensorAngleDeg}°</strong>
         </div>
       </div>
 
       {/* Commentary */}
-      <div className="p-3.5 rounded-lg border border-slate-800 bg-slate-950 text-xs flex gap-3 items-start">
+      <div className="p-3.5 rounded-lg border border-[#7676AB]/45 bg-[#0F0E47] text-xs flex gap-3 items-start">
         <div className="p-1.5 rounded shrink-0 bg-amber-600 text-slate-950 font-bold">
           <Sparkles className="h-4 w-4" />
         </div>
         <div>
-          <span className="font-mono text-[9px] text-slate-400 uppercase block font-semibold">
+          <span className="font-mono text-[9px] text-[#B4B4D6] uppercase block font-semibold">
             BIOLOGICAL STEINER ROUTING THEOREM
           </span>
-          <p className="leading-relaxed mt-0.5 text-slate-300">
+          <p className="leading-relaxed mt-0.5 text-[#EDEDF7]">
             {state.foragingStatus || 'Physarum Polycephalum particles deposit chemoattractants and steer towards gradients. As high-flux tubes expand and redundant trails evaporate, the colony naturally finds the optimal shortest-path network.'}
           </p>
         </div>

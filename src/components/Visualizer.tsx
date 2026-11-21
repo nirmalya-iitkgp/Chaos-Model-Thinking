@@ -94,8 +94,8 @@ export default function Visualizer({ scenarioId, activeStep, state, controls, hi
       return <ViralTippingVisualizer state={state} activeStep={activeStep} controls={controls} history={history} />;
     default:
       return (
-        <div id="visualizer-fallback" className="h-80 bg-[#272757] rounded-xl flex items-center justify-center border border-dashed border-[#505081]">
-          <p className="text-sm text-[#8686AC]">Visualization canvas ready.</p>
+        <div id="visualizer-fallback" className="h-80 bg-[#272757] rounded-xl flex items-center justify-center border border-dashed border-[#7676AB]">
+          <p className="text-sm text-[#B4B4D6]">Visualization canvas ready.</p>
         </div>
       );
   }
@@ -137,7 +137,7 @@ function MarketPanicVisualizer({ state, history, activeStep, controls }: any) {
   let strokeColor = '#10b981'; // green
   if (isPanic) {
     if (policy === 0) strokeColor = '#f43f5e'; // rose crash
-    else if (policy === 1) strokeColor = '#fbbf24'; // amber halt
+    else if (policy === 1) strokeColor = '#F5B544'; // amber halt
     else strokeColor = '#6366f1'; // indigo liquidity rescue
   }
 
@@ -145,20 +145,20 @@ function MarketPanicVisualizer({ state, history, activeStep, controls }: any) {
   const isThresholdCrossed = isPanic && policy === 0 && activeStep >= 3;
 
   return (
-    <div id="visualizer-market-panic" className="w-full bg-slate-900 text-white rounded-xl p-5 shadow-inner border border-slate-800 flex flex-col gap-5">
+    <div id="visualizer-market-panic" className="w-full bg-[#272757] text-white rounded-xl p-5 shadow-inner border border-[#7676AB]/45 flex flex-col gap-5">
       
       {/* HEADER BAR */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#7676AB]/45 pb-3">
         <div>
-          <span className="text-xs font-mono text-indigo-400 uppercase tracking-wider block font-semibold">Regulator & Influencer Center</span>
-          <h3 className="text-sm font-bold text-slate-100 mt-0.5">Market Comparison & Divergence Desk</h3>
+          <span className="text-xs font-mono text-[#F5B544] uppercase tracking-wider block font-semibold">Regulator & Influencer Center</span>
+          <h3 className="text-sm font-bold text-[#EDEDF7] mt-0.5">Market Comparison & Divergence Desk</h3>
         </div>
         <div className="flex items-center gap-2">
           {isPanic ? (
             <span className={`text-[10px] px-2.5 py-0.5 rounded font-mono font-bold animate-pulse ${
               policy === 0 ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30' :
               policy === 1 ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30' :
-              'bg-indigo-500/20 text-indigo-400 border border-indigo-500/30'
+              'bg-indigo-500/20 text-[#F5B544] border border-indigo-500/30'
             }`}>
               {policy === 0 ? 'CRASH SEQUENCE ACTIVE' : 
                policy === 1 ? 'CIRCUIT BREAKERS ENGAGED' : 
@@ -175,22 +175,22 @@ function MarketPanicVisualizer({ state, history, activeStep, controls }: any) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         
         {/* Needle Gauge / Meter */}
-        <div className="lg:col-span-4 flex flex-col items-center justify-between bg-slate-950 p-4 rounded-lg border border-slate-800 text-center">
+        <div className="lg:col-span-4 flex flex-col items-center justify-between bg-[#0F0E47] p-4 rounded-lg border border-[#7676AB]/45 text-center">
           <div>
-            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Trader Sentiment Gauge</span>
-            <p className="text-[11px] text-slate-500 mt-1">Reflects buyer trust and herding pressure</p>
+            <span className="text-[10px] font-mono text-[#B4B4D6] uppercase tracking-wider block">Trader Sentiment Gauge</span>
+            <p className="text-[11px] text-[#B4B4D6] mt-1">Reflects buyer trust and herding pressure</p>
           </div>
 
           <div className="relative w-40 h-24 flex items-center justify-center mt-3">
             <svg className="w-full h-full" viewBox="0 0 100 55">
               {/* Core Arc Background */}
-              <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#505081" strokeWidth="12" strokeLinecap="round" />
+              <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#7676AB" strokeWidth="12" strokeLinecap="round" />
               
               {/* Segmented Sentiment Color Indicators */}
               {/* Fear segment */}
               <path d="M 10 50 A 40 40 0 0 1 36.6 25" fill="none" stroke="#f43f5e" strokeWidth="12" />
               {/* Neutral segment */}
-              <path d="M 36.6 25 A 40 40 0 0 1 63.3 25" fill="none" stroke="#eab308" strokeWidth="12" />
+              <path d="M 36.6 25 A 40 40 0 0 1 63.3 25" fill="none" stroke="#F5B544" strokeWidth="12" />
               {/* Optimism segment */}
               <path d="M 63.3 25 A 40 40 0 0 1 90 50" fill="none" stroke="#10b981" strokeWidth="12" />
 
@@ -214,29 +214,29 @@ function MarketPanicVisualizer({ state, history, activeStep, controls }: any) {
             }`}>
               {qualitativeSentiment}
             </span>
-            <div className="text-[10px] text-slate-400 mt-0.5 font-mono">
-              Confidence Index: <span className="font-bold text-slate-200">{sentiment}/100</span>
+            <div className="text-[10px] text-[#B4B4D6] mt-0.5 font-mono">
+              Confidence Index: <span className="font-bold text-[#EDEDF7]">{sentiment}/100</span>
             </div>
           </div>
         </div>
 
         {/* Live Vector Line Chart */}
-        <div className="lg:col-span-8 bg-slate-950 p-4 rounded-lg border border-slate-800 flex flex-col justify-between">
+        <div className="lg:col-span-8 bg-[#0F0E47] p-4 rounded-lg border border-[#7676AB]/45 flex flex-col justify-between">
           <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
             <div>
-              <span className="text-[10px] font-mono text-slate-400 uppercase block tracking-wider">Stock Index Divergence Plot</span>
-              <p className="text-[11px] text-slate-500">Comparing active timeline vs. stable baseline</p>
+              <span className="text-[10px] font-mono text-[#B4B4D6] uppercase block tracking-wider">Stock Index Divergence Plot</span>
+              <p className="text-[11px] text-[#B4B4D6]">Comparing active timeline vs. stable baseline</p>
             </div>
             
             {/* Legend */}
-            <div className="flex items-center gap-3 bg-slate-900 border border-slate-800 px-2 py-1 rounded text-[10px] font-mono">
+            <div className="flex items-center gap-3 bg-[#272757] border border-[#7676AB]/45 px-2 py-1 rounded text-[10px] font-mono">
               <div className="flex items-center gap-1.5">
                 <span className="w-3 h-0.5 inline-block" style={{ backgroundColor: strokeColor }} />
-                <span className="text-slate-350">Your Run</span>
+                <span className="text-[#EDEDF7]">Your Run</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <span className="w-3 h-0.5 border-t border-dashed inline-block border-indigo-400" />
-                <span className="text-slate-400">Baseline</span>
+                <span className="w-3 h-0.5 border-t border-dashed inline-block border-[#7676AB]" />
+                <span className="text-[#B4B4D6]">Baseline</span>
               </div>
             </div>
           </div>
@@ -244,16 +244,16 @@ function MarketPanicVisualizer({ state, history, activeStep, controls }: any) {
           <div className="relative flex-1 min-h-[170px] mt-1">
             <svg className="w-full h-full min-h-[170px]" viewBox="0 0 350 250" preserveAspectRatio="none">
               {/* X and Y Axis helpers */}
-              <line x1="40" y1="40" x2="330" y2="40" stroke="#505081" strokeDasharray="3" />
+              <line x1="40" y1="40" x2="330" y2="40" stroke="#7676AB" strokeDasharray="3" />
               {/* Panic selling threshold reference line at 800 pts (Y = 130) */}
               <line x1="40" y1="130" x2="330" y2="130" stroke="#ef4444" strokeWidth="1.5" strokeDasharray="4 3" />
-              <line x1="40" y1="220" x2="330" y2="220" stroke="#505081" />
-              <line x1="40" y1="40" x2="40" y2="220" stroke="#334155" />
+              <line x1="40" y1="220" x2="330" y2="220" stroke="#7676AB" />
+              <line x1="40" y1="40" x2="40" y2="220" stroke="#7676AB" />
 
               {/* Axis labels */}
-              <text x="5" y="45" className="text-[9px] fill-slate-500 font-mono">1600 pts</text>
+              <text x="5" y="45" className="text-[9px] fill-[#B4B4D6] font-mono">1600 pts</text>
               <text x="5" y="134" className="text-[9px] fill-rose-500 font-mono font-bold">800 pts</text>
-              <text x="5" y="225" className="text-[9px] fill-slate-550 font-mono">0 pts</text>
+              <text x="5" y="225" className="text-[9px] fill-[#B4B4D6] font-mono">0 pts</text>
 
               {/* Threshold warning description text */}
               <text x="325" y="125" className="text-[8px] fill-rose-400 font-mono font-semibold" textAnchor="end">
@@ -262,7 +262,7 @@ function MarketPanicVisualizer({ state, history, activeStep, controls }: any) {
 
               {/* Point X labels */}
               {history.map((_, i) => (
-                <text key={i} x={40 + (i * 58)} y="238" className="text-[8px] fill-slate-400 font-mono text-center" textAnchor="middle">
+                <text key={i} x={40 + (i * 58)} y="238" className="text-[8px] fill-[#B4B4D6] font-mono text-center" textAnchor="middle">
                   Period {i}
                 </text>
               ))}
@@ -345,9 +345,9 @@ function MarketPanicVisualizer({ state, history, activeStep, controls }: any) {
             </svg>
           </div>
 
-          <div className="flex items-center justify-between text-[10px] font-mono border-t border-slate-900 pt-2.5 mt-2 text-slate-400">
+          <div className="flex items-center justify-between text-[10px] font-mono border-t border-[#7676AB]/30 pt-2.5 mt-2 text-[#B4B4D6]">
             <span>Active Path Index: <strong className="text-white font-bold">{marketIndex} pts</strong></span>
-            <span>Divergence: <strong className={`font-mono font-bold ${marketIndex < baselineValues[activeStep] ? 'text-rose-400' : marketIndex > baselineValues[activeStep] ? 'text-emerald-400' : 'text-slate-200'}`}>
+            <span>Divergence: <strong className={`font-mono font-bold ${marketIndex < baselineValues[activeStep] ? 'text-rose-400' : marketIndex > baselineValues[activeStep] ? 'text-emerald-400' : 'text-[#EDEDF7]'}`}>
               {marketIndex - baselineValues[activeStep] > 0 ? '+' : ''}{marketIndex - baselineValues[activeStep]} pts
             </strong></span>
           </div>
@@ -360,7 +360,7 @@ function MarketPanicVisualizer({ state, history, activeStep, controls }: any) {
           ? 'bg-rose-950/40 border-rose-900/50 text-rose-100'
           : isPanic && policy === 1
           ? 'bg-amber-950/40 border-amber-900/50 text-amber-100'
-          : 'bg-slate-950 border-slate-800 text-slate-300'
+          : 'bg-[#0F0E47] border-[#7676AB]/45 text-[#EDEDF7]'
       }`}>
         <div className={`p-1.5 rounded shrink-0 ${
           isThresholdCrossed 
@@ -376,7 +376,7 @@ function MarketPanicVisualizer({ state, history, activeStep, controls }: any) {
           )}
         </div>
         <div>
-          <span className="font-mono text-[9px] text-slate-400 uppercase block font-semibold">
+          <span className="font-mono text-[9px] text-[#B4B4D6] uppercase block font-semibold">
             {isThresholdCrossed ? 'SYSTEMIC COLLAPSE REGIME DETERMINED' : 'REAL-TIME CHRONICLE'}
           </span>
           <p className="leading-relaxed mt-0.5 font-normal">{state.newsSummary}</p>
@@ -457,13 +457,13 @@ function BullwhipVisualizer({ state, activeStep, controls, history = [] }: any) 
   };
 
   return (
-    <div id="visualizer-bullwhip" className="w-full bg-slate-900 border border-slate-805 text-white rounded-xl p-5 shadow-inner flex flex-col gap-6">
+    <div id="visualizer-bullwhip" className="w-full bg-[#272757] border border-slate-805 text-white rounded-xl p-5 shadow-inner flex flex-col gap-6">
       
       {/* WINDOW TITLE BAR */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#7676AB]/45 pb-3">
         <div>
           <span className="text-xs font-mono text-emerald-400 uppercase tracking-wider block font-semibold">Demand Transmission Monitor</span>
-          <h3 className="text-sm font-bold text-slate-100 mt-0.5">Unified Supply Pipeline Diagnostics</h3>
+          <h3 className="text-sm font-bold text-[#EDEDF7] mt-0.5">Unified Supply Pipeline Diagnostics</h3>
         </div>
         <div className="flex items-center gap-1.5 font-mono">
           {infoSharing ? (
@@ -482,9 +482,9 @@ function BullwhipVisualizer({ state, activeStep, controls, history = [] }: any) 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         
         {/* LEFT COLUMN: VISUAL ORDERS OSCILLATION CHART */}
-        <div className="lg:col-span-6 bg-slate-950 p-4 rounded-lg border border-slate-800 flex flex-col justify-between">
+        <div className="lg:col-span-6 bg-[#0F0E47] p-4 rounded-lg border border-[#7676AB]/45 flex flex-col justify-between">
           <div>
-            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Time-Series Order Oscillations</span>
+            <span className="text-[10px] font-mono text-[#B4B4D6] uppercase tracking-wider block">Time-Series Order Oscillations</span>
             <p className="text-[11px] text-zinc-550 mt-1">Sensing pipeline amplitude swings across periods</p>
           </div>
 
@@ -494,17 +494,17 @@ function BullwhipVisualizer({ state, activeStep, controls, history = [] }: any) 
               {/* Guides */}
               <line x1="35" y1="25" x2="330" y2="25" stroke="#272757" strokeDasharray="2" />
               <line x1="35" y1="80" x2="330" y2="80" stroke="#272757" strokeDasharray="3" strokeWidth="0.5" />
-              <line x1="35" y1="135" x2="330" y2="135" stroke="#505081" />
-              <line x1="35" y1="25" x2="35" y2="135" stroke="#505081" />
+              <line x1="35" y1="135" x2="330" y2="135" stroke="#7676AB" />
+              <line x1="35" y1="25" x2="35" y2="135" stroke="#7676AB" />
 
               {/* Y coordinates helpers */}
-              <text x="5" y="29" className="text-[8px] fill-slate-500 font-mono">220 U</text>
-              <text x="5" y="83" className="text-[8px] fill-slate-500 font-mono">110 U</text>
-              <text x="5" y="138" className="text-[8px] fill-slate-500 font-mono">0 U</text>
+              <text x="5" y="29" className="text-[8px] fill-[#B4B4D6] font-mono">220 U</text>
+              <text x="5" y="83" className="text-[8px] fill-[#B4B4D6] font-mono">110 U</text>
+              <text x="5" y="138" className="text-[8px] fill-[#B4B4D6] font-mono">0 U</text>
 
               {/* X coordinate period labels */}
               {Array.from({ length: 7 }).map((_, idx) => (
-                <text key={idx} x={38 + (idx * (285 / 6))} y="152" className="text-[8px] fill-slate-400 font-mono text-center" textAnchor="middle">
+                <text key={idx} x={38 + (idx * (285 / 6))} y="152" className="text-[8px] fill-[#B4B4D6] font-mono text-center" textAnchor="middle">
                   P{idx}
                 </text>
               ))}
@@ -585,36 +585,36 @@ function BullwhipVisualizer({ state, activeStep, controls, history = [] }: any) 
           </div>
 
           {/* VARIANCE STATS TABLE */}
-          <div className="border-t border-slate-900 pt-2 flex flex-col gap-1 text-[10px] font-mono">
-            <span className="text-slate-400 font-semibold text-[9px] uppercase tracking-wider block mb-1">Statistical Variance & Speculation Amplification:</span>
+          <div className="border-t border-[#7676AB]/30 pt-2 flex flex-col gap-1 text-[10px] font-mono">
+            <span className="text-[#B4B4D6] font-semibold text-[9px] uppercase tracking-wider block mb-1">Statistical Variance & Speculation Amplification:</span>
             <div className="grid grid-cols-5 gap-1.5 text-center">
-              <div className="bg-slate-900 p-1.5 rounded border border-slate-800">
+              <div className="bg-[#272757] p-1.5 rounded border border-[#7676AB]/45">
                 <span className="text-zinc-400 font-semibold">Consumer</span>
                 <span className="block font-bold text-white mt-0.5">{vConsumer}</span>
                 <span className="block text-[8px] text-zinc-500 mt-0.5">Baseline</span>
               </div>
-              <div className="bg-slate-900 p-1.5 rounded border border-slate-800">
+              <div className="bg-[#272757] p-1.5 rounded border border-[#7676AB]/45">
                 <span className="text-emerald-400 font-semibold">Retail</span>
                 <span className="block font-bold text-white mt-0.5">{vRetailer}</span>
                 <span className="block text-[8px] text-emerald-500 font-bold mt-0.5">
                   {ampRetailer > 1 ? `x${ampRetailer} amp` : 'Smooth'}
                 </span>
               </div>
-              <div className="bg-slate-900 p-1.5 rounded border border-slate-800">
-                <span className="text-indigo-400 font-semibold">Wholesale</span>
+              <div className="bg-[#272757] p-1.5 rounded border border-[#7676AB]/45">
+                <span className="text-[#F5B544] font-semibold">Wholesale</span>
                 <span className="block font-bold text-white mt-0.5">{vWholesaler}</span>
                 <span className="block text-[8px] text-indigo-500 font-bold mt-0.5">
                   {ampWholesaler > 1 ? `x${ampWholesaler} amp` : 'Smooth'}
                 </span>
               </div>
-              <div className="bg-slate-900 p-1.5 rounded border border-slate-800">
+              <div className="bg-[#272757] p-1.5 rounded border border-[#7676AB]/45">
                 <span className="text-amber-400 font-semibold">Distrib</span>
                 <span className="block font-bold text-white mt-0.5">{vDistributor}</span>
                 <span className="block text-[8px] text-amber-500 font-bold mt-0.5">
                   {ampDistributor > 1 ? `x${ampDistributor} amp` : 'Smooth'}
                 </span>
               </div>
-              <div className="bg-slate-900 p-1.5 rounded border border-slate-800">
+              <div className="bg-[#272757] p-1.5 rounded border border-[#7676AB]/45">
                 <span className="text-rose-400 font-semibold">Factory</span>
                 <span className="block font-bold text-white mt-0.5">{vFactory}</span>
                 <span className="block text-[8px] text-rose-500 font-bold mt-0.5">
@@ -629,10 +629,10 @@ function BullwhipVisualizer({ state, activeStep, controls, history = [] }: any) 
         <div className="lg:col-span-6 flex flex-col justify-between gap-4">
           
           {/* ORDERS BAR METER */}
-          <div className="bg-slate-950 p-4 rounded-lg border border-slate-800">
-            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block mb-2">Active Order Profiles (Current Step)</span>
+          <div className="bg-[#0F0E47] p-4 rounded-lg border border-[#7676AB]/45">
+            <span className="text-[10px] font-mono text-[#B4B4D6] uppercase tracking-wider block mb-2">Active Order Profiles (Current Step)</span>
             <div className="grid grid-cols-5 gap-2 items-end h-32 relative pt-2">
-              <div className="absolute inset-x-2 top-1/2 -translate-y-1/2 border-t border-dashed border-slate-800" />
+              <div className="absolute inset-x-2 top-1/2 -translate-y-1/2 border-t border-dashed border-[#7676AB]/45" />
               
               {tiers.map((tier, i) => {
                 const barHeight = Math.max(12, Math.min(100, (tier.value / 220) * 100));
@@ -644,7 +644,7 @@ function BullwhipVisualizer({ state, activeStep, controls, history = [] }: any) 
                     >
                       <span className="text-[9px] font-black leading-none">{tier.value}</span>
                     </div>
-                    <div className="text-[8px] text-slate-400 font-mono mt-1 text-center truncate w-full">
+                    <div className="text-[8px] text-[#B4B4D6] font-mono mt-1 text-center truncate w-full">
                       {tier.name}
                     </div>
                   </div>
@@ -654,8 +654,8 @@ function BullwhipVisualizer({ state, activeStep, controls, history = [] }: any) 
           </div>
 
           {/* INVENTORIES STATE SECTION */}
-          <div className="bg-slate-950 p-4 rounded-lg border border-slate-800 flex flex-col justify-between">
-            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block mb-2">Warehouse Inventory Buffer Stock</span>
+          <div className="bg-[#0F0E47] p-4 rounded-lg border border-[#7676AB]/45 flex flex-col justify-between">
+            <span className="text-[10px] font-mono text-[#B4B4D6] uppercase tracking-wider block mb-2">Warehouse Inventory Buffer Stock</span>
             <div className="flex flex-col gap-2.5">
               {inventories.map((inv) => {
                 const val = inv.value;
@@ -684,13 +684,13 @@ function BullwhipVisualizer({ state, activeStep, controls, history = [] }: any) 
 
                 return (
                   <div key={inv.label} className="text-xs">
-                    <div className="flex items-center justify-between text-[10px] font-mono mb-1 text-slate-300">
+                    <div className="flex items-center justify-between text-[10px] font-mono mb-1 text-[#EDEDF7]">
                       <span>{inv.label}: <strong className="text-white text-xs">{val} units</strong></span>
                       <span className={`font-semibold shrink-0 ${statusColor}`}>{statusLabel}</span>
                     </div>
                     
                     {/* Meter bar */}
-                    <div className="w-full bg-slate-900 rounded-full h-2 overflow-hidden border border-slate-800">
+                    <div className="w-full bg-[#272757] rounded-full h-2 overflow-hidden border border-[#7676AB]/45">
                       <div 
                         className={`h-full transition-all duration-350 ${indicatorColor}`}
                         style={{ width: `${percent}%` }}
@@ -710,7 +710,7 @@ function BullwhipVisualizer({ state, activeStep, controls, history = [] }: any) 
           ? 'bg-rose-950/40 border-rose-905/50 text-rose-100'
           : infoSharing
           ? 'bg-emerald-950/20 border-emerald-905/30 text-emerald-100'
-          : 'bg-slate-950 border-slate-800 text-slate-300'
+          : 'bg-[#0F0E47] border-[#7676AB]/45 text-[#EDEDF7]'
       }`}>
         <div className={`p-1.5 rounded shrink-0 ${
           !infoSharing && Math.abs(demandIncrease) >= 5 && activeStep >= 4
@@ -722,7 +722,7 @@ function BullwhipVisualizer({ state, activeStep, controls, history = [] }: any) 
           <AlertTriangle className="h-4 w-4" />
         </div>
         <div>
-          <span className="font-mono text-[9px] text-slate-400 uppercase block font-semibold">
+          <span className="font-mono text-[9px] text-[#B4B4D6] uppercase block font-semibold">
             {!infoSharing && Math.abs(demandIncrease) >= 5 && activeStep >= 4
               ? 'CHAOS OVERREACTION MODE ACTIVE' 
               : 'REAL-TIME PIPELINE COMMENTARY'}
@@ -775,7 +775,7 @@ function ClimateTippingVisualizer({ state, activeStep, controls, history = [] }:
   // Generate dynamic warning based on temperature proximity to tipping
   let promptWarning = 'Feedback mechanisms are stable. Carbon sinks keeping pace.';
   let promptStatusHeader = 'STABLE GEOSPHERE STATUS';
-  let bannerBgColor = 'bg-slate-950 border-slate-800 text-slate-300';
+  let bannerBgColor = 'bg-[#0F0E47] border-[#7676AB]/45 text-[#EDEDF7]';
   let badgeColor = 'bg-emerald-500/10 text-emerald-400 border-emerald-505/30';
 
   if (isTipped) {
@@ -791,7 +791,7 @@ function ClimateTippingVisualizer({ state, activeStep, controls, history = [] }:
   } else if (temperature >= 1.3) {
     promptWarning = 'Moderate thinning observed in polar regions. Lower ice reflection is slowly magnifying thermal solar retention.';
     promptStatusHeader = 'ICE ALBEDO WEAKENING';
-    badgeColor = 'bg-indigo-500/20 text-indigo-400 border-indigo-500/30';
+    badgeColor = 'bg-indigo-500/20 text-[#F5B544] border-indigo-500/30';
   }
 
   // Dynamic methane bubble coordinate array
@@ -803,21 +803,21 @@ function ClimateTippingVisualizer({ state, activeStep, controls, history = [] }:
   }));
 
   // Render sky color background reflecting temperature severity
-  let skyBg = 'bg-[#0F0E47] border-[#505081]';
+  let skyBg = 'bg-[#0F0E47] border-[#7676AB]';
   if (temperature >= 2.5) {
-    skyBg = 'bg-[#272757] border-[#8686AC]';
+    skyBg = 'bg-[#272757] border-[#B4B4D6]';
   } else if (temperature >= 1.7) {
-    skyBg = 'bg-[#1D1C50] border-[#505081]';
+    skyBg = 'bg-[#2F2F66] border-[#7676AB]';
   }
 
   return (
-    <div id="visualizer-climate" className="w-full bg-slate-900 border border-slate-805 text-white rounded-xl p-5 shadow-inner flex flex-col gap-6">
+    <div id="visualizer-climate" className="w-full bg-[#272757] border border-slate-805 text-white rounded-xl p-5 shadow-inner flex flex-col gap-6">
       
       {/* HEADER DIAGNOSTIC PANEL */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#7676AB]/45 pb-3">
         <div>
-          <span className="text-xs font-mono text-slate-400 block font-medium">Decadal Biosphere Lab</span>
-          <h3 className="text-sm font-bold text-slate-100 mt-0.5">Global Hysteresis & Feedback Analysis</h3>
+          <span className="text-xs font-mono text-[#B4B4D6] block font-medium">Decadal Biosphere Lab</span>
+          <h3 className="text-sm font-bold text-[#EDEDF7] mt-0.5">Global Hysteresis & Feedback Analysis</h3>
         </div>
         <div className="flex items-center gap-2">
           <span className={`text-[10px] px-2.5 py-0.5 rounded font-mono font-bold border ${badgeColor}`}>
@@ -835,8 +835,8 @@ function ClimateTippingVisualizer({ state, activeStep, controls, history = [] }:
           <div className="flex items-center justify-between z-20 pointer-events-none">
             <span className="text-xs font-mono text-zinc-400">Cryological profile</span>
             <div className="text-right">
-              <span className="text-[10px] font-mono text-slate-400 block">Polar Albedo: <strong className="text-cyan-400 font-bold">{albedo}%</strong></span>
-              <span className="text-[10px] font-mono text-slate-400 block">permafrost gas: <strong className="text-orange-400 font-bold">{methane} Gt</strong></span>
+              <span className="text-[10px] font-mono text-[#B4B4D6] block">Polar Albedo: <strong className="text-cyan-400 font-bold">{albedo}%</strong></span>
+              <span className="text-[10px] font-mono text-[#B4B4D6] block">permafrost gas: <strong className="text-orange-400 font-bold">{methane} Gt</strong></span>
             </div>
           </div>
 
@@ -882,7 +882,7 @@ function ClimateTippingVisualizer({ state, activeStep, controls, history = [] }:
                     cx={b.x} 
                     cy={b.y} 
                     r={b.r} 
-                    fill="#fbbf24" 
+                    fill="#F5B544" 
                     opacity="0.75"
                     className="animate-pulse" 
                   />
@@ -905,11 +905,11 @@ function ClimateTippingVisualizer({ state, activeStep, controls, history = [] }:
 
           {/* Ice sheet identifier floating tags */}
           <div className="z-10 flex justify-between items-end mt-auto pointer-events-none">
-            <div className="bg-slate-950/85 border border-slate-800 rounded px-2 py-1 text-[9px] font-mono inline-block">
-              <span className="text-slate-300 font-bold block">
+            <div className="bg-[#0F0E47]/85 border border-[#7676AB]/45 rounded px-2 py-1 text-[9px] font-mono inline-block">
+              <span className="text-[#EDEDF7] font-bold block">
                 {albedo > 15 ? '❄️ GLACIAL BULWARK' : '⚠️ COLLAPSED SHELF'}
               </span>
-              <span className="text-[8px] text-slate-400">Reflective Buffer</span>
+              <span className="text-[8px] text-[#B4B4D6]">Reflective Buffer</span>
             </div>
 
             {methane > 15 && (
@@ -921,20 +921,20 @@ function ClimateTippingVisualizer({ state, activeStep, controls, history = [] }:
         </div>
 
         {/* RIGHT COMPARTMENT: CO2 & THERMAL PROGRESS GAUGE */}
-        <div className="lg:col-span-6 bg-slate-950 p-4 rounded-lg border border-slate-800 flex flex-col justify-between">
+        <div className="lg:col-span-6 bg-[#0F0E47] p-4 rounded-lg border border-[#7676AB]/45 flex flex-col justify-between">
           <div>
-            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Decadal Thermal Diagnostics</span>
-            <p className="text-[11px] text-slate-500 mt-1">Measuring systemic greenhouse load & atmospheric friction</p>
+            <span className="text-[10px] font-mono text-[#B4B4D6] uppercase tracking-wider block">Decadal Thermal Diagnostics</span>
+            <p className="text-[11px] text-[#B4B4D6] mt-1">Measuring systemic greenhouse load & atmospheric friction</p>
           </div>
 
           <div className="grid grid-cols-12 gap-4 items-center my-3 relative">
             
             {/* Thermometer scale display */}
-            <div className="col-span-5 flex flex-col items-center border-r border-slate-900 pr-2 text-center h-32 justify-between py-1">
+            <div className="col-span-5 flex flex-col items-center border-r border-[#7676AB]/30 pr-2 text-center h-32 justify-between py-1">
               <span className="text-[9px] font-mono text-zinc-400 uppercase tracking-wider">Atmosphere Temp</span>
               <div className="flex items-center gap-2 h-16 w-full justify-center">
                 <Thermometer className={`h-8 w-8 ${isTipped ? 'text-rose-500 animate-pulse' : 'text-sky-400'}`} />
-                <div className="h-full w-2.5 bg-slate-900 rounded-full relative overflow-hidden border border-slate-800 flex flex-col justify-end">
+                <div className="h-full w-2.5 bg-[#272757] rounded-full relative overflow-hidden border border-[#7676AB]/45 flex flex-col justify-end">
                   <div 
                     className={`w-full transition-all duration-500 ${isTipped ? 'bg-rose-500' : 'bg-sky-400'}`} 
                     style={{ height: `${Math.min(100, Math.max(10, ((temperature - 1.0) / 2.8) * 100))}%` }}
@@ -945,38 +945,38 @@ function ClimateTippingVisualizer({ state, activeStep, controls, history = [] }:
               </div>
               <div>
                 <span className={`text-sm font-black leading-none block ${isTipped ? 'text-rose-450' : 'text-slate-250'}`}>+{temperature}°C</span>
-                <span className="text-[8px] text-slate-500 font-mono italic">Gate Limit: +1.7°C</span>
+                <span className="text-[8px] text-[#B4B4D6] font-mono italic">Gate Limit: +1.7°C</span>
               </div>
             </div>
 
             {/* Greenhouse concentrations gas readout dials */}
             <div className="col-span-7 flex flex-col justify-between h-32 py-1">
-              <div className="bg-slate-900 rounded border border-slate-850 p-2 text-xs">
+              <div className="bg-[#272757] rounded border border-slate-850 p-2 text-xs">
                 <div className="flex justify-between items-center text-[10px] font-mono text-zinc-400">
                   <span>Greenhouse Density:</span>
                   <span className="font-bold text-amber-500">{state.co2} ppm</span>
                 </div>
-                <div className="w-full bg-slate-950 rounded-full h-1.5 overflow-hidden mt-1 border border-slate-900">
+                <div className="w-full bg-[#0F0E47] rounded-full h-1.5 overflow-hidden mt-1 border border-[#7676AB]/30">
                   <div 
                     className="bg-amber-500 h-full transition-all duration-500"
                     style={{ width: `${Math.min(100, ((state.co2 - 400) / 450) * 100)}%` }}
                   />
                 </div>
-                <p className="text-[8px] text-slate-500 font-mono mt-0.5">Pre-industrial: 280ppm | Current: 415ppm+</p>
+                <p className="text-[8px] text-[#B4B4D6] font-mono mt-0.5">Pre-industrial: 280ppm | Current: 415ppm+</p>
               </div>
 
-              <div className="bg-slate-900 rounded border border-slate-850 p-2 text-xs">
+              <div className="bg-[#272757] rounded border border-slate-850 p-2 text-xs">
                 <div className="flex justify-between items-center text-[10px] font-mono text-zinc-400">
                   <span>Permafrost Venting:</span>
                   <span className="font-bold text-orange-400">{methane} Gt released</span>
                 </div>
-                <div className="w-full bg-slate-950 rounded-full h-1.5 overflow-hidden mt-1 border border-slate-900">
+                <div className="w-full bg-[#0F0E47] rounded-full h-1.5 overflow-hidden mt-1 border border-[#7676AB]/30">
                   <div 
                     className="bg-orange-500 h-full transition-all duration-500"
                     style={{ width: `${Math.min(100, (methane / 160) * 100)}%` }}
                   />
                 </div>
-                <p className="text-[8px] text-slate-500 font-mono mt-0.5">Underground methane releases increase with heat</p>
+                <p className="text-[8px] text-[#B4B4D6] font-mono mt-0.5">Underground methane releases increase with heat</p>
               </div>
             </div>
           </div>
@@ -984,21 +984,21 @@ function ClimateTippingVisualizer({ state, activeStep, controls, history = [] }:
       </div>
 
       {/* OVERLAY CHART: TIME SERIES COMPARATIVE PLOT */}
-      <div className="bg-slate-955 p-4 rounded-lg border border-slate-800 flex flex-col gap-3">
+      <div className="bg-slate-955 p-4 rounded-lg border border-[#7676AB]/45 flex flex-col gap-3">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div>
-            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Decadal Divergence Plot (+°C Warming)</span>
-            <p className="text-[11px] text-slate-550">Comparing active path vs. Paris targets stabilization baseline (+1.7°C limit)</p>
+            <span className="text-[10px] font-mono text-[#B4B4D6] uppercase tracking-wider block">Decadal Divergence Plot (+°C Warming)</span>
+            <p className="text-[11px] text-[#B4B4D6]">Comparing active path vs. Paris targets stabilization baseline (+1.7°C limit)</p>
           </div>
 
-          <div className="flex items-center gap-3 bg-slate-900/60 border border-slate-850 px-2 py-1 rounded text-[9px] font-mono">
+          <div className="flex items-center gap-3 bg-[#272757]/60 border border-slate-850 px-2 py-1 rounded text-[9px] font-mono">
             <div className="flex items-center gap-1">
               <span className="w-2.5 h-0.5 bg-rose-500 inline-block" />
-              <span className="text-slate-300">Your Run</span>
+              <span className="text-[#EDEDF7]">Your Run</span>
             </div>
             <div className="flex items-center gap-1">
               <span className="w-2.5 h-0.5 border-t border-dashed border-cyan-400 inline-block" />
-              <span className="text-slate-300">Paris Goal Baseline</span>
+              <span className="text-[#EDEDF7]">Paris Goal Baseline</span>
             </div>
           </div>
         </div>
@@ -1008,16 +1008,16 @@ function ClimateTippingVisualizer({ state, activeStep, controls, history = [] }:
           <svg className="w-full h-full min-h-[140px]" viewBox="0 0 350 160" preserveAspectRatio="none">
             {/* Horizontal target guide lines */}
             <line x1="35" y1="140" x2="330" y2="140" stroke="#272757" />
-            <line x1="35" y1="115.5" x2="330" y2="115.5" stroke="#505081" strokeDasharray="2" />
+            <line x1="35" y1="115.5" x2="330" y2="115.5" stroke="#7676AB" strokeDasharray="2" />
             {/* The tipping point boundary at +1.7C (Y = 115.5) */}
             <line x1="35" y1="115.5" x2="330" y2="115.5" stroke="#f43f5e" strokeWidth="1.5" strokeDasharray="4 2" />
             
-            <line x1="35" y1="140" x2="35" y2="30" stroke="#505081" />
+            <line x1="35" y1="140" x2="35" y2="30" stroke="#7676AB" />
 
             {/* Labels */}
-            <text x="5" y="142" className="text-[8px] fill-slate-500 font-mono">1.0°C</text>
+            <text x="5" y="142" className="text-[8px] fill-[#B4B4D6] font-mono">1.0°C</text>
             <text x="5" y="117.5" className="text-[8px] fill-rose-500 font-mono font-bold">1.7°C (Tipping)</text>
-            <text x="5" y="32" className="text-[8px] fill-slate-500 font-mono">4.1°C</text>
+            <text x="5" y="32" className="text-[8px] fill-[#B4B4D6] font-mono">4.1°C</text>
 
             <text x="325" y="109" className="text-[8px] fill-rose-450 font-mono font-semibold" textAnchor="end">
               BIFURCATION LEVEL LIMIT (+1.7°C)
@@ -1025,7 +1025,7 @@ function ClimateTippingVisualizer({ state, activeStep, controls, history = [] }:
 
             {/* Step coordinate labels */}
             {Array.from({ length: 6 }).map((_, i) => (
-              <text key={i} x={38 + (i * 57)} y="155" className="text-[8px] fill-slate-400 font-mono text-center" textAnchor="middle">
+              <text key={i} x={38 + (i * 57)} y="155" className="text-[8px] fill-[#B4B4D6] font-mono text-center" textAnchor="middle">
                 Decade {i}
               </text>
             ))}
@@ -1082,52 +1082,52 @@ function ClimateTippingVisualizer({ state, activeStep, controls, history = [] }:
       </div>
 
       {/* FEEDBACK LOOP FLOW DOCUMENTATION DIAGRAM */}
-      <div className="bg-slate-950 p-4 rounded-lg border border-slate-850 flex flex-col gap-3">
-        <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Tipping Point Feedbacks Schematic</span>
+      <div className="bg-[#0F0E47] p-4 rounded-lg border border-slate-850 flex flex-col gap-3">
+        <span className="text-[10px] font-mono text-[#B4B4D6] uppercase tracking-wider block">Tipping Point Feedbacks Schematic</span>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-[11px] font-mono">
           
           {/* LOOP A: ALBEDO HOVER SHIELD */}
-          <div className={`p-3 rounded border transition-all ${isTipped ? 'bg-rose-950/20 border-rose-900/40 text-rose-100' : 'bg-slate-900 border-slate-800 text-slate-400'}`}>
-            <span className={`text-[9px] font-bold block ${isTipped ? 'text-rose-400' : 'text-slate-400'} mb-1.5`}>
+          <div className={`p-3 rounded border transition-all ${isTipped ? 'bg-rose-950/20 border-rose-900/40 text-rose-100' : 'bg-[#272757] border-[#7676AB]/45 text-[#B4B4D6]'}`}>
+            <span className={`text-[9px] font-bold block ${isTipped ? 'text-rose-400' : 'text-[#B4B4D6]'} mb-1.5`}>
               🔁 LOOP 1: ICE-ALBEDO LOCK
             </span>
             <div className="flex flex-col gap-1 text-[10px] leading-relaxed">
               <div className="flex items-center gap-1.5">
-                <span className="bg-slate-950 px-1 py-0.5 rounded text-white font-bold">1</span>
+                <span className="bg-[#0F0E47] px-1 py-0.5 rounded text-white font-bold">1</span>
                 <span>Warming Melts Shiny Reflective Ice Cover</span>
               </div>
               <div className="text-[9px] text-zinc-500 pl-4">↓</div>
               <div className="flex items-center gap-1.5">
-                <span className="bg-slate-950 px-1 py-0.5 rounded text-white font-bold">2</span>
+                <span className="bg-[#0F0E47] px-1 py-0.5 rounded text-white font-bold">2</span>
                 <span>Darker Ocean Exposed Below absorbs heat</span>
               </div>
               <div className="text-[9px] text-zinc-500 pl-4">↓</div>
               <div className="flex items-center gap-1.5">
-                <span className="bg-slate-950 px-1 py-0.5 rounded text-white font-bold">3</span>
+                <span className="bg-[#0F0E47] px-1 py-0.5 rounded text-white font-bold">3</span>
                 <span className={isTipped ? "text-rose-450 font-bold" : ""}>{"More Warming Retained ──> Runway Collapse!"}</span>
               </div>
             </div>
           </div>
 
           {/* LOOP B: METHANE VENT PLUGS */}
-          <div className={`p-3 rounded border transition-all ${isTipped ? 'bg-orange-950/20 border-orange-900/40 text-orange-100' : 'bg-slate-900 border-slate-800 text-slate-400'}`}>
-            <span className={`text-[9px] font-bold block ${isTipped ? 'text-orange-400' : 'text-slate-400'} mb-1.5`}>
+          <div className={`p-3 rounded border transition-all ${isTipped ? 'bg-orange-950/20 border-orange-900/40 text-orange-100' : 'bg-[#272757] border-[#7676AB]/45 text-[#B4B4D6]'}`}>
+            <span className={`text-[9px] font-bold block ${isTipped ? 'text-orange-400' : 'text-[#B4B4D6]'} mb-1.5`}>
               🔁 LOOP 2: PERMA-METHANE VENTING
             </span>
             <div className="flex flex-col gap-1 text-[10px] leading-relaxed">
               <div className="flex items-center gap-1.5">
-                <span className="bg-slate-950 px-1 py-0.5 rounded text-white font-bold">1</span>
+                <span className="bg-[#0F0E47] px-1 py-0.5 rounded text-white font-bold">1</span>
                 <span>Warming Decays Frozen Siberian Soils</span>
               </div>
               <div className="text-[9px] text-zinc-500 pl-4">↓</div>
               <div className="flex items-center gap-1.5">
-                <span className="bg-slate-950 px-1 py-0.5 rounded text-white font-bold">2</span>
+                <span className="bg-[#0F0E47] px-1 py-0.5 rounded text-white font-bold">2</span>
                 <span>Subterranean Methane Gas seeps/releases</span>
               </div>
               <div className="text-[9px] text-zinc-500 pl-4">↓</div>
               <div className="flex items-center gap-1.5">
-                <span className="bg-slate-950 px-1 py-0.5 rounded text-white font-bold">3</span>
+                <span className="bg-[#0F0E47] px-1 py-0.5 rounded text-white font-bold">3</span>
                 <span className={isTipped ? "text-orange-400 font-bold" : ""}>Atmospheric Greenhouse compounding heating!</span>
               </div>
             </div>
@@ -1142,7 +1142,7 @@ function ClimateTippingVisualizer({ state, activeStep, controls, history = [] }:
           <CloudAlert className="h-4 w-4" />
         </div>
         <div>
-          <span className="font-mono text-[9px] text-slate-400 uppercase block font-semibold">FEEDBACK COGNITION FEED</span>
+          <span className="font-mono text-[9px] text-[#B4B4D6] uppercase block font-semibold">FEEDBACK COGNITION FEED</span>
           <p className="leading-relaxed mt-0.5 font-normal">{state.warningText}</p>
         </div>
       </div>
@@ -1223,16 +1223,16 @@ function PredatorPreyVisualizer({ state, activeStep, controls, history = [] }: a
   }));
 
   return (
-    <div id="visualizer-predator-prey" className="w-full bg-slate-900 border border-slate-805 text-white rounded-xl p-5 shadow-inner flex flex-col gap-6">
+    <div id="visualizer-predator-prey" className="w-full bg-[#272757] border border-slate-805 text-white rounded-xl p-5 shadow-inner flex flex-col gap-6">
       
       {/* HEADER PANEL DIAGNOSTICS */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#7676AB]/45 pb-3">
         <div>
           <span className="text-xs font-mono text-emerald-400 uppercase tracking-wider block font-semibold">Trophic Basin Simulator</span>
-          <h3 className="text-sm font-bold text-slate-100 mt-0.5">Lotka-Volterra Bifurcation Analyzer</h3>
+          <h3 className="text-sm font-bold text-[#EDEDF7] mt-0.5">Lotka-Volterra Bifurcation Analyzer</h3>
         </div>
         <div className="flex items-center gap-2">
-          <span className={`text-[10px] px-2.5 py-0.5 rounded font-mono font-bold border ${isChaotic ? 'bg-rose-500/10 text-rose-450 border-rose-505/30' : 'bg-slate-950 text-emerald-450 border-emerald-500/15'}`}>
+          <span className={`text-[10px] px-2.5 py-0.5 rounded font-mono font-bold border ${isChaotic ? 'bg-rose-500/10 text-rose-450 border-rose-505/30' : 'bg-[#0F0E47] text-emerald-450 border-emerald-500/15'}`}>
             {isChaotic ? '🚨 STRANGE ATTRACTOR ACTIVE' : '❄️ SYSTEM ATTRACTOR STABLE'}
           </span>
         </div>
@@ -1242,10 +1242,10 @@ function PredatorPreyVisualizer({ state, activeStep, controls, history = [] }: a
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         
         {/* LEFT COMPARTMENT: ANIMAL SPATIAL ARENA (Visual dot densities) */}
-        <div className="lg:col-span-4 bg-slate-950 p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
+        <div className="lg:col-span-4 bg-[#0F0E47] p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest">Ecosystem Arena</span>
+              <span className="text-[10px] font-mono text-[#B4B4D6] uppercase tracking-widest">Ecosystem Arena</span>
               <span className={`text-[9px] font-mono font-semibold px-2 py-0.5 rounded border inline-block ${grassColor}`}>
                 Grass Biome: {vegetation}%
               </span>
@@ -1255,49 +1255,49 @@ function PredatorPreyVisualizer({ state, activeStep, controls, history = [] }: a
 
           <div className="grid grid-rows-2 gap-3 my-4">
             {/* Rabbits Sub-arena */}
-            <div className="bg-slate-900 rounded p-2.5 border border-slate-850/50 min-h-[90px] relative overflow-hidden flex flex-wrap gap-1 content-start">
+            <div className="bg-[#272757] rounded p-2.5 border border-slate-850/50 min-h-[90px] relative overflow-hidden flex flex-wrap gap-1 content-start">
               {rDots.map((d, i) => (
                 <span key={`r-dot-${i}`} className="h-2 w-2 rounded-full bg-emerald-450 animate-pulse shrink-0" title="Herbivore" />
               ))}
               {rDots.length === 0 && <span className="text-[10px] text-slate-650 m-auto">Prey Starved</span>}
-              <div className="absolute bottom-1 right-2 bg-slate-950/85 border border-slate-800 px-1 py-0.5 rounded text-[8px] font-mono text-emerald-400 font-bold">
+              <div className="absolute bottom-1 right-2 bg-[#0F0E47]/85 border border-[#7676AB]/45 px-1 py-0.5 rounded text-[8px] font-mono text-emerald-400 font-bold">
                 Rabbits ({prey}k)
               </div>
             </div>
 
             {/* Foxes Sub-arena */}
-            <div className="bg-slate-900 rounded p-2.5 border border-slate-850/50 min-h-[90px] relative overflow-hidden flex flex-wrap gap-1.5 content-start">
+            <div className="bg-[#272757] rounded p-2.5 border border-slate-850/50 min-h-[90px] relative overflow-hidden flex flex-wrap gap-1.5 content-start">
               {fDots.map((d, i) => (
                 <span key={`f-dot-${i}`} className="h-2.5 w-2.5 bg-indigo-500 rounded-sm rotate-45 animate-bounce shrink-0" title="Predator" />
               ))}
               {fDots.length === 0 && <span className="text-[10px] text-slate-650 m-auto">Predators Extinct</span>}
-              <div className="absolute bottom-1 right-2 bg-slate-950/85 border border-slate-800 px-1 py-0.5 rounded text-[8px] font-mono text-indigo-400 font-bold">
+              <div className="absolute bottom-1 right-2 bg-[#0F0E47]/85 border border-[#7676AB]/45 px-1 py-0.5 rounded text-[8px] font-mono text-[#F5B544] font-bold">
                 Foxes ({predators}k)
               </div>
             </div>
           </div>
 
-          <div className="bg-slate-900/60 p-2.5 rounded border border-slate-850 text-[10px] text-slate-400 font-mono flex items-center justify-between">
+          <div className="bg-[#272757]/60 p-2.5 rounded border border-slate-850 text-[10px] text-[#B4B4D6] font-mono flex items-center justify-between">
             <span>Quota setting: <strong className="text-white">{culling}%</strong></span>
             <span>Disturbance: <strong className="text-white">+{curNoise}k</strong></span>
           </div>
         </div>
 
         {/* RIGHT COMPARTMENT: INTERACTIVE GRAPHING DECK */}
-        <div className="lg:col-span-8 bg-slate-950 p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
+        <div className="lg:col-span-8 bg-[#0F0E47] p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
           
-          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-900 pb-3">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#7676AB]/30 pb-3">
             {/* Visualizer selector tab */}
-            <div className="flex gap-1 bg-slate-900 p-0.5 rounded border border-slate-800">
+            <div className="flex gap-1 bg-[#272757] p-0.5 rounded border border-[#7676AB]/45">
               <button 
                 onClick={() => setActiveTab('time')}
-                className={`px-3 py-1 text-[10px] font-mono rounded font-semibold transition-all ${activeTab === 'time' ? 'bg-slate-950 text-white border border-slate-800' : 'text-slate-400 hover:text-white'}`}
+                className={`px-3 py-1 text-[10px] font-mono rounded font-semibold transition-all ${activeTab === 'time' ? 'bg-[#0F0E47] text-white border border-[#7676AB]/45' : 'text-[#B4B4D6] hover:text-white'}`}
               >
                 🕒 Time Series (Trend Curve)
               </button>
               <button 
                 onClick={() => setActiveTab('phase')}
-                className={`px-3 py-1 text-[10px] font-mono rounded font-semibold transition-all ${activeTab === 'phase' ? 'bg-slate-950 text-white border border-slate-800' : 'text-slate-400 hover:text-white'}`}
+                className={`px-3 py-1 text-[10px] font-mono rounded font-semibold transition-all ${activeTab === 'phase' ? 'bg-[#0F0E47] text-white border border-[#7676AB]/45' : 'text-[#B4B4D6] hover:text-white'}`}
               >
                 🌀 Phase Attractor (Loop Space)
               </button>
@@ -1337,19 +1337,19 @@ function PredatorPreyVisualizer({ state, activeStep, controls, history = [] }: a
                 {/* Horizontal guide lines */}
                 <line x1="45" y1="150" x2="360" y2="150" stroke="#272757" />
                 <line x1="45" y1="85" x2="360" y2="85" stroke="#161f30" strokeDasharray="3 3" />
-                <line x1="45" y1="20" x2="360" y2="20" stroke="#505081" strokeDasharray="1 4" />
+                <line x1="45" y1="20" x2="360" y2="20" stroke="#7676AB" strokeDasharray="1 4" />
                 
                 {/* Axes lines */}
-                <line x1="40" y1="150" x2="40" y2="15" stroke="#505081" />
+                <line x1="40" y1="150" x2="40" y2="15" stroke="#7676AB" />
 
                 {/* Y scale labels */}
-                <text x="5" y="153" className="text-[8px] fill-slate-500 font-mono">0k</text>
-                <text x="5" y="88" className="text-[8px] fill-slate-500 font-mono">90k</text>
-                <text x="5" y="23" className="text-[8px] fill-slate-500 font-mono">180k</text>
+                <text x="5" y="153" className="text-[8px] fill-[#B4B4D6] font-mono">0k</text>
+                <text x="5" y="88" className="text-[8px] fill-[#B4B4D6] font-mono">90k</text>
+                <text x="5" y="23" className="text-[8px] fill-[#B4B4D6] font-mono">180k</text>
 
                 {/* X labels steps */}
                 {Array.from({ length: 11 }).map((_, i) => (
-                  <text key={`x-lbl-${i}`} x={40 + i * 32} y="159" className="text-[8px] fill-slate-400 font-mono text-center" textAnchor="middle">
+                  <text key={`x-lbl-${i}`} x={40 + i * 32} y="159" className="text-[8px] fill-[#B4B4D6] font-mono text-center" textAnchor="middle">
                     Y{i}
                   </text>
                 ))}
@@ -1417,13 +1417,13 @@ function PredatorPreyVisualizer({ state, activeStep, controls, history = [] }: a
 
                 {/* Y and X Axis limits labels */}
                 <text x="5" y="20" className="text-[8px] fill-indigo-400 font-mono">Foxes: 95k (Y-max)</text>
-                <text x="5" y="152" className="text-[8px] fill-slate-500 font-mono">Foxes: 0k (Y-min)</text>
+                <text x="5" y="152" className="text-[8px] fill-[#B4B4D6] font-mono">Foxes: 0k (Y-min)</text>
                 
                 <text x="55" y="159" className="text-[8px] fill-emerald-400 font-mono">0k Rabbits (X-min)</text>
                 <text x="360" y="159" className="text-[8px] fill-emerald-400 font-mono" textAnchor="end">180k Rabbits (X-max)</text>
 
                 {/* Axis Labels */}
-                <text x="200" y="15" className="text-[8px] fill-slate-500 font-mono uppercase font-bold text-center" textAnchor="middle">
+                <text x="200" y="15" className="text-[8px] fill-[#B4B4D6] font-mono uppercase font-bold text-center" textAnchor="middle">
                   Attractor Phase Space Trajectory [Rabbits vs Foxes]
                 </text>
 
@@ -1488,7 +1488,7 @@ function PredatorPreyVisualizer({ state, activeStep, controls, history = [] }: a
             )}
           </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-2 mt-2 pt-2 border-t border-slate-900 text-[10px] font-mono text-zinc-400">
+          <div className="flex flex-wrap items-center justify-between gap-2 mt-2 pt-2 border-t border-[#7676AB]/30 text-[10px] font-mono text-zinc-400">
             <div className="flex gap-3">
               <span className="flex items-center gap-1">
                 <span className="w-2.5 h-0.5 bg-emerald-450 inline-block" /> Rabbits (Prey)
@@ -1503,7 +1503,7 @@ function PredatorPreyVisualizer({ state, activeStep, controls, history = [] }: a
               )}
             </div>
             
-            <div className="text-[9px] bg-slate-900 border border-slate-850 px-2 py-0.5 rounded font-bold">
+            <div className="text-[9px] bg-[#272757] border border-slate-850 px-2 py-0.5 rounded font-bold">
               {activeTab === 'time' ? 'Scale: 1 Decade (0..10 years)' : 'Temporal Coordinates: (Y0 → Y10)'}
             </div>
           </div>
@@ -1512,12 +1512,12 @@ function PredatorPreyVisualizer({ state, activeStep, controls, history = [] }: a
       </div>
 
       {/* COMMENTARY BULLETIN FEEDBACK */}
-      <div className={`p-4 rounded-lg border text-xs flex gap-3.5 items-start transition-all duration-300 ${isChaotic ? 'bg-rose-950/40 border-rose-900/50 text-rose-105' : 'bg-slate-950 border-slate-850 text-slate-300'}`}>
+      <div className={`p-4 rounded-lg border text-xs flex gap-3.5 items-start transition-all duration-300 ${isChaotic ? 'bg-rose-950/40 border-rose-900/50 text-rose-105' : 'bg-[#0F0E47] border-slate-850 text-[#EDEDF7]'}`}>
         <div className={`p-1.5 rounded shrink-0 ${isChaotic ? 'bg-rose-650 text-white animate-pulse' : 'bg-emerald-500 text-slate-950'}`}>
           <Leaf className="h-4 w-4" />
         </div>
         <div>
-          <span className="font-mono text-[9px] text-slate-400 uppercase tracking-wider block font-semibold">Trophic System Cognition</span>
+          <span className="font-mono text-[9px] text-[#B4B4D6] uppercase tracking-wider block font-semibold">Trophic System Cognition</span>
           <p className="leading-relaxed mt-1 font-normal font-sans text-[11.5px]">{state.balanceStatus}</p>
         </div>
       </div>
@@ -1571,24 +1571,24 @@ function PhantomTrafficVisualizer({ state, activeStep, controls, history = [] }:
   // Render color coding based on a vehicle's speed
   const getCarColor = (sp: number) => {
     if (sp <= 12) return '#f43f5e'; // Stall (Red-rose)
-    if (sp <= 42) return '#eab308'; // Braking (Amber-yellow)
+    if (sp <= 42) return '#F5B544'; // Braking (Amber-yellow)
     return '#10b981'; // Flowing (Green-emerald)
   };
 
   return (
-    <div id="visualizer-traffic" className="w-full bg-slate-900 border border-slate-800 text-white rounded-xl p-5 shadow-inner flex flex-col gap-6">
+    <div id="visualizer-traffic" className="w-full bg-[#272757] border border-[#7676AB]/45 text-white rounded-xl p-5 shadow-inner flex flex-col gap-6">
       
       {/* SECTION 1: HEADER & DETERMINISTIC CONTROLLER DECK */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#7676AB]/45 pb-4">
         <div>
-          <span className="text-xs font-mono text-indigo-400 uppercase tracking-wider block font-semibold">Decentralized Multi-Agent Flow</span>
-          <h3 className="text-sm font-bold text-slate-100 mt-0.5">Phantom Traffic Shockwave Laboratory</h3>
+          <span className="text-xs font-mono text-[#F5B544] uppercase tracking-wider block font-semibold">Decentralized Multi-Agent Flow</span>
+          <h3 className="text-sm font-bold text-[#EDEDF7] mt-0.5">Phantom Traffic Shockwave Laboratory</h3>
         </div>
         <div className="flex items-center gap-2">
           {savedSpeeds ? (
             <div className="flex items-center gap-1.5 bg-indigo-950/40 border border-indigo-900/50 p-1 px-2.5 rounded text-[10px] font-mono">
               <span className="text-amber-400 animate-pulse font-bold">● REFERENCE LOCKED:</span>
-              <span className="text-slate-300">
+              <span className="text-[#EDEDF7]">
                 Density {savedDensity}%, ACC {savedACC ? 'On' : 'Off'}
               </span>
               <button 
@@ -1613,24 +1613,24 @@ function PhantomTrafficVisualizer({ state, activeStep, controls, history = [] }:
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         
         {/* COMPARTMENT 1: VISUALLY POLISHED ROAD-MAP SPACE (CIRCULAR OR LINEAR TRAFFIC) */}
-        <div className="lg:col-span-7 bg-slate-950 p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
-          <div className="flex items-center justify-between border-b border-slate-900 pb-2.5 mb-2">
-            <div className="flex gap-1.5 bg-slate-900 p-0.5 rounded border border-slate-800">
+        <div className="lg:col-span-7 bg-[#0F0E47] p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
+          <div className="flex items-center justify-between border-b border-[#7676AB]/30 pb-2.5 mb-2">
+            <div className="flex gap-1.5 bg-[#272757] p-0.5 rounded border border-[#7676AB]/45">
               <button 
                 onClick={() => setActiveTab('ring')}
-                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'ring' ? 'bg-slate-950 text-white border border-slate-800' : 'text-slate-400 hover:text-white'}`}
+                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'ring' ? 'bg-[#0F0E47] text-white border border-[#7676AB]/45' : 'text-[#B4B4D6] hover:text-white'}`}
               >
                 ⭕ Circular Highway
               </button>
               <button 
                 onClick={() => setActiveTab('lanes')}
-                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'lanes' ? 'bg-slate-950 text-white border border-slate-800' : 'text-slate-400 hover:text-white'}`}
+                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'lanes' ? 'bg-[#0F0E47] text-white border border-[#7676AB]/45' : 'text-[#B4B4D6] hover:text-white'}`}
               >
                 🛣️ Linearized Lanes
               </button>
               <button 
                 onClick={() => setActiveTab('grid')}
-                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'grid' ? 'bg-slate-950 text-white border border-slate-800' : 'text-slate-400 hover:text-white'}`}
+                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'grid' ? 'bg-[#0F0E47] text-white border border-[#7676AB]/45' : 'text-[#B4B4D6] hover:text-white'}`}
               >
                 📊 Speed Matrix
               </button>
@@ -1641,15 +1641,15 @@ function PhantomTrafficVisualizer({ state, activeStep, controls, history = [] }:
             </div>
           </div>
 
-          <div className="relative min-h-[220px] flex items-center justify-center bg-slate-900 p-2 rounded-lg border border-slate-850 overflow-hidden">
+          <div className="relative min-h-[220px] flex items-center justify-center bg-[#272757] p-2 rounded-lg border border-slate-850 overflow-hidden">
             
             {/* TAB A: CIRCULAR RING ROADWAY VIEW */}
             {activeTab === 'ring' && (
               <div className="relative flex flex-col items-center">
                 <svg className="w-52 h-52" viewBox="0 0 200 200">
                   {/* The asphalt physical ring with road line details */}
-                  <circle cx={cx} cy={cy} r={rad} fill="none" stroke="#505081" strokeWidth="22" />
-                  <circle cx={cx} cy={cy} r={rad} fill="none" stroke="#334155" strokeWidth="18" />
+                  <circle cx={cx} cy={cy} r={rad} fill="none" stroke="#7676AB" strokeWidth="22" />
+                  <circle cx={cx} cy={cy} r={rad} fill="none" stroke="#7676AB" strokeWidth="18" />
                   <circle cx={cx} cy={cy} r={rad} fill="none" stroke="#f1f5f9" strokeWidth="1" strokeDasharray="4,4" strokeOpacity="0.4" />
                   
                   {/* Highlight Car 0 Initial Perturbation Point / Trigger */}
@@ -1708,7 +1708,7 @@ function PhantomTrafficVisualizer({ state, activeStep, controls, history = [] }:
                 </svg>
 
                 {/* Spatial Annotations overlay */}
-                <div className="absolute top-1 left-2 flex flex-col gap-1 text-[8px] font-mono uppercase bg-slate-950/80 border border-slate-800 p-1 rounded">
+                <div className="absolute top-1 left-2 flex flex-col gap-1 text-[8px] font-mono uppercase bg-[#0F0E47]/80 border border-[#7676AB]/45 p-1 rounded">
                   <div className="flex items-center gap-1 text-emerald-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Freeflow: 75 km/h
                   </div>
@@ -1721,7 +1721,7 @@ function PhantomTrafficVisualizer({ state, activeStep, controls, history = [] }:
                   <div className="text-center font-mono p-2">
                     <span className="text-[10px] text-zinc-400 block tracking-widest leading-none">TRAFFIC</span>
                     <span className="text-[14px] text-white font-extrabold block uppercase tracking-tighter mt-0.5">FLOW</span>
-                    <span className="text-[8px] text-indigo-400 font-bold tracking-widest block animate-pulse mt-0.5">&or; CLOCKWISE</span>
+                    <span className="text-[8px] text-[#F5B544] font-bold tracking-widest block animate-pulse mt-0.5">&or; CLOCKWISE</span>
                   </div>
                 </div>
 
@@ -1737,9 +1737,9 @@ function PhantomTrafficVisualizer({ state, activeStep, controls, history = [] }:
             {/* TAB B: OVERHEAD LINEAR ROADWAY VIEWPANEL */}
             {activeTab === 'lanes' && (
               <div className="w-full h-full flex flex-col justify-center gap-4 px-2 py-3">
-                <div className="bg-slate-950 border border-slate-800 rounded px-3 py-4 relative">
+                <div className="bg-[#0F0E47] border border-[#7676AB]/45 rounded px-3 py-4 relative">
                   {/* Asphalt Strip Lane */}
-                  <div className="absolute inset-y-1/2 left-0 right-0 h-[30px] -translate-y-1/2 bg-slate-850 flex items-center border-y border-slate-700" />
+                  <div className="absolute inset-y-1/2 left-0 right-0 h-[30px] -translate-y-1/2 bg-[#2F2F66] flex items-center border-y border-[#7676AB]/65" />
                   <div className="absolute inset-y-1/2 left-0 right-0 h-0 border-t border-dashed border-zinc-500 -translate-y-1/2 opacity-50" />
 
                   {/* Render cars as sequential grid along lanes, based on index layout */}
@@ -1783,11 +1783,11 @@ function PhantomTrafficVisualizer({ state, activeStep, controls, history = [] }:
                   </div>
                 </div>
 
-                <div className="text-[10px] text-zinc-400 font-mono flex items-center justify-between border-t border-slate-900 pt-2 px-1">
+                <div className="text-[10px] text-zinc-400 font-mono flex items-center justify-between border-t border-[#7676AB]/30 pt-2 px-1">
                   <span className="flex items-center gap-1">
                     <span className="w-2.5 h-2.5 bg-rose-500 rounded-sm" /> 0-12 km/h (Bumper Gridlock Wave)
                   </span>
-                  <span className="text-[9px] text-right text-indigo-400 uppercase font-semibold">
+                  <span className="text-[9px] text-right text-[#F5B544] uppercase font-semibold">
                     Flow moves LEFT to RIGHT &rarr; (Shockwave crawls BACKWARD &larr;)
                   </span>
                 </div>
@@ -1797,7 +1797,7 @@ function PhantomTrafficVisualizer({ state, activeStep, controls, history = [] }:
             {/* TAB C: DETAILED SPEED MATRIX HEATMAP */}
             {activeTab === 'grid' && (
               <div className="w-full flex flex-col gap-3 p-1">
-                <span className="text-[10px] font-mono text-slate-400 block uppercase font-bold tracking-wider">
+                <span className="text-[10px] font-mono text-[#B4B4D6] block uppercase font-bold tracking-wider">
                   Vehicle Array Vector Heatmap (Individual Speed Indicators)
                 </span>
                 <div className="grid grid-cols-6 sm:grid-cols-11 gap-2">
@@ -1808,7 +1808,7 @@ function PhantomTrafficVisualizer({ state, activeStep, controls, history = [] }:
                     return (
                       <div 
                         key={`grid-car-${idx}`}
-                        className={`p-1.5 rounded border flex flex-col items-center justify-between transition-all ${isLeadTrigger ? 'bg-slate-950 border-white shadow-md' : 'bg-slate-900/60 border-slate-800'}`}
+                        className={`p-1.5 rounded border flex flex-col items-center justify-between transition-all ${isLeadTrigger ? 'bg-[#0F0E47] border-white shadow-md' : 'bg-[#272757]/60 border-[#7676AB]/45'}`}
                       >
                         <span className="text-[8px] font-mono text-zinc-500 leading-none">CAR {idx}</span>
                         <span 
@@ -1817,7 +1817,7 @@ function PhantomTrafficVisualizer({ state, activeStep, controls, history = [] }:
                         >
                           {sp}
                         </span>
-                        <span className="text-[6.5px] font-mono text-slate-400 uppercase text-center mt-1 scale-90 opacity-80 leading-none">
+                        <span className="text-[6.5px] font-mono text-[#B4B4D6] uppercase text-center mt-1 scale-90 opacity-80 leading-none">
                           {isLeadTrigger ? '🚨 BRAKER' : sp <= 12 ? 'STOPPED' : sp <= 42 ? 'TAP-ON' : 'CRUISE'}
                         </span>
                       </div>
@@ -1830,7 +1830,7 @@ function PhantomTrafficVisualizer({ state, activeStep, controls, history = [] }:
           </div>
 
           {/* Trigger cause highlight notification */}
-          <div className="mt-3.5 bg-slate-900/50 p-2.5 rounded border border-slate-850/80 text-[10px] text-indigo-200 font-mono flex items-start gap-2 leading-relaxed">
+          <div className="mt-3.5 bg-[#272757]/50 p-2.5 rounded border border-slate-850/80 text-[10px] text-indigo-200 font-mono flex items-start gap-2 leading-relaxed">
             <span className="text-amber-500 font-bold block shrink-0">📌 COGNITIVE CAUSE NOTE:</span>
             {activeStep === 0 ? (
               <span>Ready. Year 0 triggers the simulation parameters. Move to step 1 to watch Car 0 tap the brakes.</span>
@@ -1841,10 +1841,10 @@ function PhantomTrafficVisualizer({ state, activeStep, controls, history = [] }:
         </div>
 
         {/* COMPARTMENT 2: REAL-TIME BIFURCATION LINE GRAPH (DIVERGENCE CURVES) */}
-        <div className="lg:col-span-5 bg-slate-950 p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
+        <div className="lg:col-span-5 bg-[#0F0E47] p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
           <div>
-            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block mb-0.5">Speed Divergence Graph</span>
-            <h4 className="text-[12px] font-bold text-slate-200">Average System Speed over Time-step</h4>
+            <span className="text-[10px] font-mono text-[#B4B4D6] uppercase tracking-widest block mb-0.5">Speed Divergence Graph</span>
+            <h4 className="text-[12px] font-bold text-[#EDEDF7]">Average System Speed over Time-step</h4>
             <p className="text-[11px] text-zinc-500 leading-tight mt-0.5">
               Watch how your current setting deviates from a saved run.
             </p>
@@ -1856,18 +1856,18 @@ function PhantomTrafficVisualizer({ state, activeStep, controls, history = [] }:
               {/* Grid Lines */}
               <line x1="30" y1="10" x2="230" y2="10" stroke="#161f30" strokeDasharray="1 4" />
               <line x1="30" y1="55" x2="230" y2="55" stroke="#272757" strokeDasharray="3 3" />
-              <line x1="30" y1="100" x2="230" y2="100" stroke="#505081" />
+              <line x1="30" y1="100" x2="230" y2="100" stroke="#7676AB" />
               
-              <line x1="30" y1="10" x2="30" y2="100" stroke="#505081" />
+              <line x1="30" y1="10" x2="30" y2="100" stroke="#7676AB" />
 
               {/* Y Axis speed labels */}
-              <text x="5" y="14" className="text-[7.5px] fill-slate-500 font-mono">75km/h</text>
-              <text x="5" y="58" className="text-[7.5px] fill-slate-500 font-mono">40km/h</text>
-              <text x="5" y="103" className="text-[7.5px] fill-slate-500 font-mono">0km/h</text>
+              <text x="5" y="14" className="text-[7.5px] fill-[#B4B4D6] font-mono">75km/h</text>
+              <text x="5" y="58" className="text-[7.5px] fill-[#B4B4D6] font-mono">40km/h</text>
+              <text x="5" y="103" className="text-[7.5px] fill-[#B4B4D6] font-mono">0km/h</text>
 
               {/* Steps timeline labels on X Axis */}
               {Array.from({ length: 9 }).map((_, i) => (
-                <text key={`chart-x-${i}`} x={30 + i * 25} y="112" className="text-[7px] fill-slate-400 font-mono" textAnchor="middle">
+                <text key={`chart-x-${i}`} x={30 + i * 25} y="112" className="text-[7px] fill-[#B4B4D6] font-mono" textAnchor="middle">
                   S{i}
                 </text>
               ))}
@@ -1921,9 +1921,9 @@ function PhantomTrafficVisualizer({ state, activeStep, controls, history = [] }:
           </div>
 
           {/* Graph Legend metrics */}
-          <div className="flex flex-col gap-2 border-t border-slate-900 pt-3 text-[10px] font-mono text-zinc-400">
+          <div className="flex flex-col gap-2 border-t border-[#7676AB]/30 pt-3 text-[10px] font-mono text-zinc-400">
             <div className="flex flex-wrap justify-between gap-2">
-              <span className="flex items-center gap-1 text-slate-200">
+              <span className="flex items-center gap-1 text-[#EDEDF7]">
                 <span className="w-2.5 h-0.5 bg-indigo-500 inline-block" /> Active Trend avg
               </span>
               {savedHistory && (
@@ -1933,7 +1933,7 @@ function PhantomTrafficVisualizer({ state, activeStep, controls, history = [] }:
               )}
             </div>
 
-            <div className="bg-slate-900 p-2 rounded text-[9.5px] leading-tight text-slate-300">
+            <div className="bg-[#272757] p-2 rounded text-[9.5px] leading-tight text-[#EDEDF7]">
               {savedHistory ? (
                 <span>
                   Notice how the active line {curACC ? 'flattens safely' : 'plunges quickly'} compared to your saved baseline!
@@ -1951,12 +1951,12 @@ function PhantomTrafficVisualizer({ state, activeStep, controls, history = [] }:
       </div>
 
       {/* COMPARTMENT 3: COMMENTARY BULLETIN SYSTEM */}
-      <div className={`p-4 rounded-lg border text-xs flex gap-3.5 items-start transition-all duration-300 ${!curACC && speeds.some(s => s <= 12) ? 'bg-rose-950/40 border-rose-900/50 text-rose-100' : 'bg-slate-950 border-slate-850 text-slate-300'}`}>
+      <div className={`p-4 rounded-lg border text-xs flex gap-3.5 items-start transition-all duration-300 ${!curACC && speeds.some(s => s <= 12) ? 'bg-rose-950/40 border-rose-900/50 text-rose-100' : 'bg-[#0F0E47] border-slate-850 text-[#EDEDF7]'}`}>
         <div className={`p-1.5 rounded shrink-0 ${!curACC && speeds.some(s => s <= 12) ? 'bg-rose-600 text-white animate-pulse' : 'bg-emerald-500 text-slate-950'}`}>
           <Zap className="h-4 w-4" />
         </div>
         <div>
-          <span className="font-mono text-[9px] text-slate-400 uppercase tracking-wider block font-semibold">Tuning Insight & Highway Bulletin</span>
+          <span className="font-mono text-[9px] text-[#B4B4D6] uppercase tracking-wider block font-semibold">Tuning Insight & Highway Bulletin</span>
           <p className="leading-relaxed mt-1 font-normal font-sans text-[11.5px]">{state.clogLog}</p>
         </div>
       </div>
@@ -2022,19 +2022,19 @@ function PowerGridVisualizer({ state, activeStep, controls, history = [] }: any)
     : 0;
 
   return (
-    <div id="visualizer-power-grid" className="w-full bg-slate-900 border border-slate-850 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
+    <div id="visualizer-power-grid" className="w-full bg-[#272757] border border-slate-850 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
       
       {/* SECTION 1: COMPLEMENTARY CONTROL HEADER & SNAPHOT CONTROLS */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#7676AB]/45 pb-3">
         <div>
-          <span className="text-xs font-mono text-indigo-400 uppercase tracking-widest block font-bold">TOPOLOGICAL INFRASTRUCTURE LAB</span>
-          <h3 className="text-sm font-bold text-slate-100">Cascading Blackout Power-Grid Model</h3>
+          <span className="text-xs font-mono text-[#F5B544] uppercase tracking-widest block font-bold">TOPOLOGICAL INFRASTRUCTURE LAB</span>
+          <h3 className="text-sm font-bold text-[#EDEDF7]">Cascading Blackout Power-Grid Model</h3>
         </div>
         <div className="flex items-center gap-2">
           {savedSubstations ? (
             <div className="flex items-center gap-1.5 bg-indigo-950/40 border border-indigo-900/50 px-2 py-1 rounded text-[10px] font-mono">
               <span className="text-amber-400 font-bold">● REFERENCE MARKED:</span>
-              <span className="text-slate-300">Reserves {savedReserve}%, Load {savedLoadLevel}%</span>
+              <span className="text-[#EDEDF7]">Reserves {savedReserve}%, Load {savedLoadLevel}%</span>
               <button 
                 onClick={handleClearCompare} 
                 className="ml-1 px-1 rounded bg-rose-950 hover:bg-rose-900 text-rose-300 border border-rose-800 text-[9px]"
@@ -2057,24 +2057,24 @@ function PowerGridVisualizer({ state, activeStep, controls, history = [] }: any)
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         
         {/* LEFT COMPARTMENT: INTERACTIVE MAP OR GAUGES DECK */}
-        <div className="lg:col-span-7 bg-slate-950 p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
-          <div className="flex items-center justify-between border-b border-slate-900 pb-2 mb-3">
-            <div className="flex gap-1.5 bg-slate-900 p-0.5 rounded border border-slate-800">
+        <div className="lg:col-span-7 bg-[#0F0E47] p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
+          <div className="flex items-center justify-between border-b border-[#7676AB]/30 pb-2 mb-3">
+            <div className="flex gap-1.5 bg-[#272757] p-0.5 rounded border border-[#7676AB]/45">
               <button 
                 onClick={() => setActiveTab('map')}
-                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'map' ? 'bg-slate-950 text-white border border-slate-850' : 'text-slate-400 hover:text-white'}`}
+                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'map' ? 'bg-[#0F0E47] text-white border border-slate-850' : 'text-[#B4B4D6] hover:text-white'}`}
               >
                 🕸️ Topological Mesh
               </button>
               <button 
                 onClick={() => setActiveTab('gauges')}
-                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'gauges' ? 'bg-slate-950 text-white border border-slate-850' : 'text-slate-400 hover:text-white'}`}
+                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'gauges' ? 'bg-[#0F0E47] text-white border border-slate-850' : 'text-[#B4B4D6] hover:text-white'}`}
               >
                 ⚡ Bus Load Bars
               </button>
               <button 
                 onClick={() => setActiveTab('analysis')}
-                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'analysis' ? 'bg-slate-950 text-white border border-slate-850' : 'text-slate-400 hover:text-white'}`}
+                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'analysis' ? 'bg-[#0F0E47] text-white border border-slate-850' : 'text-[#B4B4D6] hover:text-white'}`}
               >
                 📝 Chaos Diagnostics
               </button>
@@ -2088,7 +2088,7 @@ function PowerGridVisualizer({ state, activeStep, controls, history = [] }: any)
             </div>
           </div>
 
-          <div className="relative min-h-[220px] bg-slate-900/40 rounded border border-slate-900 p-2 flex items-center justify-center overflow-hidden">
+          <div className="relative min-h-[220px] bg-[#272757]/40 rounded border border-[#7676AB]/30 p-2 flex items-center justify-center overflow-hidden">
             
             {/* VIEW A: GRAPH TOPOLOGY */}
             {activeTab === 'map' && (
@@ -2105,7 +2105,7 @@ function PowerGridVisualizer({ state, activeStep, controls, history = [] }: any)
                   const isEdgeTripped = startNode.status === 'tripped' || endNode.status === 'tripped';
                   const isEdgeOverloaded = startNode.status === 'overloaded' || endNode.status === 'overloaded';
 
-                  let stroke = '#505081';
+                  let stroke = '#7676AB';
                   let strokeWidth = '2';
                   let isDash = false;
                   let colorClass = '';
@@ -2249,7 +2249,7 @@ function PowerGridVisualizer({ state, activeStep, controls, history = [] }: any)
             {/* VIEW B: INTEGRATED REGIONAL LOAD GAUGES */}
             {activeTab === 'gauges' && (
               <div className="w-full flex flex-col gap-3.5 p-1">
-                <span className="text-[10px] font-mono text-slate-400 block uppercase font-semibold">
+                <span className="text-[10px] font-mono text-[#B4B4D6] block uppercase font-semibold">
                   Individual Bus Megawatt Loads vs Limit Thresholds
                 </span>
                 
@@ -2260,7 +2260,7 @@ function PowerGridVisualizer({ state, activeStep, controls, history = [] }: any)
                     const capRatio = isTrip ? 0 : Math.round((sub.load / sub.threshold) * 100);
 
                     return (
-                      <div key={idx} className="bg-slate-950 p-2 rounded border border-slate-900">
+                      <div key={idx} className="bg-[#0F0E47] p-2 rounded border border-[#7676AB]/30">
                         <div className="flex items-center justify-between text-[11px] font-mono mb-1">
                           <span className="font-bold flex items-center gap-1.5">
                             <span className={`w-2 h-2 rounded-full ${isTrip ? 'bg-rose-500' : isOver ? 'bg-amber-500 animate-pulse' : 'bg-emerald-500'}`} />
@@ -2272,9 +2272,9 @@ function PowerGridVisualizer({ state, activeStep, controls, history = [] }: any)
                         </div>
 
                         {/* Visual load percentage bar */}
-                        <div className="w-full h-2 bg-slate-900 rounded overflow-hidden">
+                        <div className="w-full h-2 bg-[#272757] rounded overflow-hidden">
                           <div 
-                            className={`h-full transition-all duration-300 ${isTrip ? 'bg-slate-800' : isOver ? 'bg-rose-500 animate-pulse' : capRatio >= 85 ? 'bg-amber-500' : 'bg-emerald-500'}`}
+                            className={`h-full transition-all duration-300 ${isTrip ? 'bg-[#2F2F66]' : isOver ? 'bg-rose-500 animate-pulse' : capRatio >= 85 ? 'bg-amber-500' : 'bg-emerald-500'}`}
                             style={{ width: isTrip ? '0%' : `${Math.min(capRatio, 100)}%` }}
                           />
                         </div>
@@ -2288,11 +2288,11 @@ function PowerGridVisualizer({ state, activeStep, controls, history = [] }: any)
             {/* VIEW C: MATHEMATICAL CHAOS DIAGNOSTICS */}
             {activeTab === 'analysis' && (
               <div className="w-full h-full p-2 text-xs font-mono text-zinc-300 leading-relaxed space-y-2">
-                <h4 className="text-indigo-400 text-xs font-bold uppercase mb-1">Domino Criticality Equation</h4>
+                <h4 className="text-[#F5B544] text-xs font-bold uppercase mb-1">Domino Criticality Equation</h4>
                 <p>
                   Like sandpiles reaching their critical threshold, an electrical system near capacity enters an unstable high-energy state where localized resistance changes force an automatic reallocation.
                 </p>
-                <div className="bg-slate-950/80 border border-slate-900 rounded p-2 text-[10.5px] text-emerald-400 font-mono space-y-1">
+                <div className="bg-[#0F0E47]/80 border border-[#7676AB]/30 rounded p-2 text-[10.5px] text-emerald-400 font-mono space-y-1">
                   <div>• Substation Base Loads: Alpha (90MW) | Beta (70MW) | Gamma (60MW)</div>
                   <div>• Max Capacity Formula: Base × (1 + Operating Reserve %)</div>
                   <div>• Active Cascade Trigger: Substation Alpha overload surge adds +55MW.</div>
@@ -2305,7 +2305,7 @@ function PowerGridVisualizer({ state, activeStep, controls, history = [] }: any)
 
           {/* Substation telemetry guidance box */}
           <div className="mt-3 bg-indigo-950/20 p-2 rounded border border-indigo-900/30 text-[10.5px] text-indigo-200 font-mono flex items-start gap-2">
-            <span className="text-indigo-400 font-bold shrink-0">TOPOLOGICAL KEY:</span>
+            <span className="text-[#F5B544] font-bold shrink-0">TOPOLOGICAL KEY:</span>
             {activeStep === 0 ? (
               <span>Ready. Move to minute step 1 to watch lightning create a focal overload. Change reserves above to alter threshold tolerances.</span>
             ) : (
@@ -2316,17 +2316,17 @@ function PowerGridVisualizer({ state, activeStep, controls, history = [] }: any)
         </div>
 
         {/* RIGHT COMPARTMENT: REAL-TIME GRAPH & COMPOUND STRESS METER */}
-        <div className="lg:col-span-5 bg-slate-950 p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
+        <div className="lg:col-span-5 bg-[#0F0E47] p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
           <div>
-            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block mb-0.5">Cascade Dynamics</span>
-            <h4 className="text-[12px] font-bold text-slate-200">System Capacity Overload Ratio</h4>
+            <span className="text-[10px] font-mono text-[#B4B4D6] uppercase tracking-wider block mb-0.5">Cascade Dynamics</span>
+            <h4 className="text-[12px] font-bold text-[#EDEDF7]">System Capacity Overload Ratio</h4>
             <p className="text-[11px] text-zinc-500 leading-tight mt-0.5 font-normal">
               Shows load as % of active remaining grid capacity. If it climbs above 100%, cascading trips are inevitable!
             </p>
           </div>
 
           {/* Large dynamic readout meter */}
-          <div className="my-3 p-3 bg-slate-900/60 rounded border border-slate-900 text-center relative overflow-hidden">
+          <div className="my-3 p-3 bg-[#272757]/60 rounded border border-[#7676AB]/30 text-center relative overflow-hidden">
             <div className="absolute top-2 left-2 text-[8px] font-mono font-bold tracking-widest text-zinc-500 uppercase">Load Meter</div>
             
             <div className="mt-2.5">
@@ -2349,9 +2349,9 @@ function PowerGridVisualizer({ state, activeStep, controls, history = [] }: any)
               {/* Grid indicators */}
               <line x1="30" y1="10" x2="230" y2="10" stroke="#161f30" strokeDasharray="1 3" />
               <line x1="30" y1="45" x2="230" y2="45" stroke="#272757" strokeDasharray="2 2" />
-              <line x1="30" y1="80" x2="230" y2="80" stroke="#505081" />
+              <line x1="30" y1="80" x2="230" y2="80" stroke="#7676AB" />
               
-              <line x1="30" y1="10" x2="30" y2="80" stroke="#505081" />
+              <line x1="30" y1="10" x2="30" y2="80" stroke="#7676AB" />
 
               {/* Y Axis percentage markers */}
               <text x="4" y="13" className="text-[7.5px] fill-zinc-500 font-mono">100%</text>
@@ -2400,7 +2400,7 @@ function PowerGridVisualizer({ state, activeStep, controls, history = [] }: any)
           </div>
 
           {/* Graph Legend references */}
-          <div className="flex justify-between items-center text-[9.5px] font-mono text-zinc-500 border-t border-slate-900 pt-2.5">
+          <div className="flex justify-between items-center text-[9.5px] font-mono text-zinc-500 border-t border-[#7676AB]/30 pt-2.5">
             <span className="flex items-center gap-1">
               <span className="w-2.5 h-0.5 bg-indigo-500 inline-block" /> Active Trend line
             </span>
@@ -2415,7 +2415,7 @@ function PowerGridVisualizer({ state, activeStep, controls, history = [] }: any)
       </div>
 
       {/* SECTION 3: COMPREHENSIVE TEXT CRITICAL BULLETIN & LEARNING OUTCOME OVERLAY */}
-      <div className={`p-4 rounded-lg border text-xs flex gap-3 items-start transition-all duration-300 ${state.gridIntegrity === 0 ? 'bg-rose-950/40 border-rose-900/50 text-rose-100' : 'bg-slate-950 border-slate-850 text-slate-300'}`}>
+      <div className={`p-4 rounded-lg border text-xs flex gap-3 items-start transition-all duration-300 ${state.gridIntegrity === 0 ? 'bg-rose-950/40 border-rose-900/50 text-rose-100' : 'bg-[#0F0E47] border-slate-850 text-[#EDEDF7]'}`}>
         <div className={`p-1.5 rounded shrink-0 ${state.gridIntegrity === 0 ? 'bg-rose-600 text-white animate-pulse' : 'bg-emerald-500 text-slate-950'}`}>
           <Power className="h-4 w-4" />
         </div>
@@ -2541,19 +2541,19 @@ function PandemicVisualizer({ state, history = [], activeStep, controls }: any) 
   const icuUtilizationRatio = Math.round((state.infected / globalCapacityLimit) * 100);
 
   return (
-    <div id="visualizer-pandemic" className="w-full bg-slate-900 border border-slate-850 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
+    <div id="visualizer-pandemic" className="w-full bg-[#272757] border border-slate-850 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
       
       {/* SECTION 1: EPIDEMIC OUTBREAK HEADER CONTROL PANEL */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#7676AB]/45 pb-3">
         <div>
           <span className="text-xs font-mono text-rose-450 uppercase tracking-widest block font-bold">BIOLOGICAL PROPAGATION ENGINE</span>
-          <h3 className="text-sm font-bold text-slate-100">Pathogen Spread & Sensitive State Response</h3>
+          <h3 className="text-sm font-bold text-[#EDEDF7]">Pathogen Spread & Sensitive State Response</h3>
         </div>
         <div className="flex items-center gap-2">
           {savedHistory ? (
             <div className="flex items-center gap-1.5 bg-rose-950/40 border border-rose-900/50 px-2 py-1 rounded text-[10px] font-mono">
               <span className="text-amber-400 font-bold">● REFERENCE LOCKED:</span>
-              <span className="text-slate-300">Phase {savedPhase}, Seeds {savedSeeds}</span>
+              <span className="text-[#EDEDF7]">Phase {savedPhase}, Seeds {savedSeeds}</span>
               <button 
                 onClick={handleClearBaseline} 
                 className="ml-1 px-1 rounded bg-rose-950 hover:bg-rose-900 text-rose-300 border border-rose-800 text-[9px]"
@@ -2576,24 +2576,24 @@ function PandemicVisualizer({ state, history = [], activeStep, controls }: any) 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         
         {/* LEFT PANEL DECK: GIS MAP & ANALYSIS DECK */}
-        <div className="lg:col-span-7 bg-slate-950 p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
-          <div className="flex items-center justify-between border-b border-slate-900 pb-2 mb-3">
-            <div className="flex gap-1.5 bg-slate-900 p-0.5 rounded border border-slate-800">
+        <div className="lg:col-span-7 bg-[#0F0E47] p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
+          <div className="flex items-center justify-between border-b border-[#7676AB]/30 pb-2 mb-3">
+            <div className="flex gap-1.5 bg-[#272757] p-0.5 rounded border border-[#7676AB]/45">
               <button 
                 onClick={() => setActiveTab('map')}
-                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'map' ? 'bg-slate-950 text-white border border-slate-850' : 'text-slate-400 hover:text-white'}`}
+                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'map' ? 'bg-[#0F0E47] text-white border border-slate-850' : 'text-[#B4B4D6] hover:text-white'}`}
               >
                 🗺️ Spatial Outbreak Map
               </button>
               <button 
                 onClick={() => setActiveTab('demographics')}
-                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'demographics' ? 'bg-slate-950 text-white border border-slate-850' : 'text-slate-400 hover:text-white'}`}
+                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'demographics' ? 'bg-[#0F0E47] text-white border border-slate-850' : 'text-[#B4B4D6] hover:text-white'}`}
               >
                 📊 Demographic Breakdown
               </button>
               <button 
                 onClick={() => setActiveTab('equations')}
-                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'equations' ? 'bg-slate-950 text-white border border-slate-850' : 'text-slate-400 hover:text-white'}`}
+                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'equations' ? 'bg-[#0F0E47] text-white border border-slate-850' : 'text-[#B4B4D6] hover:text-white'}`}
               >
                 🧬 Path-Dependency Math
               </button>
@@ -2607,7 +2607,7 @@ function PandemicVisualizer({ state, history = [], activeStep, controls }: any) 
             </div>
           </div>
 
-          <div className="relative min-h-[220px] bg-slate-900/40 rounded border border-slate-900 p-2 flex items-center justify-center overflow-hidden">
+          <div className="relative min-h-[220px] bg-[#272757]/40 rounded border border-[#7676AB]/30 p-2 flex items-center justify-center overflow-hidden">
             
             {/* GIS MAP VIEW */}
             {activeTab === 'map' && (
@@ -2625,7 +2625,7 @@ function PandemicVisualizer({ state, history = [], activeStep, controls }: any) 
                         y1={start.y}
                         x2={end.x}
                         y2={end.y}
-                        stroke={activeInfectionExits ? '#ef4444' : '#505081'}
+                        stroke={activeInfectionExits ? '#ef4444' : '#7676AB'}
                         strokeWidth={activeInfectionExits ? '1.5' : '1.0'}
                         strokeDasharray={activeInfectionExits ? '3 3' : undefined}
                         className="transition-all duration-300"
@@ -2655,15 +2655,15 @@ function PandemicVisualizer({ state, history = [], activeStep, controls }: any) 
                     : 10;
 
                   const isHeavilyInfected = localCases > 4000;
-                  let fill = '#334155';
-                  let stroke = '#505081';
+                  let fill = '#7676AB';
+                  let stroke = '#7676AB';
 
                   if (localCases > 0) {
                     fill = isContainmentActive ? '#991b1b' : '#ef4444';
                     stroke = isHeavilyInfected ? '#ffffff' : '#f43f5e';
                   } else {
                     fill = '#0F0E47';
-                    stroke = isContainmentActive ? '#059669' : '#475569';
+                    stroke = isContainmentActive ? '#059669' : '#7676AB';
                   }
 
                   return (
@@ -2744,7 +2744,7 @@ function PandemicVisualizer({ state, history = [], activeStep, controls }: any) 
             {/* POPULATION DEMOGRAPHICS PROGRESS BREAKDOWN */}
             {activeTab === 'demographics' && (
               <div className="w-full flex flex-col gap-4 p-1">
-                <span className="text-[10px] font-mono text-slate-400 block uppercase font-semibold">
+                <span className="text-[10px] font-mono text-[#B4B4D6] block uppercase font-semibold">
                   Global System Partition (N = 1,000,000 Individuals)
                 </span>
                 
@@ -2757,14 +2757,14 @@ function PandemicVisualizer({ state, history = [], activeStep, controls }: any) 
                   ].map((field, index) => {
                     const ratio = Math.round((field.val / 1000000) * 100);
                     return (
-                      <div key={index} className="bg-slate-950 p-2 border border-slate-900 rounded">
+                      <div key={index} className="bg-[#0F0E47] p-2 border border-[#7676AB]/30 rounded">
                         <div className="flex items-center justify-between text-[11px] font-mono mb-1">
                           <span className="font-bold whitespace-nowrap">{field.label}</span>
                           <span className="text-zinc-400 font-medium">
                             {field.val.toLocaleString()} ({ratio}%)
                           </span>
                         </div>
-                        <div className="w-full h-2.5 bg-slate-900 rounded overflow-hidden">
+                        <div className="w-full h-2.5 bg-[#272757] rounded overflow-hidden">
                           <div 
                             className={`h-full transition-all duration-300 ${field.color}`}
                             style={{ width: `${Math.max(ratio, field.val > 0 ? 0.8 : 0)}%` }}
@@ -2784,7 +2784,7 @@ function PandemicVisualizer({ state, history = [], activeStep, controls }: any) 
                 <p>
                   Infectious propagation is driven by the dynamic differential equations of the classical <strong>S&rarr;I&rarr;R Vector Model</strong>. Growth scale follows:
                 </p>
-                <div className="bg-slate-950/80 border border-slate-900 rounded p-2.5 text-[10.5px] text-emerald-400 font-mono space-y-1.5">
+                <div className="bg-[#0F0E47]/80 border border-[#7676AB]/30 rounded p-2.5 text-[10.5px] text-emerald-400 font-mono space-y-1.5">
                   <div>• Initial Reproduction Scale of Pathogen: R0 = 3.20 base</div>
                   <div>• Early Airport Contacts multiplier: +{curSeeds * 0.25} R0 seeds</div>
                   <div>• Mitigated Target lockdown effect: Rt triggers directly to ~0.70</div>
@@ -2807,17 +2807,17 @@ function PandemicVisualizer({ state, history = [], activeStep, controls }: any) 
         </div>
 
         {/* RIGHT PANEL DECK: LIVE EXPONENTIAL CHART & METRIC BARS */}
-        <div className="lg:col-span-5 bg-slate-950 p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
+        <div className="lg:col-span-5 bg-[#0F0E47] p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
           <div>
-            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block mb-0.5">Critical Healthcare Limits</span>
-            <h4 className="text-[12px] font-bold text-slate-100">National Intensive Care Caseloads</h4>
+            <span className="text-[10px] font-mono text-[#B4B4D6] uppercase tracking-wider block mb-0.5">Critical Healthcare Limits</span>
+            <h4 className="text-[12px] font-bold text-[#EDEDF7]">National Intensive Care Caseloads</h4>
             <p className="text-[11px] text-zinc-500 leading-tight mt-0.5 font-normal">
               ICU limit capacity is 30,000 active cases. Crowding limits causes casualties to spike exponentially!
             </p>
           </div>
 
           {/* Dynamic hospital load indicator */}
-          <div className="my-3 p-3 bg-slate-900/65 rounded border border-slate-900 text-center relative overflow-hidden">
+          <div className="my-3 p-3 bg-[#272757]/65 rounded border border-[#7676AB]/30 text-center relative overflow-hidden">
             <div className="absolute top-2 left-2 text-[8px] font-mono font-bold tracking-widest text-zinc-500 uppercase">Hospital Overflow Meter</div>
             <div className="mt-2 text-3xl font-extrabold font-mono tracking-tight text-white">
               <span className={state.infected > globalCapacityLimit ? 'text-rose-500 animate-pulse' : 'text-emerald-400'}>
@@ -2833,13 +2833,13 @@ function PandemicVisualizer({ state, history = [], activeStep, controls }: any) 
           </div>
 
           {/* SVG Infection Curve Graph */}
-          <div className="relative min-h-[145px] my-2 bg-slate-950 p-1">
+          <div className="relative min-h-[145px] my-2 bg-[#0F0E47] p-1">
             <svg className="w-full h-full min-h-[145px]" viewBox="0 0 280 140" preserveAspectRatio="none">
               {/* Draw grids */}
               <line x1="40" y1="10" x2="270" y2="10" stroke="#272757" strokeDasharray="1 3" />
               <line x1="40" y1="70" x2="270" y2="70" stroke="#161f30" strokeDasharray="2 2" />
-              <line x1="40" y1="130" x2="270" y2="130" stroke="#505081" />
-              <line x1="40" y1="10" x2="40" y2="130" stroke="#505081" />
+              <line x1="40" y1="130" x2="270" y2="130" stroke="#7676AB" />
+              <line x1="40" y1="10" x2="40" y2="130" stroke="#7676AB" />
 
               {/* ICU Overflow capacity limit floor at 30,000 cases */}
               <line 
@@ -2869,7 +2869,7 @@ function PandemicVisualizer({ state, history = [], activeStep, controls }: any) 
               {savedPolylinePoints && (
                 <polyline
                   fill="none"
-                  stroke="#fbbf24"
+                  stroke="#F5B544"
                   strokeWidth="2.0"
                   strokeDasharray="3 3"
                   points={savedPolylinePoints}
@@ -2902,7 +2902,7 @@ function PandemicVisualizer({ state, history = [], activeStep, controls }: any) 
           </div>
 
           {/* Graph Legend references */}
-          <div className="flex justify-between items-center text-[9.5px] font-mono text-zinc-500 border-t border-slate-900 pt-2.5">
+          <div className="flex justify-between items-center text-[9.5px] font-mono text-zinc-500 border-t border-[#7676AB]/30 pt-2.5">
             <span className="flex items-center gap-1.5">
               <span className="w-2.5 h-0.5 bg-indigo-500 inline-block rounded" /> Active Trend line
             </span>
@@ -2917,7 +2917,7 @@ function PandemicVisualizer({ state, history = [], activeStep, controls }: any) 
       </div>
 
       {/* SECTION 3: IMMERSIVE CLINICAL PHASE REPORT & CRITICAL TELEMETRY WRAPPER */}
-      <div className={`p-4 rounded-lg border text-xs flex gap-3 items-start transition-all duration-300 ${state.infected > globalCapacityLimit ? 'bg-rose-950/40 border-rose-900/50 text-rose-100' : 'bg-slate-950 border-slate-850 text-slate-300'}`}>
+      <div className={`p-4 rounded-lg border text-xs flex gap-3 items-start transition-all duration-300 ${state.infected > globalCapacityLimit ? 'bg-rose-950/40 border-rose-900/50 text-rose-100' : 'bg-[#0F0E47] border-slate-850 text-[#EDEDF7]'}`}>
         <div className={`p-1.5 rounded shrink-0 ${state.infected > globalCapacityLimit ? 'bg-rose-600 text-white animate-pulse' : 'bg-emerald-500 text-slate-950'}`}>
           <Activity className="h-4 w-4" />
         </div>
@@ -2928,7 +2928,7 @@ function PandemicVisualizer({ state, history = [], activeStep, controls }: any) 
           {/* Educational Feedback reflection block on run completion */}
           {activeStep === 5 && (
             <div className="mt-2.5 bg-indigo-950/35 p-2.5 rounded border border-indigo-900/40 text-[11px] leading-relaxed text-indigo-200">
-              <span className="font-bold text-indigo-400 block font-mono">🔍 NON-LINEAR FEEDBACK REFLECTION:</span>
+              <span className="font-bold text-[#F5B544] block font-mono">🔍 NON-LINEAR FEEDBACK REFLECTION:</span>
               Compare your trajectories. A mitigation response delayed until <strong className="text-white">Phase {curPhase}</strong> allowed unmitigated exponential loops to expand rapidly. By then, active patients rocketed to <strong className="text-white">{state.infected.toLocaleString()}</strong>, overwhelming intensive care capacity and leading to <strong className="text-white">{state.deceased.toLocaleString()} deaths</strong>. Conversely, with a quick intervention at Phase 1 or 2, active curves flatten completely. This visualizes sensitive dependence on initial response timing inside chaotic epidemic events.
             </div>
           )}
@@ -3020,19 +3020,19 @@ function VaccinationVisualizer({ state, activeStep, controls, history = [] }: an
     : '';
 
   return (
-    <div id="visualizer-vaccination" className="w-full bg-slate-900 border border-slate-850 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
+    <div id="visualizer-vaccination" className="w-full bg-[#272757] border border-slate-850 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
       
       {/* HEADER CONTROLS */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#7676AB]/45 pb-3">
         <div>
-          <span className="text-xs font-mono text-indigo-400 uppercase tracking-widest block font-bold">EPIDEMIOLOGICAL PHASE BOUNDARY</span>
-          <h3 className="text-sm font-bold text-slate-100">Herd Immunity & Critical Percolation Limits</h3>
+          <span className="text-xs font-mono text-[#F5B544] uppercase tracking-widest block font-bold">EPIDEMIOLOGICAL PHASE BOUNDARY</span>
+          <h3 className="text-sm font-bold text-[#EDEDF7]">Herd Immunity & Critical Percolation Limits</h3>
         </div>
         <div className="flex items-center gap-2">
           {savedHistory ? (
             <div className="flex items-center gap-1.5 bg-indigo-950/40 border border-indigo-900/50 px-2 py-1 rounded text-[10px] font-mono">
               <span className="text-amber-400 font-bold">● BASELINE FILED:</span>
-              <span className="text-slate-300">Coverage {savedCoverage}% ({savedInfections} infections)</span>
+              <span className="text-[#EDEDF7]">Coverage {savedCoverage}% ({savedInfections} infections)</span>
               <button 
                 onClick={handleClearBaseline} 
                 className="ml-1 px-1 rounded bg-rose-950 hover:bg-rose-900 text-rose-300 border border-rose-800 text-[9px]"
@@ -3055,18 +3055,18 @@ function VaccinationVisualizer({ state, activeStep, controls, history = [] }: an
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         
         {/* LEFT COMARTMENT: 8x8 DISPERSION GRID */}
-        <div className="lg:col-span-7 bg-slate-950 p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
-          <div className="flex items-center justify-between border-b border-slate-900 pb-2 mb-3">
-            <div className="flex gap-1.5 bg-slate-900 p-0.5 rounded border border-slate-800">
+        <div className="lg:col-span-7 bg-[#0F0E47] p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
+          <div className="flex items-center justify-between border-b border-[#7676AB]/30 pb-2 mb-3">
+            <div className="flex gap-1.5 bg-[#272757] p-0.5 rounded border border-[#7676AB]/45">
               <button 
                 onClick={() => setActiveTab('grid')}
-                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'grid' ? 'bg-slate-955 text-white border border-slate-850' : 'text-slate-400 hover:text-white'}`}
+                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'grid' ? 'bg-slate-955 text-white border border-slate-850' : 'text-[#B4B4D6] hover:text-white'}`}
               >
                 🕸️ Household Transmission Mesh
               </button>
               <button 
                 onClick={() => setActiveTab('bifurcation')}
-                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'bifurcation' ? 'bg-slate-955 text-white border border-slate-850' : 'text-slate-400 hover:text-white'}`}
+                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'bifurcation' ? 'bg-slate-955 text-white border border-slate-850' : 'text-[#B4B4D6] hover:text-white'}`}
               >
                 🧪 Percolation Limits Analysis
               </button>
@@ -3080,16 +3080,16 @@ function VaccinationVisualizer({ state, activeStep, controls, history = [] }: an
             </div>
           </div>
 
-          <div className="relative min-h-[220px] bg-slate-900/40 rounded border border-slate-900 p-3.5 flex items-center justify-center overflow-hidden">
+          <div className="relative min-h-[220px] bg-[#272757]/40 rounded border border-[#7676AB]/30 p-3.5 flex items-center justify-center overflow-hidden">
             
             {activeTab === 'grid' && (
               <div className="flex flex-col items-center gap-3">
-                <span className="text-[10px] font-mono text-slate-400 block uppercase font-bold tracking-wider">
+                <span className="text-[10px] font-mono text-[#B4B4D6] block uppercase font-bold tracking-wider">
                   8x8 Scattered Community Households Map
                 </span>
                 <div className="grid grid-cols-8 gap-1.5">
                   {houses.map((h) => {
-                    let bg = 'bg-slate-800 text-slate-600 border border-slate-700/60';
+                    let bg = 'bg-[#2F2F66] text-slate-600 border border-[#7676AB]/65/60';
                     let ring = '';
                     let statusColor = 'Susceptible';
 
@@ -3120,7 +3120,7 @@ function VaccinationVisualizer({ state, activeStep, controls, history = [] }: an
                     <span className="w-2.5 h-2.5 rounded bg-indigo-650 border border-indigo-500/50 block" /> Shielded
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded bg-slate-800 border border-slate-700 block" /> Susceptible
+                    <span className="w-2.5 h-2.5 rounded bg-[#2F2F66] border border-[#7676AB]/65 block" /> Susceptible
                   </div>
                   <div className="flex items-center gap-1.5">
                     <span className="w-2.5 h-2.5 rounded bg-rose-500 border border-white block animate-pulse" /> Infected
@@ -3135,7 +3135,7 @@ function VaccinationVisualizer({ state, activeStep, controls, history = [] }: an
                 <p>
                   Percolation theory dictates that inside random network topologies, connection clusters remain isolated until densities cross a critical limit. Once vaccination drops below <strong>85%</strong>, unvaccinated paths instantly link to form a persistent epidemic chain.
                 </p>
-                <div className="bg-slate-950/80 border border-slate-900 rounded p-2 text-[10.5px] text-indigo-350 space-y-1">
+                <div className="bg-[#0F0E47]/80 border border-[#7676AB]/30 rounded p-2 text-[10.5px] text-indigo-350 space-y-1">
                   <div>• Tipping Point Boundary: Exactly 85% vaccine coverage rate</div>
                   <div>• Above 85%: Local cases dry out exponentially within Year 2.</div>
                   <div>• Below 85%: The chain flows uncontained, sparking yearly outbreaks.</div>
@@ -3147,7 +3147,7 @@ function VaccinationVisualizer({ state, activeStep, controls, history = [] }: an
           </div>
 
           <div className="mt-3 bg-indigo-950/20 p-2.5 rounded border border-indigo-900/30 text-[10.5px] text-indigo-200 font-mono flex items-start gap-2">
-            <span className="text-indigo-400 font-bold shrink-0">VECTOR LOGS:</span>
+            <span className="text-[#F5B544] font-bold shrink-0">VECTOR LOGS:</span>
             {activeStep === 0 ? (
               <span>Ready. Move to Year 1 to launch international travel vectors. Adjust current coverage slider to inspect the 85% bifurcation line.</span>
             ) : (
@@ -3158,17 +3158,17 @@ function VaccinationVisualizer({ state, activeStep, controls, history = [] }: an
         </div>
 
         {/* RIGHT COMPARTMENT: COMMUNITY IMMUNITY SHIELD METER & TREND CHART */}
-        <div className="lg:col-span-5 bg-slate-950 p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
+        <div className="lg:col-span-5 bg-[#0F0E47] p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
           <div>
-            <span className="text-[10px] font-mono text-slate-400 uppercase block mb-0.5">Community Immunity</span>
-            <h4 className="text-[12px] font-bold text-slate-100">Herd Barrier Absorption Gauge</h4>
+            <span className="text-[10px] font-mono text-[#B4B4D6] uppercase block mb-0.5">Community Immunity</span>
+            <h4 className="text-[12px] font-bold text-[#EDEDF7]">Herd Barrier Absorption Gauge</h4>
             <p className="text-[11px] text-zinc-500 leading-tight mt-0.5 mb-2 font-normal">
               Shows coverage against the 85% herd immunity barrier.
             </p>
           </div>
 
           {/* Large dynamic shield progress tracker */}
-          <div className="my-2 p-3 bg-slate-900/65 rounded border border-slate-900 text-center relative overflow-hidden">
+          <div className="my-2 p-3 bg-[#272757]/65 rounded border border-[#7676AB]/30 text-center relative overflow-hidden">
             <div className="absolute top-2 left-2 text-[8px] font-mono font-bold tracking-widest text-zinc-500 uppercase">Percolation Meter</div>
             <div className="mt-2 text-3xl font-extrabold font-mono tracking-tight text-white flex items-center justify-center gap-1.5">
               <span className={isProtected ? 'text-emerald-400' : 'text-rose-450'}>
@@ -3178,7 +3178,7 @@ function VaccinationVisualizer({ state, activeStep, controls, history = [] }: an
             </div>
 
             {/* Horizontal target gauge bar */}
-            <div className="w-full h-2.5 bg-slate-950 rounded mt-2.5 overflow-hidden relative">
+            <div className="w-full h-2.5 bg-[#0F0E47] rounded mt-2.5 overflow-hidden relative">
               <div 
                 className={`h-full transition-all duration-300 ${isProtected ? 'bg-emerald-600' : 'bg-rose-600'}`}
                 style={{ width: `${Math.min((coverage / 98) * 100, 100)}%` }}
@@ -3196,12 +3196,12 @@ function VaccinationVisualizer({ state, activeStep, controls, history = [] }: an
           </div>
 
           {/* Cartisian infection trend graph */}
-          <div className="relative min-h-[110px] my-2 p-1 bg-slate-950">
+          <div className="relative min-h-[110px] my-2 p-1 bg-[#0F0E47]">
             <svg className="w-full h-full min-h-[110px]" viewBox="0 0 250 115" preserveAspectRatio="none">
               <line x1="35" y1="10" x2="240" y2="10" stroke="#272757" strokeDasharray="1 3" />
               <line x1="35" y1="57" x2="240" y2="57" stroke="#161f30" strokeDasharray="2 2" />
-              <line x1="35" y1="105" x2="240" y2="105" stroke="#505081" />
-              <line x1="35" y1="10" x2="35" y2="105" stroke="#505081" />
+              <line x1="35" y1="105" x2="240" y2="105" stroke="#7676AB" />
+              <line x1="35" y1="10" x2="35" y2="105" stroke="#7676AB" />
 
               {/* Y Axis scales */}
               <text x="2" y="14" className="text-[7.5px] fill-zinc-500 font-mono">{maxInfectionScale}</text>
@@ -3219,7 +3219,7 @@ function VaccinationVisualizer({ state, activeStep, controls, history = [] }: an
               {savedCurvePoints && (
                 <polyline
                   fill="none"
-                  stroke="#fbbf24"
+                  stroke="#F5B544"
                   strokeWidth="1.8"
                   strokeDasharray="3 3"
                   points={savedCurvePoints}
@@ -3253,7 +3253,7 @@ function VaccinationVisualizer({ state, activeStep, controls, history = [] }: an
           </div>
 
           {/* Legends */}
-          <div className="flex justify-between items-center text-[9px] font-mono text-zinc-500 border-t border-slate-900 pt-2.5">
+          <div className="flex justify-between items-center text-[9px] font-mono text-zinc-500 border-t border-[#7676AB]/30 pt-2.5">
             <span className="flex items-center gap-1.5">
               <span className={`w-2.5 h-0.5 inline-block rounded ${isProtected ? 'bg-emerald-500' : 'bg-rose-500'}`} /> Active Trend Line
             </span>
@@ -3280,7 +3280,7 @@ function VaccinationVisualizer({ state, activeStep, controls, history = [] }: an
           {/* If reached terminal year 5 (index 4), output rich phase-transition review commentary */}
           {activeStep === 4 && (
             <div className="mt-2.5 bg-indigo-950/30 p-2.5 rounded border border-indigo-900/40 text-[11px] leading-relaxed text-indigo-200">
-              <span className="font-bold text-indigo-400 block font-mono">🔍 BIFURCATION REFLECTION:</span>
+              <span className="font-bold text-[#F5B544] block font-mono">🔍 BIFURCATION REFLECTION:</span>
               Compare your runs. At <strong className="text-white">coverage &ge; 85%</strong>, the virus encountered insurmountable barriers of immunity on all transmission channels, collapsing infections to near zero immediately. Conversely, dropping only a tiny bit below target (e.g. 84%) opens massive linked clusters of vulnerable hosts, allowing the disease to replicate persistently. This underlines how threshold effects make simple linear policies behave with unpredictable qualitative leaps!
             </div>
           )}
@@ -3434,19 +3434,19 @@ function FakeNewsVisualizer({ state, activeStep, controls, history = [] }: any) 
     : '';
 
   return (
-    <div id="visualizer-fake-news" className="w-full bg-slate-900 border border-slate-850 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
+    <div id="visualizer-fake-news" className="w-full bg-[#272757] border border-slate-850 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
       
       {/* HEADER CONTROLS */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#7676AB]/45 pb-3">
         <div>
           <span className="text-xs font-mono text-amber-500 uppercase tracking-widest block font-bold">ALGORITHMIC CASCADE MATRIX</span>
-          <h3 className="text-sm font-bold text-slate-100">Contagion Networks & Social Feedback Dynamics</h3>
+          <h3 className="text-sm font-bold text-[#EDEDF7]">Contagion Networks & Social Feedback Dynamics</h3>
         </div>
         <div className="flex items-center gap-2">
           {savedHistory ? (
             <div className="flex items-center gap-1.5 bg-rose-950/40 border border-rose-900/50 px-2 py-1 rounded text-[10px] font-mono">
               <span className="text-amber-400 font-bold">● REF FILED:</span>
-              <span className="text-slate-350">{savedModerated ? 'Early Moderated' : 'Unchecked Run'} ({savedBelievers?.toLocaleString()} Believers)</span>
+              <span className="text-[#EDEDF7]">{savedModerated ? 'Early Moderated' : 'Unchecked Run'} ({savedBelievers?.toLocaleString()} Believers)</span>
               <button 
                 onClick={handleClearBaseline} 
                 className="ml-1 px-1 rounded bg-rose-955 hover:bg-rose-900 text-rose-300 border border-rose-800 text-[9px]"
@@ -3469,18 +3469,18 @@ function FakeNewsVisualizer({ state, activeStep, controls, history = [] }: any) 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         
         {/* LEFT COMPARTMENT: INTERACTIVE NETWORK VISUALIZER */}
-        <div className="lg:col-span-7 bg-slate-950 p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
-          <div className="flex items-center justify-between border-b border-slate-900 pb-2 mb-3">
-            <div className="flex gap-1.5 bg-slate-900 p-0.5 rounded border border-slate-800">
+        <div className="lg:col-span-7 bg-[#0F0E47] p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
+          <div className="flex items-center justify-between border-b border-[#7676AB]/30 pb-2 mb-3">
+            <div className="flex gap-1.5 bg-[#272757] p-0.5 rounded border border-[#7676AB]/45">
               <button 
                 onClick={() => setActiveTab('network')}
-                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'network' ? 'bg-slate-955 text-white border border-slate-850' : 'text-slate-400 hover:text-white'}`}
+                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'network' ? 'bg-slate-955 text-white border border-slate-850' : 'text-[#B4B4D6] hover:text-white'}`}
               >
                 🌐 Information Flow Graph
               </button>
               <button 
                 onClick={() => setActiveTab('metrics')}
-                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'metrics' ? 'bg-slate-955 text-white border border-slate-850' : 'text-slate-400 hover:text-white'}`}
+                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'metrics' ? 'bg-slate-955 text-white border border-slate-850' : 'text-[#B4B4D6] hover:text-white'}`}
               >
                 🔍 Feedback Loop Logic
               </button>
@@ -3494,7 +3494,7 @@ function FakeNewsVisualizer({ state, activeStep, controls, history = [] }: any) 
             </div>
           </div>
 
-          <div className="relative min-h-[220px] bg-slate-900/40 rounded border border-slate-900 p-2.5 flex items-center justify-center overflow-hidden">
+          <div className="relative min-h-[220px] bg-[#272757]/40 rounded border border-[#7676AB]/30 p-2.5 flex items-center justify-center overflow-hidden">
             
             {activeTab === 'network' && (
               <svg className="w-full h-full min-h-[220px]" viewBox="0 0 310 215">
@@ -3505,7 +3505,7 @@ function FakeNewsVisualizer({ state, activeStep, controls, history = [] }: any) 
                   const infectedLine = isLineInfected(c.from, c.to);
                   const representsLeak = (c.from === 0 && isModerated);
 
-                  let strokeColor = '#505081';
+                  let strokeColor = '#7676AB';
                   let strokeWidth = '1.0';
 
                   if (infectedLine) {
@@ -3545,8 +3545,8 @@ function FakeNewsVisualizer({ state, activeStep, controls, history = [] }: any) 
                 {/* Node Circles */}
                 {positions.map((node, i) => {
                   const status = getNodeStatus(i);
-                  let nodeColor = '#334155';
-                  let strokeColor = '#505081';
+                  let nodeColor = '#7676AB';
+                  let strokeColor = '#7676AB';
                   let customRadius = 6.5;
 
                   if (status === 'infected') {
@@ -3637,7 +3637,7 @@ function FakeNewsVisualizer({ state, activeStep, controls, history = [] }: any) 
                 <p>
                   Social cascades depend completely on initial reaction timing of content safety policies. System loops proceed via:
                 </p>
-                <div className="bg-slate-950/80 border border-slate-900 rounded p-2 text-[10.5px] text-amber-305 space-y-1.5 leading-normal">
+                <div className="bg-[#0F0E47]/80 border border-[#7676AB]/30 rounded p-2 text-[10.5px] text-amber-305 space-y-1.5 leading-normal">
                   <div>1. <strong>Sensational Hook:</strong> Extreme stories get premium click-through rates.</div>
                   <div>2. <strong>Algorithmic Feed tops:</strong> Unmoderated posts get organic boost which triggers more views.</div>
                   <div>3. <strong>Runaway Contagion:</strong> Influencers repeat unverified rumors. Gaps bridge instantly.</div>
@@ -3660,17 +3660,17 @@ function FakeNewsVisualizer({ state, activeStep, controls, history = [] }: any) 
         </div>
 
         {/* RIGHT COMPARTMENT: PANIC METERS & COMPARATIVE SPREAD TRENDS */}
-        <div className="lg:col-span-5 bg-slate-950 p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
+        <div className="lg:col-span-5 bg-[#0F0E47] p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
           <div>
-            <span className="text-[10px] font-mono text-slate-400 uppercase block mb-0.5">System Indicators</span>
-            <h4 className="text-[12px] font-bold text-slate-100">Harmful Misinformation Panic Index</h4>
+            <span className="text-[10px] font-mono text-[#B4B4D6] uppercase block mb-0.5">System Indicators</span>
+            <h4 className="text-[12px] font-bold text-[#EDEDF7]">Harmful Misinformation Panic Index</h4>
             <p className="text-[11px] text-zinc-500 leading-tight mt-0.5 mb-2 font-normal">
               Measures perceived social unrest and public trust damage.
             </p>
           </div>
 
           {/* Social Panic Gauge */}
-          <div className="my-2 p-3 bg-slate-900/65 rounded border border-slate-900 text-center relative overflow-hidden">
+          <div className="my-2 p-3 bg-[#272757]/65 rounded border border-[#7676AB]/30 text-center relative overflow-hidden">
             <div className="absolute top-2 left-2 text-[8px] font-mono font-bold tracking-widest text-zinc-500 uppercase">Panic Level</div>
             <div className="mt-2 text-3xl font-extrabold font-mono tracking-tight text-white flex items-center justify-center gap-1.5">
               <span className={panicMetric > 60 ? 'text-rose-500 animate-pulse' : panicMetric > 0 ? 'text-amber-400' : 'text-emerald-450'}>
@@ -3679,7 +3679,7 @@ function FakeNewsVisualizer({ state, activeStep, controls, history = [] }: any) 
             </div>
 
             {/* Horizontal progress bar with exact color transitions */}
-            <div className="w-full h-2 bg-slate-950 rounded-full mt-2 overflow-hidden relative border border-slate-900">
+            <div className="w-full h-2 bg-[#0F0E47] rounded-full mt-2 overflow-hidden relative border border-[#7676AB]/30">
               <div 
                 className={`h-full rounded-full transition-all duration-350 ${panicMetric > 60 ? 'bg-rose-550' : panicMetric > 0 ? 'bg-amber-400' : 'bg-emerald-500'}`}
                 style={{ width: `${Math.max(panicMetric, 1.5)}%` }}
@@ -3697,12 +3697,12 @@ function FakeNewsVisualizer({ state, activeStep, controls, history = [] }: any) 
           </div>
 
           {/* Belief scale comparison line graph */}
-          <div className="relative min-h-[110px] my-2 p-1 bg-slate-950">
+          <div className="relative min-h-[110px] my-2 p-1 bg-[#0F0E47]">
             <svg className="w-full h-full min-h-[110px]" viewBox="0 0 250 115" preserveAspectRatio="none">
               <line x1="35" y1="10" x2="240" y2="10" stroke="#272757" strokeDasharray="1 3" />
               <line x1="35" y1="57" x2="240" y2="57" stroke="#161f30" strokeDasharray="2 2" />
-              <line x1="35" y1="105" x2="240" y2="105" stroke="#505081" />
-              <line x1="35" y1="10" x2="35" y2="105" stroke="#505081" />
+              <line x1="35" y1="105" x2="240" y2="105" stroke="#7676AB" />
+              <line x1="35" y1="10" x2="35" y2="105" stroke="#7676AB" />
 
               {/* Y Axis marks */}
               <text x="2" y="14" className="text-[7.5px] fill-zinc-500 font-mono">{maxHistoryValue >= 1000 ? `${Math.round(maxHistoryValue/1000)}k` : maxHistoryValue}</text>
@@ -3720,7 +3720,7 @@ function FakeNewsVisualizer({ state, activeStep, controls, history = [] }: any) 
               {savedCurvePoints && (
                 <polyline
                   fill="none"
-                  stroke="#fbbf24"
+                  stroke="#F5B544"
                   strokeWidth="1.8"
                   strokeDasharray="3 3"
                   points={savedCurvePoints}
@@ -3753,7 +3753,7 @@ function FakeNewsVisualizer({ state, activeStep, controls, history = [] }: any) 
             </svg>
           </div>
 
-          <div className="flex justify-between items-center text-[9px] font-mono text-zinc-550 border-t border-slate-900 pt-2.5">
+          <div className="flex justify-between items-center text-[9px] font-mono text-zinc-550 border-t border-[#7676AB]/30 pt-2.5">
             <span className="flex items-center gap-1.5 animate-pulse">
               <span className={`w-2.5 h-0.5 inline-block rounded ${isModerated ? 'bg-emerald-500' : 'bg-rose-500'}`} /> Citizens Believed
             </span>
@@ -3769,7 +3769,7 @@ function FakeNewsVisualizer({ state, activeStep, controls, history = [] }: any) 
       </div>
 
       {/* DETAILED LEDGER COMPARTMENT WITH INTEGRATED BULLET INSIGHT */}
-      <div className={`p-4 rounded-lg border text-xs flex gap-3 items-start transition-all duration-300 ${!isModerated && activeStep >= 4 ? 'bg-rose-955/30 border-rose-900/50 text-rose-100' : 'bg-slate-950 border-slate-850 text-slate-300'}`}>
+      <div className={`p-4 rounded-lg border text-xs flex gap-3 items-start transition-all duration-300 ${!isModerated && activeStep >= 4 ? 'bg-rose-955/30 border-rose-900/50 text-rose-100' : 'bg-[#0F0E47] border-slate-850 text-[#EDEDF7]'}`}>
         <div className={`p-1.5 rounded shrink-0 ${!isModerated && activeStep >= 3 ? 'bg-rose-600 text-white animate-pulse' : 'bg-indigo-500 text-slate-950'}`}>
           <AlertTriangle className="h-4 w-4" />
         </div>
@@ -3780,7 +3780,7 @@ function FakeNewsVisualizer({ state, activeStep, controls, history = [] }: any) 
           {/* Educational Feedback reflection block on run completion */}
           {activeStep === 5 && (
             <div className="mt-2.5 bg-indigo-950/35 p-2.5 rounded border border-indigo-900/40 text-[11px] leading-relaxed text-indigo-200">
-              <span className="font-bold text-indigo-400 block font-mono">🔍 NON-LINEAR CASCADE REFLECTION:</span>
+              <span className="font-bold text-[#F5B544] block font-mono">🔍 NON-LINEAR CASCADE REFLECTION:</span>
               {!isModerated ? (
                 <span>Lack of early fact-checking allowed the false news to go viral, affecting millions by Cycle 5. Uncontrollable positive loops caused believers to spike from a base of 10 to <strong className="text-white">{state.rumorBelievers.toLocaleString()}</strong>, dragging Platform Trust to a critical <strong className="text-white">{state.trustIndex}/100</strong>. This shows how early content routing shapes long-term system stability! Try turning on the <strong>Early Moderation toggle</strong> to watch the loop get stymied immediately.</span>
               ) : (
@@ -3889,19 +3889,19 @@ function ViralTippingVisualizer({ state, activeStep, controls, history = [] }: a
     : '';
 
   return (
-    <div id="visualizer-tipping" className="w-full bg-slate-900 border border-slate-850 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
+    <div id="visualizer-tipping" className="w-full bg-[#272757] border border-slate-850 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
       
       {/* HEADER COUPLING */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#7676AB]/45 pb-3">
         <div>
           <span className="text-xs font-mono text-indigo-405 uppercase tracking-widest block font-bold">NON-LINEAR SOCIAL TIPPING FRAME</span>
-          <h3 className="text-sm font-bold text-slate-100 font-sans">Critical Mass & Overcoming Silent Majority Resistance</h3>
+          <h3 className="text-sm font-bold text-[#EDEDF7] font-sans">Critical Mass & Overcoming Silent Majority Resistance</h3>
         </div>
         <div className="flex items-center gap-2">
           {savedHistory ? (
             <div className="flex items-center gap-1.5 bg-indigo-950/40 border border-indigo-900/50 px-2 py-1 rounded text-[10px] font-mono">
               <span className="text-amber-400 font-bold">● REFERENCE RECORDED:</span>
-              <span className="text-slate-300">Seed {savedInitial}% ({savedRate}% final rate)</span>
+              <span className="text-[#EDEDF7]">Seed {savedInitial}% ({savedRate}% final rate)</span>
               <button 
                 onClick={handleClearBaseline} 
                 className="ml-1 px-1 rounded bg-rose-955 hover:bg-rose-900 text-rose-300 border border-rose-800 text-[9px]"
@@ -3924,18 +3924,18 @@ function ViralTippingVisualizer({ state, activeStep, controls, history = [] }: a
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         
         {/* LEFT COMPARTMENT: 10x8 STADIUM MATRIX GRAPH */}
-        <div className="lg:col-span-7 bg-slate-950 p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
-          <div className="flex items-center justify-between border-b border-slate-900 pb-2 mb-3">
-            <div className="flex gap-1.5 bg-slate-900 p-0.5 rounded border border-slate-800">
+        <div className="lg:col-span-7 bg-[#0F0E47] p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
+          <div className="flex items-center justify-between border-b border-[#7676AB]/30 pb-2 mb-3">
+            <div className="flex gap-1.5 bg-[#272757] p-0.5 rounded border border-[#7676AB]/45">
               <button 
                 onClick={() => setActiveTab('stadium')}
-                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'stadium' ? 'bg-slate-955 text-white border border-slate-850' : 'text-slate-400 hover:text-white'}`}
+                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'stadium' ? 'bg-slate-955 text-white border border-slate-850' : 'text-[#B4B4D6] hover:text-white'}`}
               >
                 🏟️ Adoption Stadium Mesh
               </button>
               <button 
                 onClick={() => setActiveTab('metrics')}
-                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'metrics' ? 'bg-slate-955 text-white border border-slate-850' : 'text-slate-400 hover:text-white'}`}
+                className={`px-3 py-1 text-[10px] font-mono rounded font-medium transition-all ${activeTab === 'metrics' ? 'bg-slate-955 text-white border border-slate-850' : 'text-[#B4B4D6] hover:text-white'}`}
               >
                 🧬 Granovetter Threshold Logic
               </button>
@@ -3949,20 +3949,20 @@ function ViralTippingVisualizer({ state, activeStep, controls, history = [] }: a
             </div>
           </div>
 
-          <div className="relative min-h-[220px] bg-slate-900/40 rounded border border-slate-900 p-3.5 flex items-center justify-center overflow-hidden">
+          <div className="relative min-h-[220px] bg-[#272757]/40 rounded border border-[#7676AB]/30 p-3.5 flex items-center justify-center overflow-hidden">
             
             {activeTab === 'stadium' && (
               <div className="flex flex-col items-center gap-3">
-                <span className="text-[10px] font-mono text-slate-400 block uppercase font-bold tracking-wider">
+                <span className="text-[10px] font-mono text-[#B4B4D6] block uppercase font-bold tracking-wider">
                   80 Seat Group Stadium Node Distribution
                 </span>
                 <div className="grid grid-cols-10 gap-1 sm:gap-1.5">
                   {audience.map((a) => {
-                    let bg = 'bg-slate-800 text-slate-600 border border-slate-700/60';
+                    let bg = 'bg-[#2F2F66] text-slate-600 border border-[#7676AB]/65/60';
                     let statusLabel = 'Onlooker';
 
                     if (a.classification === 'seed') {
-                      bg = 'bg-indigo-500 text-indigo-100 border border-indigo-400 shadow-[0_0_8px_rgba(99,102,241,0.4)] animate-[pulse_1.5s_infinite]';
+                      bg = 'bg-indigo-500 text-indigo-100 border border-[#7676AB] shadow-[0_0_8px_rgba(99,102,241,0.4)] animate-[pulse_1.5s_infinite]';
                       statusLabel = 'Influencer Seed';
                     } else if (a.classification === 'stubborn') {
                       bg = 'bg-zinc-700 text-zinc-500 border border-zinc-600 shrink-0';
@@ -3989,10 +3989,10 @@ function ViralTippingVisualizer({ state, activeStep, controls, history = [] }: a
                 {/* Micro legend */}
                 <div className="flex flex-wrap gap-3 items-center justify-center text-[9px] font-mono text-zinc-500 mt-2">
                   <div className="flex items-center gap-1">
-                    <span className="w-2 h-2 rounded bg-indigo-500 border border-indigo-400 block" /> Seed (★)
+                    <span className="w-2 h-2 rounded bg-indigo-500 border border-[#7676AB] block" /> Seed (★)
                   </div>
                   <div className="flex items-center gap-1">
-                    <span className="w-2 h-2 rounded bg-slate-800 border border-slate-700 block" /> Onlooker
+                    <span className="w-2 h-2 rounded bg-[#2F2F66] border border-[#7676AB]/65 block" /> Onlooker
                   </div>
                   <div className="flex items-center gap-1">
                     <span className="w-2 h-2 rounded bg-emerald-500 border border-white block" /> Adopter (✓)
@@ -4010,7 +4010,7 @@ function ViralTippingVisualizer({ state, activeStep, controls, history = [] }: a
                 <p>
                   Granovetter's threshold network rules formulate adoption as peer-dependent cascades. Under normal distributions:
                 </p>
-                <div className="bg-slate-950/80 border border-slate-900 rounded p-2.5 text-[10px] text-indigo-350 space-y-1.5 leading-normal">
+                <div className="bg-[#0F0E47]/80 border border-[#7676AB]/30 rounded p-2.5 text-[10px] text-indigo-350 space-y-1.5 leading-normal">
                   <div>• <strong>Critical Minority (25%):</strong> Once 25% of individuals aggressively adopt, peer pressures on surrounding onlookers multiply exponentially.</div>
                   <div>• <strong>Cascade Core:</strong> At 24% or below, the effort stalls. Skeptics ignore the trend. It decays.</div>
                   <div>• <strong>Minority Power:</strong> Sociological research proves exactly 1 supportive seed difference across this tipping line completely flips state basins!</div>
@@ -4021,7 +4021,7 @@ function ViralTippingVisualizer({ state, activeStep, controls, history = [] }: a
           </div>
 
           <div className="mt-2.5 bg-indigo-950/20 p-2.5 rounded border border-indigo-900/30 text-[10px] text-indigo-200 font-mono flex items-start gap-2">
-            <span className="text-indigo-400 font-bold shrink-0">STADIUM STATUS:</span>
+            <span className="text-[#F5B544] font-bold shrink-0">STADIUM STATUS:</span>
             {activeStep === 0 ? (
               <span>Inactive. Adjust current initial influencer rate to cross 25% boundary. Forward to Cycle 1 to spark feedback loops.</span>
             ) : (
@@ -4032,17 +4032,17 @@ function ViralTippingVisualizer({ state, activeStep, controls, history = [] }: a
         </div>
 
         {/* RIGHT COMPARTMENT: GAUGES & CHARTS */}
-        <div className="lg:col-span-5 bg-slate-950 p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
+        <div className="lg:col-span-5 bg-[#0F0E47] p-4 rounded-lg border border-slate-850 flex flex-col justify-between">
           <div>
-            <span className="text-[10px] font-mono text-slate-400 uppercase block mb-0.5">Societal Adopters</span>
-            <h4 className="text-[12px] font-bold text-slate-100">Cumulative Social Network Adoption</h4>
+            <span className="text-[10px] font-mono text-[#B4B4D6] uppercase block mb-0.5">Societal Adopters</span>
+            <h4 className="text-[12px] font-bold text-[#EDEDF7]">Cumulative Social Network Adoption</h4>
             <p className="text-[11px] text-zinc-500 leading-tight mt-0.5 mb-2 font-normal whitespace-normal">
               A 25% initial support base flips the silent majority.
             </p>
           </div>
 
           {/* Semicircle Gauge / Population Card */}
-          <div className="my-2 p-3 bg-slate-900/65 rounded border border-slate-900 text-center relative overflow-hidden">
+          <div className="my-2 p-3 bg-[#272757]/65 rounded border border-[#7676AB]/30 text-center relative overflow-hidden">
             <span className="text-xs font-mono text-zinc-500 block text-left mb-1">Adoption level</span>
             <div className="mt-1 text-3xl font-extrabold font-mono tracking-tight text-white flex items-center justify-center gap-1">
               <span className={isViral ? 'text-emerald-400' : 'text-zinc-400'}>
@@ -4052,7 +4052,7 @@ function ViralTippingVisualizer({ state, activeStep, controls, history = [] }: a
             </div>
 
             {/* Population bar */}
-            <div className="w-full h-2.5 bg-slate-950 rounded mt-2.5 overflow-hidden relative border border-slate-900/80">
+            <div className="w-full h-2.5 bg-[#0F0E47] rounded mt-2.5 overflow-hidden relative border border-[#7676AB]/30/80">
               <div 
                 className={`h-full transition-all duration-350 ${isViral ? 'bg-emerald-600' : 'bg-slate-700'}`}
                 style={{ width: `${Math.min(rate, 100)}%` }}
@@ -4074,8 +4074,8 @@ function ViralTippingVisualizer({ state, activeStep, controls, history = [] }: a
             <svg className="w-full h-full min-h-[110px]" viewBox="0 0 250 115" preserveAspectRatio="none">
               <line x1="35" y1="10" x2="240" y2="10" stroke="#272757" strokeDasharray="1 3" />
               <line x1="35" y1="57" x2="240" y2="57" stroke="#161f30" strokeDasharray="2 2" />
-              <line x1="35" y1="105" x2="240" y2="105" stroke="#505081" />
-              <line x1="35" y1="10" x2="35" y2="105" stroke="#505081" />
+              <line x1="35" y1="105" x2="240" y2="105" stroke="#7676AB" />
+              <line x1="35" y1="10" x2="35" y2="105" stroke="#7676AB" />
 
               {/* Y Axis designations */}
               <text x="2" y="14" className="text-[7.5px] fill-zinc-500 font-mono">100%</text>
@@ -4093,7 +4093,7 @@ function ViralTippingVisualizer({ state, activeStep, controls, history = [] }: a
               {savedCurvePoints && (
                 <polyline
                   fill="none"
-                  stroke="#fbbf24"
+                  stroke="#F5B544"
                   strokeWidth="1.8"
                   strokeDasharray="3 3"
                   points={savedCurvePoints}
@@ -4126,7 +4126,7 @@ function ViralTippingVisualizer({ state, activeStep, controls, history = [] }: a
             </svg>
           </div>
 
-          <div className="flex justify-between items-center text-[9px] font-mono text-zinc-500 border-t border-slate-900 pt-2.5">
+          <div className="flex justify-between items-center text-[9px] font-mono text-zinc-500 border-t border-[#7676AB]/30 pt-2.5">
             <span className="flex items-center gap-1.5 font-mono">
               <span className={`w-2.5 h-0.5 inline-block rounded ${isViral ? 'bg-emerald-500' : 'bg-rose-500'}`} /> Active Trend Line
             </span>
@@ -4153,7 +4153,7 @@ function ViralTippingVisualizer({ state, activeStep, controls, history = [] }: a
           {/* Primary Educational Insight: "Notice how adding a single extra influencer..." */}
           {activeStep === 6 && (
             <div className="mt-2.5 bg-indigo-950/35 p-2.5 rounded border border-indigo-900/40 text-[11px] leading-relaxed text-indigo-205">
-              <span className="font-bold text-indigo-400 block font-mono">🔍 NON-LINEAR TIPPING REFLECTION:</span>
+              <span className="font-bold text-[#F5B544] block font-mono">🔍 NON-LINEAR TIPPING REFLECTION:</span>
               Notice how adding a single extra influencer at the start (from 24% to 25% support) completely changed the outcome – a social tipping point was crossed. Below 25%, early interest decay overcomes adoption pull, and the movement drops back to just <strong className="text-white">{rate}% adopters</strong>. But passing exactly 25% triggers social cascade loops, overcoming stubborn resisters and pushing adoption to <strong className="text-white">{rate}%</strong>! This illustrates the deep sensitivity and phase transitions of interconnected group minds.
             </div>
           )}

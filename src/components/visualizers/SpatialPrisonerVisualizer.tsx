@@ -22,7 +22,7 @@ const STRATEGIES = [
   { id: 0, name: 'Tit-for-Tat', color: '#38bdf8', hex: 'bg-sky-500', desc: 'Starts cooperating, copies neighbor’s previous move' },
   { id: 1, name: 'Always Defect', color: '#f43f5e', hex: 'bg-rose-500', desc: 'Unconditionally exploits naive cooperators' },
   { id: 2, name: 'Always Cooperate', color: '#10b981', hex: 'bg-emerald-500', desc: 'Unconditionally benevolent altruist' },
-  { id: 3, name: 'Grudger (Grim)', color: '#fbbf24', hex: 'bg-amber-500', desc: 'Cooperates until betrayed once, then permanent defection' },
+  { id: 3, name: 'Grudger (Grim)', color: '#F5B544', hex: 'bg-amber-500', desc: 'Cooperates until betrayed once, then permanent defection' },
   { id: 4, name: 'Pavlov (WSLS)', color: '#c084fc', hex: 'bg-purple-500', desc: 'Repeats choice if rewarded, switches if exploited' }
 ];
 
@@ -261,19 +261,19 @@ export default function SpatialPrisonerVisualizer({ state, activeStep, controls 
   const totalCells = ROWS * COLS;
 
   return (
-    <div id="visualizer-spatial-prisoner" className="w-full bg-slate-900 border border-slate-800 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
+    <div id="visualizer-spatial-prisoner" className="w-full bg-[#272757] border border-[#7676AB]/45 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
       {/* Header bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#7676AB]/45 pb-3">
         <div>
           <span className="text-xs font-mono text-emerald-400 uppercase tracking-wider block font-semibold">
             Spatial Reciprocity & Evolutionary Game Theory (Nowak & May)
           </span>
-          <h3 className="text-sm font-bold text-slate-100 mt-0.5">
+          <h3 className="text-sm font-bold text-[#EDEDF7] mt-0.5">
             Spatial Prisoner’s Dilemma & Trust Dynamics (Temptation T = {T})
           </h3>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+          <span className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold bg-indigo-500/20 text-[#EDEDF7] border border-indigo-500/30">
             Gen {generation}
           </span>
           <span className={`text-[10px] px-2.5 py-0.5 rounded font-mono font-bold border ${
@@ -289,8 +289,8 @@ export default function SpatialPrisonerVisualizer({ state, activeStep, controls 
       {/* Main Grid & Strategy Population Breakdown */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         {/* Left: 2D Spatial Matrix Canvas */}
-        <div className="lg:col-span-8 bg-slate-950 p-3 rounded-lg border border-slate-800 flex flex-col justify-between">
-          <div className="relative rounded overflow-hidden border border-slate-800">
+        <div className="lg:col-span-8 bg-[#0F0E47] p-3 rounded-lg border border-[#7676AB]/45 flex flex-col justify-between">
+          <div className="relative rounded overflow-hidden border border-[#7676AB]/45">
             <canvas
               ref={canvasRef}
               width={COLS * 14}
@@ -304,7 +304,7 @@ export default function SpatialPrisonerVisualizer({ state, activeStep, controls 
           </div>
 
           {/* Interactive Toolbar */}
-          <div className="flex flex-wrap items-center justify-between gap-2 border-t border-slate-900 pt-3 mt-3">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-t border-[#7676AB]/30 pt-3 mt-3">
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setIsRunning(!isRunning)}
@@ -321,28 +321,28 @@ export default function SpatialPrisonerVisualizer({ state, activeStep, controls 
               <button
                 onClick={stepGeneration}
                 disabled={isRunning}
-                className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-50 text-slate-200 text-xs border border-slate-700"
+                className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 disabled:opacity-50 text-[#EDEDF7] text-xs border border-[#7676AB]/65"
               >
                 Step Gen
               </button>
 
               <button
                 onClick={() => loadPreset('island')}
-                className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-sky-300 text-xs border border-slate-700"
+                className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 text-sky-300 text-xs border border-[#7676AB]/65"
               >
                 Cooperator Island
               </button>
 
               <button
                 onClick={() => loadPreset('invasion')}
-                className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-rose-300 text-xs border border-slate-700"
+                className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 text-rose-300 text-xs border border-[#7676AB]/65"
               >
                 Defector Invasion
               </button>
 
               <button
                 onClick={() => loadPreset('mixed')}
-                className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-purple-300 text-xs border border-slate-700"
+                className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 text-purple-300 text-xs border border-[#7676AB]/65"
               >
                 <Shuffle className="h-3.5 w-3.5 inline mr-1" />
                 Random
@@ -352,12 +352,12 @@ export default function SpatialPrisonerVisualizer({ state, activeStep, controls 
         </div>
 
         {/* Right: Strategy Palette & Census */}
-        <div className="lg:col-span-4 bg-slate-950 p-4 rounded-lg border border-slate-800 flex flex-col justify-between">
+        <div className="lg:col-span-4 bg-[#0F0E47] p-4 rounded-lg border border-[#7676AB]/45 flex flex-col justify-between">
           <div>
-            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">
+            <span className="text-[10px] font-mono text-[#B4B4D6] uppercase tracking-wider block">
               Strategy Census & Paint Tool
             </span>
-            <p className="text-[11px] text-slate-500 mt-1">
+            <p className="text-[11px] text-[#B4B4D6] mt-1">
               Select a strategy to brush directly onto the spatial grid
             </p>
           </div>
@@ -375,19 +375,19 @@ export default function SpatialPrisonerVisualizer({ state, activeStep, controls 
                   onClick={() => setActiveBrush(strat.id)}
                   className={`p-2 rounded border text-left transition-all ${
                     isSelected 
-                      ? 'border-white bg-slate-800/80 ring-1 ring-white/50' 
-                      : 'border-slate-800 bg-slate-900 hover:bg-slate-850'
+                      ? 'border-white bg-[#2F2F66]/80 ring-1 ring-white/50' 
+                      : 'border-[#7676AB]/45 bg-[#272757] hover:bg-[#2F2F66]'
                   }`}
                 >
                   <div className="flex items-center justify-between text-xs">
                     <div className="flex items-center gap-2">
                       <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: strat.color }} />
-                      <span className="font-semibold text-slate-200">{strat.name}</span>
+                      <span className="font-semibold text-[#EDEDF7]">{strat.name}</span>
                     </div>
-                    <span className="font-mono text-[11px] text-slate-300 font-bold">{pct}%</span>
+                    <span className="font-mono text-[11px] text-[#EDEDF7] font-bold">{pct}%</span>
                   </div>
                   {/* Share progress bar */}
-                  <div className="w-full bg-slate-950 rounded-full h-1.5 mt-1.5 overflow-hidden">
+                  <div className="w-full bg-[#0F0E47] rounded-full h-1.5 mt-1.5 overflow-hidden">
                     <div
                       className="h-full transition-all duration-300"
                       style={{ width: `${pct}%`, backgroundColor: strat.color }}
@@ -398,9 +398,9 @@ export default function SpatialPrisonerVisualizer({ state, activeStep, controls 
             })}
           </div>
 
-          <div className="border-t border-slate-900 pt-2 text-[10px] font-mono text-slate-400">
+          <div className="border-t border-[#7676AB]/30 pt-2 text-[10px] font-mono text-[#B4B4D6]">
             <span>Payoffs: </span>
-            <span className="text-slate-300">T={T} | R=1.0 | P=0.1 | S=0.0</span>
+            <span className="text-[#EDEDF7]">T={T} | R=1.0 | P=0.1 | S=0.0</span>
           </div>
         </div>
       </div>
@@ -415,7 +415,7 @@ export default function SpatialPrisonerVisualizer({ state, activeStep, controls 
           {T >= 1.85 ? <ShieldAlert className="h-4 w-4" /> : <ShieldCheck className="h-4 w-4" />}
         </div>
         <div>
-          <span className="font-mono text-[9px] text-slate-400 uppercase block font-semibold">
+          <span className="font-mono text-[9px] text-[#B4B4D6] uppercase block font-semibold">
             SPATIAL RECIPROCITY THEOREM REPORT
           </span>
           <p className="leading-relaxed mt-0.5 font-normal">

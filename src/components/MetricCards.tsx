@@ -28,12 +28,12 @@ export default function MetricCards({ metrics, state }: MetricProps) {
         return (
           <div
             key={met.key}
-            className="bg-[#272757] border border-[#505081] rounded-lg p-3 flex flex-col justify-between"
+            className="bg-[#272757] border border-[#7676AB]/60 rounded-lg p-3 flex flex-col justify-between hover:bg-[#2F2F66]/70 transition-colors"
           >
-            <span className="text-xs text-[#8686AC] font-medium truncate">
+            <span className="text-xs text-[#B4B4D6] font-medium truncate">
               {met.label}
             </span>
-            <div className="mt-1.5 text-lg font-bold font-mono tracking-tight text-white">
+            <div className="mt-1.5 text-lg font-bold font-mono tabular-nums tracking-tight text-[#EDEDF7]">
               {displayValue}
             </div>
           </div>

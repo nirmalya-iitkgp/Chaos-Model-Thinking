@@ -335,19 +335,19 @@ export default function BoidsFlockingVisualizer({ state, activeStep, controls }:
   };
 
   return (
-    <div id="visualizer-boids-flocking" className="w-full bg-slate-900 border border-slate-800 text-white rounded-xl p-5 shadow-inner flex flex-col gap-4">
+    <div id="visualizer-boids-flocking" className="w-full bg-[#272757] border border-[#7676AB]/45 text-white rounded-xl p-5 shadow-inner flex flex-col gap-4">
       {/* Header bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#7676AB]/45 pb-3">
         <div>
           <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider block font-semibold">
             Craig Reynolds Boids (1986) Swarm Intelligence
           </span>
-          <h3 className="text-sm font-bold text-slate-100 mt-0.5">
+          <h3 className="text-sm font-bold text-[#EDEDF7] mt-0.5">
             Murmuration & Decentralized Self-Organization
           </h3>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+          <span className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold bg-indigo-500/20 text-[#EDEDF7] border border-indigo-500/30">
             {polarization}% Polarization
           </span>
           <span className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
@@ -362,7 +362,7 @@ export default function BoidsFlockingVisualizer({ state, activeStep, controls }:
       </div>
 
       {/* Canvas Screen */}
-      <div className="relative rounded-lg overflow-hidden border border-slate-800 bg-slate-950 flex flex-col items-center">
+      <div className="relative rounded-lg overflow-hidden border border-[#7676AB]/45 bg-[#0F0E47] flex flex-col items-center">
         <canvas
           ref={canvasRef}
           width={W}
@@ -371,13 +371,13 @@ export default function BoidsFlockingVisualizer({ state, activeStep, controls }:
           onClick={handleCanvasClick}
         />
 
-        <div className="absolute top-2 left-2 pointer-events-none bg-slate-900/80 backdrop-blur-sm border border-slate-800 px-2 py-1 rounded text-[10px] font-mono text-slate-400">
+        <div className="absolute top-2 left-2 pointer-events-none bg-[#272757]/80 backdrop-blur-sm border border-[#7676AB]/45 px-2 py-1 rounded text-[10px] font-mono text-[#B4B4D6]">
           Click canvas to place {hasPredator ? 'Predator (Hawk)' : 'Food Attractor'}
         </div>
       </div>
 
       {/* Toolbar & Presets */}
-      <div className="flex flex-wrap items-center justify-between gap-2 bg-slate-950 p-3 rounded-lg border border-slate-800 text-xs">
+      <div className="flex flex-wrap items-center justify-between gap-2 bg-[#0F0E47] p-3 rounded-lg border border-[#7676AB]/45 text-xs">
         <div className="flex items-center gap-2">
           <button
             onClick={() => setIsRunning(!isRunning)}
@@ -396,7 +396,7 @@ export default function BoidsFlockingVisualizer({ state, activeStep, controls }:
             className={`px-3 py-1.5 rounded font-medium flex items-center gap-1.5 border transition-colors ${
               hasPredator 
                 ? 'bg-rose-950/80 border-rose-700 text-rose-300' 
-                : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-750'
+                : 'bg-[#2F2F66] border-[#7676AB]/65 text-[#EDEDF7] hover:bg-slate-750'
             }`}
           >
             <ShieldAlert className="h-3.5 w-3.5" />
@@ -406,21 +406,21 @@ export default function BoidsFlockingVisualizer({ state, activeStep, controls }:
           <button
             onClick={() => setAttractor(null)}
             disabled={!attractor}
-            className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-50 text-slate-300 border border-slate-700"
+            className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 disabled:opacity-50 text-[#EDEDF7] border border-[#7676AB]/65"
           >
             Clear Food
           </button>
 
           <button
             onClick={initBoids}
-            className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700"
+            className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 text-[#EDEDF7] border border-[#7676AB]/65"
           >
-            <RotateCcw className="h-3.5 w-3.5 text-slate-400" />
+            <RotateCcw className="h-3.5 w-3.5 text-[#B4B4D6]" />
             <span>Reset Swarm</span>
           </button>
         </div>
 
-        <div className="flex items-center gap-2 text-[10px] font-mono text-slate-400">
+        <div className="flex items-center gap-2 text-[10px] font-mono text-[#B4B4D6]">
           <span>Sep: <strong>{separationWeight}</strong></span>
           <span>Ali: <strong>{alignmentWeight}</strong></span>
           <span>Coh: <strong>{cohesionWeight}</strong></span>
@@ -429,13 +429,13 @@ export default function BoidsFlockingVisualizer({ state, activeStep, controls }:
 
       {/* Commentary */}
       <div className={`p-3.5 rounded-lg border text-xs flex gap-3 items-start transition-all ${
-        hasPredator ? 'bg-rose-950/40 border-rose-900/50 text-rose-100' : 'bg-slate-950 border-slate-800 text-slate-300'
+        hasPredator ? 'bg-rose-950/40 border-rose-900/50 text-rose-100' : 'bg-[#0F0E47] border-[#7676AB]/45 text-[#EDEDF7]'
       }`}>
         <div className={`p-1.5 rounded shrink-0 ${hasPredator ? 'bg-rose-500 text-white' : 'bg-indigo-500 text-white'}`}>
           <Wind className="h-4 w-4" />
         </div>
         <div>
-          <span className="font-mono text-[9px] text-slate-400 uppercase block font-semibold">
+          <span className="font-mono text-[9px] text-[#B4B4D6] uppercase block font-semibold">
             SWARM INTELLIGENCE CHRONICLE
           </span>
           <p className="leading-relaxed mt-0.5 font-normal">

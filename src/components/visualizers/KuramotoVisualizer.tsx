@@ -118,14 +118,14 @@ export default function KuramotoVisualizer({ state, activeStep, controls }: Visu
     ctx.fillRect(0, 0, W, H);
 
     // Unit circle boundary
-    ctx.strokeStyle = '#334155';
+    ctx.strokeStyle = '#7676AB';
     ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.arc(cx, cy, radius, 0, Math.PI * 2);
     ctx.stroke();
 
     // Center crosshair axes
-    ctx.strokeStyle = '#505081';
+    ctx.strokeStyle = '#7676AB';
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(cx - radius - 10, cy);
@@ -234,14 +234,14 @@ export default function KuramotoVisualizer({ state, activeStep, controls }: Visu
   const isSync = K >= Kc;
 
   return (
-    <div id="visualizer-kuramoto" className="w-full bg-slate-900 border border-slate-800 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
+    <div id="visualizer-kuramoto" className="w-full bg-[#272757] border border-[#7676AB]/45 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
       {/* Header bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#7676AB]/45 pb-3">
         <div>
           <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider block font-semibold">
             Yoshiki Kuramoto Coupled Non-Linear Oscillators (1975)
           </span>
-          <h3 className="text-sm font-bold text-slate-100 mt-0.5">
+          <h3 className="text-sm font-bold text-[#EDEDF7] mt-0.5">
             Spontaneous Order & Phase Synchronization (Coupling K = {K}, Critical Kc ≈ {Kc.toFixed(1)})
           </h3>
         </div>
@@ -260,8 +260,8 @@ export default function KuramotoVisualizer({ state, activeStep, controls }: Visu
       {/* Dual Screen Grid: Unit Circle (Left) & Firefly Flashing Array (Right) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         {/* Left: Complex Unit Circle */}
-        <div className="lg:col-span-6 bg-slate-950 p-3 rounded-lg border border-slate-800 flex flex-col justify-between">
-          <div className="text-[10px] font-mono text-slate-400 flex justify-between items-center mb-1">
+        <div className="lg:col-span-6 bg-[#0F0E47] p-3 rounded-lg border border-[#7676AB]/45 flex flex-col justify-between">
+          <div className="text-[10px] font-mono text-[#B4B4D6] flex justify-between items-center mb-1">
             <span>Complex Phase Circle (r·e^(iψ))</span>
             <span>Arrow length = Order r</span>
           </div>
@@ -275,14 +275,14 @@ export default function KuramotoVisualizer({ state, activeStep, controls }: Visu
             />
           </div>
 
-          <div className="text-center text-[10px] font-mono text-slate-400 border-t border-slate-900 pt-2">
+          <div className="text-center text-[10px] font-mono text-[#B4B4D6] border-t border-[#7676AB]/30 pt-2">
             Perimeter dots: individual phases θi | Center arrow: collective synchrony vector r
           </div>
         </div>
 
         {/* Right: Firefly Flashing Array */}
-        <div className="lg:col-span-6 bg-slate-950 p-3 rounded-lg border border-slate-800 flex flex-col justify-between">
-          <div className="text-[10px] font-mono text-slate-400 flex justify-between items-center mb-1">
+        <div className="lg:col-span-6 bg-[#0F0E47] p-3 rounded-lg border border-[#7676AB]/45 flex flex-col justify-between">
+          <div className="text-[10px] font-mono text-[#B4B4D6] flex justify-between items-center mb-1">
             <span>Biological Flashing Grid (Firefly Synchrony)</span>
             <span>Pulse on sin(θi) &gt; 0.75</span>
           </div>
@@ -296,14 +296,14 @@ export default function KuramotoVisualizer({ state, activeStep, controls }: Visu
             />
           </div>
 
-          <div className="text-center text-[10px] font-mono text-slate-400 border-t border-slate-900 pt-2">
+          <div className="text-center text-[10px] font-mono text-[#B4B4D6] border-t border-[#7676AB]/30 pt-2">
             When K &gt; Kc, out-of-sync blinking dots spontaneously lock into unified unison flashes!
           </div>
         </div>
       </div>
 
       {/* Toolbar & Actions */}
-      <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-950 p-3 rounded-lg border border-slate-800 text-xs">
+      <div className="flex flex-wrap items-center justify-between gap-3 bg-[#0F0E47] p-3 rounded-lg border border-[#7676AB]/45 text-xs">
         <div className="flex items-center gap-2">
           <button
             onClick={() => setIsRunning(!isRunning)}
@@ -317,35 +317,35 @@ export default function KuramotoVisualizer({ state, activeStep, controls }: Visu
 
           <button
             onClick={scramblePhases}
-            className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-indigo-300 text-xs flex items-center gap-1 border border-slate-700"
+            className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 text-[#EDEDF7] text-xs flex items-center gap-1 border border-[#7676AB]/65"
           >
-            <Shuffle className="h-3.5 w-3.5 text-indigo-400" />
+            <Shuffle className="h-3.5 w-3.5 text-[#F5B544]" />
             <span>Scramble Phases (Perturb)</span>
           </button>
 
           <button
             onClick={initOscillators}
-            className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs flex items-center gap-1 border border-slate-700"
+            className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 text-[#EDEDF7] text-xs flex items-center gap-1 border border-[#7676AB]/65"
           >
-            <RotateCcw className="h-3.5 w-3.5 text-slate-400" />
+            <RotateCcw className="h-3.5 w-3.5 text-[#B4B4D6]" />
             <span>Reset Frequencies</span>
           </button>
         </div>
 
-        <div className="text-[10px] font-mono text-slate-400">
+        <div className="text-[10px] font-mono text-[#B4B4D6]">
           K = <strong>{K}</strong> | Critical Kc = <strong>{Kc.toFixed(1)}</strong>
         </div>
       </div>
 
       {/* Commentary */}
       <div className={`p-3.5 rounded-lg border text-xs flex gap-3 items-start transition-all ${
-        isSync ? 'bg-emerald-950/20 border-emerald-900/30 text-emerald-100' : 'bg-slate-950 border-slate-800 text-slate-300'
+        isSync ? 'bg-emerald-950/20 border-emerald-900/30 text-emerald-100' : 'bg-[#0F0E47] border-[#7676AB]/45 text-[#EDEDF7]'
       }`}>
-        <div className={`p-1.5 rounded shrink-0 ${isSync ? 'bg-emerald-600 text-white' : 'bg-slate-700 text-slate-300'}`}>
+        <div className={`p-1.5 rounded shrink-0 ${isSync ? 'bg-emerald-600 text-white' : 'bg-slate-700 text-[#EDEDF7]'}`}>
           <Radio className="h-4 w-4" />
         </div>
         <div>
-          <span className="font-mono text-[9px] text-slate-400 uppercase block font-semibold">
+          <span className="font-mono text-[9px] text-[#B4B4D6] uppercase block font-semibold">
             KURAMOTO SPONTANEOUS SYNCHRONIZATION THEOREM
           </span>
           <p className="leading-relaxed mt-0.5 font-normal">

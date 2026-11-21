@@ -212,7 +212,7 @@ export default function SugarscapeVisualizer({ state, activeStep, controls }: Vi
 
     // Sugar terrain background
     const sugar = sugarGridRef.current;
-    const sugarColors = ['#0F0E47', '#505081', '#3b2f15', '#604212', '#92570b'];
+    const sugarColors = ['#0F0E47', '#7676AB', '#3b2f15', '#604212', '#92570b'];
 
     for (let r = 0; r < ROWS; r++) {
       for (let c = 0; c < COLS; c++) {
@@ -235,7 +235,7 @@ export default function SugarscapeVisualizer({ state, activeStep, controls }: Vi
         color = '#f59e0b'; // Deep Amber gold (ultra rich)
         radius = 5.5;
       } else if (a.sugar > 35) {
-        color = '#fbbf24'; // Warm Gold
+        color = '#F5B544'; // Warm Gold
         radius = 4.5;
       }
 
@@ -264,19 +264,19 @@ export default function SugarscapeVisualizer({ state, activeStep, controls }: Vi
   const maxBucket = Math.max(1, ...wealthBuckets);
 
   return (
-    <div id="visualizer-sugarscape" className="w-full bg-slate-900 border border-slate-800 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
+    <div id="visualizer-sugarscape" className="w-full bg-[#272757] border border-[#7676AB]/45 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
       {/* Header bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#7676AB]/45 pb-3">
         <div>
           <span className="text-xs font-mono text-amber-400 uppercase tracking-wider block font-semibold">
             Epstein & Axtell Sugarscape Artificial Society (1996)
           </span>
-          <h3 className="text-sm font-bold text-slate-100 mt-0.5">
+          <h3 className="text-sm font-bold text-[#EDEDF7] mt-0.5">
             Emergent Pareto Inequality & Gini Distribution (Gini = {gini})
           </h3>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+          <span className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold bg-indigo-500/20 text-[#EDEDF7] border border-indigo-500/30">
             Cycle {cycle}
           </span>
           <span className={`text-[10px] px-2.5 py-0.5 rounded font-mono font-bold border ${
@@ -292,8 +292,8 @@ export default function SugarscapeVisualizer({ state, activeStep, controls }: Vi
       {/* Main Grid: Terrain Canvas & Wealth Histogram */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         {/* Left: Spatial Sugar Terrain Canvas */}
-        <div className="lg:col-span-8 bg-slate-950 p-3 rounded-lg border border-slate-800 flex flex-col justify-between">
-          <div className="relative rounded overflow-hidden border border-slate-800">
+        <div className="lg:col-span-8 bg-[#0F0E47] p-3 rounded-lg border border-[#7676AB]/45 flex flex-col justify-between">
+          <div className="relative rounded overflow-hidden border border-[#7676AB]/45">
             <canvas
               ref={canvasRef}
               width={COLS * 14}
@@ -303,7 +303,7 @@ export default function SugarscapeVisualizer({ state, activeStep, controls }: Vi
           </div>
 
           {/* Controls Toolbar */}
-          <div className="flex flex-wrap items-center justify-between gap-2 border-t border-slate-900 pt-3 mt-3">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-t border-[#7676AB]/30 pt-3 mt-3">
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setIsRunning(!isRunning)}
@@ -320,72 +320,72 @@ export default function SugarscapeVisualizer({ state, activeStep, controls }: Vi
               <button
                 onClick={stepCycle}
                 disabled={isRunning}
-                className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-50 text-slate-200 text-xs border border-slate-700"
+                className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 disabled:opacity-50 text-[#EDEDF7] text-xs border border-[#7676AB]/65"
               >
                 Step Cycle
               </button>
 
               <button
                 onClick={initSugarscape}
-                className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs flex items-center gap-1 border border-slate-700"
+                className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 text-[#EDEDF7] text-xs flex items-center gap-1 border border-[#7676AB]/65"
               >
-                <RotateCcw className="h-3.5 w-3.5 text-slate-400" />
+                <RotateCcw className="h-3.5 w-3.5 text-[#B4B4D6]" />
                 <span>Reset Sugarscape</span>
               </button>
             </div>
 
-            <div className="text-[10px] font-mono text-slate-400">
+            <div className="text-[10px] font-mono text-[#B4B4D6]">
               Gold dots = Wealthy agents on peaks
             </div>
           </div>
         </div>
 
         {/* Right: Wealth Inequality Histogram */}
-        <div className="lg:col-span-4 bg-slate-950 p-4 rounded-lg border border-slate-800 flex flex-col justify-between">
+        <div className="lg:col-span-4 bg-[#0F0E47] p-4 rounded-lg border border-[#7676AB]/45 flex flex-col justify-between">
           <div>
-            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">
+            <span className="text-[10px] font-mono text-[#B4B4D6] uppercase tracking-wider block">
               Wealth Inequality Histogram
             </span>
-            <p className="text-[11px] text-slate-500 mt-1">
+            <p className="text-[11px] text-[#B4B4D6] mt-1">
               Emergent Pareto Power-Law Distribution
             </p>
           </div>
 
           {/* Histogram Bars */}
-          <div className="h-36 flex items-end gap-2 border-b border-l border-slate-800 p-2 my-2 relative">
+          <div className="h-36 flex items-end gap-2 border-b border-l border-[#7676AB]/45 p-2 my-2 relative">
             {wealthBuckets.map((count, idx) => {
               const labels = ['<20', '20-40', '40-60', '60-80', '80-120', '120+'];
               const heightPct = Math.max(6, Math.min(100, (count / maxBucket) * 100));
 
               return (
                 <div key={idx} className="flex-1 flex flex-col items-center justify-end h-full">
-                  <span className="text-[8px] font-mono text-slate-400 mb-0.5">{count}</span>
+                  <span className="text-[8px] font-mono text-[#B4B4D6] mb-0.5">{count}</span>
                   <div
                     className={`w-full rounded-t transition-all duration-300 ${
                       idx >= 4 ? 'bg-amber-400' : idx >= 2 ? 'bg-indigo-400' : 'bg-slate-600'
                     }`}
                     style={{ height: `${heightPct}%` }}
                   />
-                  <span className="text-[8px] font-mono text-slate-500 mt-1">{labels[idx]}</span>
+                  <span className="text-[8px] font-mono text-[#B4B4D6] mt-1">{labels[idx]}</span>
                 </div>
               );
             })}
           </div>
 
-          <div className="flex justify-between items-center text-[10px] font-mono text-slate-400">
+          <div className="flex justify-between items-center text-[10px] font-mono text-[#B4B4D6]">
             <span>Sugar Wealth Bracket</span>
             <span>Agent Count</span>
           </div>
 
           {/* Gini & Pareto Metrics */}
-          <div className="border-t border-slate-900 pt-2 text-xs flex flex-col gap-1 font-mono">
+          <div className="border-t border-[#7676AB]/30 pt-2 text-xs flex flex-col gap-1 font-mono">
             <div className="flex justify-between items-center text-[11px]">
-              <span className="text-slate-400">Gini Coefficient:</span>
+              <span className="text-[#B4B4D6]">Gini Coefficient:</span>
               <strong className={gini >= 0.60 ? 'text-rose-400' : 'text-amber-400'}>{gini}</strong>
             </div>
             <div className="flex justify-between items-center text-[11px]">
-              <span className="text-slate-400">Starvations Logged:</span>
-              <span className="text-slate-300">{starvationCount} replaced</span>
+              <span className="text-[#B4B4D6]">Starvations Logged:</span>
+              <span className="text-[#EDEDF7]">{starvationCount} replaced</span>
             </div>
           </div>
         </div>
@@ -393,13 +393,13 @@ export default function SugarscapeVisualizer({ state, activeStep, controls }: Vi
 
       {/* Commentary */}
       <div className={`p-3.5 rounded-lg border text-xs flex gap-3 items-start transition-all ${
-        gini >= 0.60 ? 'bg-amber-950/40 border-amber-900/50 text-amber-100' : 'bg-slate-950 border-slate-800 text-slate-300'
+        gini >= 0.60 ? 'bg-amber-950/40 border-amber-900/50 text-amber-100' : 'bg-[#0F0E47] border-[#7676AB]/45 text-[#EDEDF7]'
       }`}>
         <div className={`p-1.5 rounded shrink-0 ${gini >= 0.60 ? 'bg-amber-500 text-slate-950 font-bold' : 'bg-indigo-500 text-white'}`}>
           <TrendingUp className="h-4 w-4" />
         </div>
         <div>
-          <span className="font-mono text-[9px] text-slate-400 uppercase block font-semibold">
+          <span className="font-mono text-[9px] text-[#B4B4D6] uppercase block font-semibold">
             EPSTEIN & AXTELL EMERGENCE THEOREM
           </span>
           <p className="leading-relaxed mt-0.5 font-normal">

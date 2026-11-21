@@ -210,14 +210,14 @@ export default function WattsStrogatzVisualizer({ state, activeStep, controls }:
   const rewiredCount = edges.filter(e => e.isRewired).length;
 
   return (
-    <div id="visualizer-watts-strogatz" className="w-full bg-slate-900 border border-slate-800 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
+    <div id="visualizer-watts-strogatz" className="w-full bg-[#272757] border border-[#7676AB]/45 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
       {/* Header bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#7676AB]/45 pb-3">
         <div>
-          <span className="text-xs font-mono text-indigo-400 uppercase tracking-wider block font-semibold">
+          <span className="text-xs font-mono text-[#F5B544] uppercase tracking-wider block font-semibold">
             Duncan Watts & Steven Strogatz Small-World Model (1998)
           </span>
-          <h3 className="text-sm font-bold text-slate-100 mt-0.5">
+          <h3 className="text-sm font-bold text-[#EDEDF7] mt-0.5">
             Lattice to Random Graph Rewiring (Rewiring Probability p = {p})
           </h3>
         </div>
@@ -225,7 +225,7 @@ export default function WattsStrogatzVisualizer({ state, activeStep, controls }:
           <span className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30">
             {rewiredCount} Shortcuts Rewired
           </span>
-          <span className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+          <span className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold bg-indigo-500/20 text-[#EDEDF7] border border-indigo-500/30">
             L = {meanPathLength} hops | C = {clusteringCoeff}
           </span>
         </div>
@@ -234,7 +234,7 @@ export default function WattsStrogatzVisualizer({ state, activeStep, controls }:
       {/* Main Grid: Circular Ring (Left) & Watts-Strogatz Phase Transition Curve (Right) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         {/* Left: Interactive Circular Lattice */}
-        <div className="lg:col-span-7 bg-slate-950 p-3 rounded-lg border border-slate-800 flex flex-col justify-between">
+        <div className="lg:col-span-7 bg-[#0F0E47] p-3 rounded-lg border border-[#7676AB]/45 flex flex-col justify-between">
           <div className="relative w-full h-[320px] flex items-center justify-center">
             <canvas
               ref={canvasRef}
@@ -261,16 +261,16 @@ export default function WattsStrogatzVisualizer({ state, activeStep, controls }:
             />
           </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-2 border-t border-slate-900 pt-2.5 mt-1">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-t border-[#7676AB]/30 pt-2.5 mt-1">
             <button
               onClick={buildNetwork}
-              className="px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-indigo-300 text-xs flex items-center gap-1.5 border border-slate-700"
+              className="px-3 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 text-[#EDEDF7] text-xs flex items-center gap-1.5 border border-[#7676AB]/65"
             >
-              <Shuffle className="h-3.5 w-3.5 text-indigo-400" />
+              <Shuffle className="h-3.5 w-3.5 text-[#F5B544]" />
               <span>Resample Rewiring</span>
             </button>
 
-            <div className="flex items-center gap-3 text-[10px] font-mono text-slate-400">
+            <div className="flex items-center gap-3 text-[10px] font-mono text-[#B4B4D6]">
               <div className="flex items-center gap-1.5">
                 <span className="w-3 h-0.5 bg-slate-600 inline-block" />
                 <span>Regular Ring Lattice</span>
@@ -284,18 +284,18 @@ export default function WattsStrogatzVisualizer({ state, activeStep, controls }:
         </div>
 
         {/* Right: The Watts-Strogatz L(p) and C(p) Phase Transition Curve */}
-        <div className="lg:col-span-5 bg-slate-950 p-4 rounded-lg border border-slate-800 flex flex-col justify-between">
+        <div className="lg:col-span-5 bg-[#0F0E47] p-4 rounded-lg border border-[#7676AB]/45 flex flex-col justify-between">
           <div>
-            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">
+            <span className="text-[10px] font-mono text-[#B4B4D6] uppercase tracking-wider block">
               Watts-Strogatz Phase Transition Diagram
             </span>
-            <p className="text-[11px] text-slate-500 mt-1">
+            <p className="text-[11px] text-[#B4B4D6] mt-1">
               Path Length L(p)/L(0) vs. Clustering Coefficient C(p)/C(0)
             </p>
           </div>
 
           {/* Theoretical Watts-Strogatz Normalized Curve SVG */}
-          <div className="h-44 border-b border-l border-slate-800 p-2 my-2 relative">
+          <div className="h-44 border-b border-l border-[#7676AB]/45 p-2 my-2 relative">
             <svg className="w-full h-full" viewBox="0 0 240 120" preserveAspectRatio="none">
               {/* Golden Small-World Window highlight zone (log p between 0.01 and 0.1) */}
               <rect x="75" y="0" width="60" height="120" fill="rgba(99, 102, 241, 0.12)" />
@@ -330,7 +330,7 @@ export default function WattsStrogatzVisualizer({ state, activeStep, controls }:
             </svg>
 
             {/* Legend */}
-            <div className="absolute bottom-2 right-2 flex flex-col gap-1 text-[9px] font-mono bg-slate-900/90 p-1.5 rounded border border-slate-800">
+            <div className="absolute bottom-2 right-2 flex flex-col gap-1 text-[9px] font-mono bg-[#272757]/90 p-1.5 rounded border border-[#7676AB]/45">
               <div className="flex items-center gap-1.5 text-emerald-400">
                 <span className="w-2.5 h-0.5 bg-emerald-500 inline-block" />
                 <span>C(p) Clustering</span>
@@ -342,18 +342,18 @@ export default function WattsStrogatzVisualizer({ state, activeStep, controls }:
             </div>
           </div>
 
-          <div className="flex justify-between items-center text-[10px] font-mono text-slate-400">
+          <div className="flex justify-between items-center text-[10px] font-mono text-[#B4B4D6]">
             <span>Regular Ring (p=0)</span>
             <span>Random Graph (p=1.0)</span>
           </div>
 
-          <div className="border-t border-slate-900 pt-2 text-xs flex flex-col gap-1 font-mono">
+          <div className="border-t border-[#7676AB]/30 pt-2 text-xs flex flex-col gap-1 font-mono">
             <div className="flex justify-between items-center text-[11px]">
-              <span className="text-slate-400">Average Degrees of Separation:</span>
+              <span className="text-[#B4B4D6]">Average Degrees of Separation:</span>
               <strong className="text-white">{meanPathLength} hops</strong>
             </div>
             <div className="flex justify-between items-center text-[11px]">
-              <span className="text-slate-400">Local Clustering Coefficient:</span>
+              <span className="text-[#B4B4D6]">Local Clustering Coefficient:</span>
               <strong className="text-emerald-400">{clusteringCoeff}</strong>
             </div>
           </div>
@@ -362,13 +362,13 @@ export default function WattsStrogatzVisualizer({ state, activeStep, controls }:
 
       {/* Commentary */}
       <div className={`p-3.5 rounded-lg border text-xs flex gap-3 items-start transition-all ${
-        p >= 0.01 && p <= 0.15 ? 'bg-indigo-950/40 border-indigo-900/50 text-indigo-100' : 'bg-slate-950 border-slate-800 text-slate-300'
+        p >= 0.01 && p <= 0.15 ? 'bg-indigo-950/40 border-indigo-900/50 text-indigo-100' : 'bg-[#0F0E47] border-[#7676AB]/45 text-[#EDEDF7]'
       }`}>
-        <div className={`p-1.5 rounded shrink-0 ${p >= 0.01 && p <= 0.15 ? 'bg-indigo-600 text-white' : 'bg-slate-700 text-slate-300'}`}>
+        <div className={`p-1.5 rounded shrink-0 ${p >= 0.01 && p <= 0.15 ? 'bg-indigo-600 text-white' : 'bg-slate-700 text-[#EDEDF7]'}`}>
           <Share2 className="h-4 w-4" />
         </div>
         <div>
-          <span className="font-mono text-[9px] text-slate-400 uppercase block font-semibold">
+          <span className="font-mono text-[9px] text-[#B4B4D6] uppercase block font-semibold">
             WATTS-STROGATZ REWIRING THEOREM
           </span>
           <p className="leading-relaxed mt-0.5 font-normal">

@@ -260,7 +260,7 @@ export default function AntColonyVisualizer({ state, activeStep, controls }: Vis
 
     // Draw Obstacle walls
     const walls = wallsGridRef.current;
-    ctx.fillStyle = '#475569';
+    ctx.fillStyle = '#7676AB';
     for (let gy = 0; gy < GH; gy++) {
       for (let gx = 0; gx < GW; gx++) {
         if (walls[gy * GW + gx] === 1) {
@@ -285,7 +285,7 @@ export default function AntColonyVisualizer({ state, activeStep, controls }: Vis
 
     // Draw Food Source
     const food = foodRef.current;
-    ctx.fillStyle = '#fbbf24';
+    ctx.fillStyle = '#F5B544';
     ctx.beginPath();
     ctx.arc(food.x, food.y, 14, 0, Math.PI * 2);
     ctx.fill();
@@ -301,7 +301,7 @@ export default function AntColonyVisualizer({ state, activeStep, controls }: Vis
     const ants = antsRef.current;
     for (let i = 0; i < ants.length; i++) {
       const a = ants[i];
-      ctx.fillStyle = a.hasFood ? '#fbbf24' : '#ffffff';
+      ctx.fillStyle = a.hasFood ? '#F5B544' : '#ffffff';
       ctx.beginPath();
       ctx.arc(a.x, a.y, a.hasFood ? 2.8 : 2.0, 0, Math.PI * 2);
       ctx.fill();
@@ -333,14 +333,14 @@ export default function AntColonyVisualizer({ state, activeStep, controls }: Vis
   };
 
   return (
-    <div id="visualizer-ant-colony" className="w-full bg-slate-900 border border-slate-800 text-white rounded-xl p-5 shadow-inner flex flex-col gap-4">
+    <div id="visualizer-ant-colony" className="w-full bg-[#272757] border border-[#7676AB]/45 text-white rounded-xl p-5 shadow-inner flex flex-col gap-4">
       {/* Header bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#7676AB]/45 pb-3">
         <div>
           <span className="text-xs font-mono text-emerald-400 uppercase tracking-wider block font-semibold">
             Marco Dorigo Ant Colony Optimization (ACO)
           </span>
-          <h3 className="text-sm font-bold text-slate-100 mt-0.5">
+          <h3 className="text-sm font-bold text-[#EDEDF7] mt-0.5">
             Stigmergic Shortest-Path Discovery around Obstacles
           </h3>
         </div>
@@ -348,14 +348,14 @@ export default function AntColonyVisualizer({ state, activeStep, controls }: Vis
           <span className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
             {foodHarvested} Crumbs Harvested
           </span>
-          <span className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+          <span className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold bg-indigo-500/20 text-[#EDEDF7] border border-indigo-500/30">
             {antCount} Foraging Ants
           </span>
         </div>
       </div>
 
       {/* Screen Canvas */}
-      <div className="relative rounded-lg overflow-hidden border border-slate-800 bg-slate-950 flex flex-col items-center">
+      <div className="relative rounded-lg overflow-hidden border border-[#7676AB]/45 bg-[#0F0E47] flex flex-col items-center">
         <canvas
           ref={canvasRef}
           width={W}
@@ -367,14 +367,14 @@ export default function AntColonyVisualizer({ state, activeStep, controls }: Vis
           onMouseMove={(e) => { if (isMouseDownRef.current) handleDrawObstacle(e); }}
         />
 
-        <div className="absolute top-2 left-2 pointer-events-none bg-slate-900/80 backdrop-blur-sm border border-slate-800 px-2 py-1 rounded text-[10px] font-mono text-slate-400 flex items-center gap-1.5">
+        <div className="absolute top-2 left-2 pointer-events-none bg-[#272757]/80 backdrop-blur-sm border border-[#7676AB]/45 px-2 py-1 rounded text-[10px] font-mono text-[#B4B4D6] flex items-center gap-1.5">
           <Navigation className="h-3 w-3 text-emerald-400" />
           <span>Click & Drag canvas to draw obstacle walls</span>
         </div>
       </div>
 
       {/* Toolbar & Presets */}
-      <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-950 p-3 rounded-lg border border-slate-800 text-xs">
+      <div className="flex flex-wrap items-center justify-between gap-3 bg-[#0F0E47] p-3 rounded-lg border border-[#7676AB]/45 text-xs">
         <div className="flex items-center gap-2">
           <button
             onClick={() => setIsRunning(!isRunning)}
@@ -388,14 +388,14 @@ export default function AntColonyVisualizer({ state, activeStep, controls }: Vis
 
           <button
             onClick={() => initColony('dilemma')}
-            className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 text-[11px]"
+            className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 text-emerald-300 border border-[#7676AB]/65 text-[11px]"
           >
             Short vs Long Path Dilemma
           </button>
 
           <button
             onClick={() => initColony('maze')}
-            className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700 text-[11px]"
+            className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 text-cyan-300 border border-[#7676AB]/65 text-[11px]"
           >
             Maze Barrier
           </button>
@@ -405,27 +405,27 @@ export default function AntColonyVisualizer({ state, activeStep, controls }: Vis
               wallsGridRef.current.fill(0);
               pheromoneGridRef.current.fill(0);
             }}
-            className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-rose-300 border border-slate-700 text-[11px]"
+            className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 text-rose-300 border border-[#7676AB]/65 text-[11px]"
           >
             Clear Walls
           </button>
         </div>
 
-        <div className="text-[10px] font-mono text-slate-400">
+        <div className="text-[10px] font-mono text-[#B4B4D6]">
           Evap: <strong>{evaporationRate}%</strong> | Phero Sensitivity α: <strong>{alpha}</strong>
         </div>
       </div>
 
       {/* Commentary */}
-      <div className="p-3.5 rounded-lg border border-slate-800 bg-slate-950 text-xs flex gap-3 items-start">
+      <div className="p-3.5 rounded-lg border border-[#7676AB]/45 bg-[#0F0E47] text-xs flex gap-3 items-start">
         <div className="p-1.5 rounded shrink-0 bg-emerald-600 text-white">
           <Sparkles className="h-4 w-4" />
         </div>
         <div>
-          <span className="font-mono text-[9px] text-slate-400 uppercase block font-semibold">
+          <span className="font-mono text-[9px] text-[#B4B4D6] uppercase block font-semibold">
             ACO POSITIVE FEEDBACK ROUTE THEOREM
           </span>
-          <p className="leading-relaxed mt-0.5 text-slate-300">
+          <p className="leading-relaxed mt-0.5 text-[#EDEDF7]">
             {state.colonyStatus || 'Ants taking the shorter path complete round trips faster, refreshing pheromones before evaporation can degrade the trail. Shorter paths naturally achieve exponential amplification.'}
           </p>
         </div>

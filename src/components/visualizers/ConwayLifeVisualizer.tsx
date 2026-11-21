@@ -127,7 +127,7 @@ export default function ConwayLifeVisualizer({ state, activeStep, controls }: Vi
     ctx.fillRect(0, 0, width, height);
 
     // Grid lines
-    ctx.strokeStyle = '#151d2f';
+    ctx.strokeStyle = '#2F2F66';
     ctx.lineWidth = 0.5;
     for (let c = 0; c <= COLS; c++) {
       ctx.beginPath();
@@ -277,19 +277,19 @@ export default function ConwayLifeVisualizer({ state, activeStep, controls }: Vi
   }, [renderCanvas]);
 
   return (
-    <div id="visualizer-conway-life" className="w-full bg-slate-900 border border-slate-800 text-white rounded-xl p-5 shadow-inner flex flex-col gap-4">
+    <div id="visualizer-conway-life" className="w-full bg-[#272757] border border-[#7676AB]/45 text-white rounded-xl p-5 shadow-inner flex flex-col gap-4">
       {/* Header bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#7676AB]/45 pb-3">
         <div>
           <span className="text-xs font-mono text-emerald-400 uppercase tracking-wider block font-semibold">
             {mode === 2 ? "Langton's Ant Turing Automaton" : mode === 1 ? 'HighLife Cellular Automaton (B36/S23)' : 'Conway’s Game of Life (B3/S23)'}
           </span>
-          <h3 className="text-sm font-bold text-slate-100 mt-0.5">
+          <h3 className="text-sm font-bold text-[#EDEDF7] mt-0.5">
             {mode === 2 ? 'Emergence of the 104-Step Highway' : 'Self-Replication & Universal Computation Grid'}
           </h3>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+          <span className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold bg-indigo-500/20 text-[#EDEDF7] border border-indigo-500/30">
             Gen {generation} | {activeCellsCount} Active Cells
           </span>
           <span className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
@@ -299,7 +299,7 @@ export default function ConwayLifeVisualizer({ state, activeStep, controls }: Vi
       </div>
 
       {/* Canvas Interactive Screen */}
-      <div className="relative rounded-lg overflow-hidden border border-slate-800 bg-slate-950 flex flex-col items-center">
+      <div className="relative rounded-lg overflow-hidden border border-[#7676AB]/45 bg-[#0F0E47] flex flex-col items-center">
         <canvas
           ref={canvasRef}
           width={COLS * 16}
@@ -312,14 +312,14 @@ export default function ConwayLifeVisualizer({ state, activeStep, controls }: Vi
         />
 
         {/* Floating helper overlay */}
-        <div className="absolute top-2 left-2 pointer-events-none bg-slate-900/80 backdrop-blur-sm border border-slate-800 px-2 py-1 rounded text-[10px] font-mono text-slate-400 flex items-center gap-1.5">
+        <div className="absolute top-2 left-2 pointer-events-none bg-[#272757]/80 backdrop-blur-sm border border-[#7676AB]/45 px-2 py-1 rounded text-[10px] font-mono text-[#B4B4D6] flex items-center gap-1.5">
           <MousePointer className="h-3 w-3 text-emerald-400" />
           <span>Click/Drag canvas to toggle cells</span>
         </div>
       </div>
 
       {/* Preset Toolbar & Speed Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-950 p-3 rounded-lg border border-slate-800 text-xs">
+      <div className="flex flex-wrap items-center justify-between gap-3 bg-[#0F0E47] p-3 rounded-lg border border-[#7676AB]/45 text-xs">
         {/* Playback Controls */}
         <div className="flex items-center gap-2">
           <button
@@ -337,10 +337,10 @@ export default function ConwayLifeVisualizer({ state, activeStep, controls }: Vi
           <button
             onClick={tick}
             disabled={isRunning}
-            className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-50 text-slate-200 flex items-center gap-1 border border-slate-700"
+            className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 disabled:opacity-50 text-[#EDEDF7] flex items-center gap-1 border border-[#7676AB]/65"
             title="Advance 1 Generation"
           >
-            <FastForward className="h-3.5 w-3.5 text-indigo-400" />
+            <FastForward className="h-3.5 w-3.5 text-[#F5B544]" />
             <span>Step</span>
           </button>
 
@@ -351,15 +351,15 @@ export default function ConwayLifeVisualizer({ state, activeStep, controls }: Vi
               setActiveCellsCount(0);
               renderCanvas();
             }}
-            className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center gap-1 border border-slate-700"
+            className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 text-[#EDEDF7] flex items-center gap-1 border border-[#7676AB]/65"
           >
-            <RotateCcw className="h-3.5 w-3.5 text-slate-400" />
+            <RotateCcw className="h-3.5 w-3.5 text-[#B4B4D6]" />
             <span>Clear</span>
           </button>
 
           <button
             onClick={() => randomizeGrid(density)}
-            className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center gap-1 border border-slate-700"
+            className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 text-[#EDEDF7] flex items-center gap-1 border border-[#7676AB]/65"
           >
             <Shuffle className="h-3.5 w-3.5 text-purple-400" />
             <span>Random Soup</span>
@@ -368,30 +368,30 @@ export default function ConwayLifeVisualizer({ state, activeStep, controls }: Vi
 
         {/* Pattern Presets */}
         <div className="flex items-center gap-1.5 flex-wrap">
-          <span className="text-[10px] font-mono text-slate-500 uppercase mr-1">Presets:</span>
+          <span className="text-[10px] font-mono text-[#B4B4D6] uppercase mr-1">Presets:</span>
           {mode !== 2 ? (
             <>
               <button
                 onClick={() => loadPreset('gliderGun')}
-                className="px-2 py-1 rounded bg-slate-800/80 hover:bg-slate-700 text-indigo-300 border border-slate-700 text-[11px]"
+                className="px-2 py-1 rounded bg-[#2F2F66]/80 hover:bg-[#7676AB]/35 text-[#EDEDF7] border border-[#7676AB]/65 text-[11px]"
               >
                 Glider Gun
               </button>
               <button
                 onClick={() => loadPreset('pulsar')}
-                className="px-2 py-1 rounded bg-slate-800/80 hover:bg-slate-700 text-amber-300 border border-slate-700 text-[11px]"
+                className="px-2 py-1 rounded bg-[#2F2F66]/80 hover:bg-[#7676AB]/35 text-amber-300 border border-[#7676AB]/65 text-[11px]"
               >
                 Pulsar Oscillator
               </button>
               <button
                 onClick={() => loadPreset('spaceship')}
-                className="px-2 py-1 rounded bg-slate-800/80 hover:bg-slate-700 text-cyan-300 border border-slate-700 text-[11px]"
+                className="px-2 py-1 rounded bg-[#2F2F66]/80 hover:bg-[#7676AB]/35 text-cyan-300 border border-[#7676AB]/65 text-[11px]"
               >
                 Spaceship (LWSS)
               </button>
               <button
                 onClick={() => loadPreset('acorn')}
-                className="px-2 py-1 rounded bg-slate-800/80 hover:bg-slate-700 text-emerald-300 border border-slate-700 text-[11px]"
+                className="px-2 py-1 rounded bg-[#2F2F66]/80 hover:bg-[#7676AB]/35 text-emerald-300 border border-[#7676AB]/65 text-[11px]"
               >
                 Acorn Methuselah
               </button>
@@ -408,15 +408,15 @@ export default function ConwayLifeVisualizer({ state, activeStep, controls }: Vi
       </div>
 
       {/* Commentary & Emergence status */}
-      <div className="p-3.5 rounded-lg border border-slate-800 bg-slate-950 text-xs flex gap-3 items-start">
+      <div className="p-3.5 rounded-lg border border-[#7676AB]/45 bg-[#0F0E47] text-xs flex gap-3 items-start">
         <div className="p-1.5 rounded shrink-0 bg-emerald-600 text-white">
           <Sparkles className="h-4 w-4" />
         </div>
         <div>
-          <span className="font-mono text-[9px] text-slate-400 uppercase block font-semibold">
+          <span className="font-mono text-[9px] text-[#B4B4D6] uppercase block font-semibold">
             {mode === 2 ? 'ANT TRAJECTORY PHASE' : 'CELLULAR EMERGENCE REPORT'}
           </span>
-          <p className="leading-relaxed mt-0.5 text-slate-300">
+          <p className="leading-relaxed mt-0.5 text-[#EDEDF7]">
             {mode === 2
               ? generation > 8000 
                 ? 'HIGHWAY FORMED: The ant has escaped chaos and builds a repeating 104-step diagonal highway indefinitely across the infinite plane.'

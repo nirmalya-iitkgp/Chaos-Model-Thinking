@@ -179,7 +179,7 @@ export default function ForestFireVisualizer({ state, activeStep, controls }: Vi
           ctx.fillRect(x, y, cellW, cellH);
         } else if (state === 3) {
           // Ash
-          ctx.fillStyle = '#505081';
+          ctx.fillStyle = '#7676AB';
           ctx.fillRect(x + 1, y + 1, cellW - 2, cellH - 2);
         }
       }
@@ -212,14 +212,14 @@ export default function ForestFireVisualizer({ state, activeStep, controls }: Vi
   const burnedPct = totalTrees > 0 ? Math.min(100, Math.round((burnedCount / totalTrees) * 100)) : 0;
 
   return (
-    <div id="visualizer-forest-fire" className="w-full bg-slate-900 border border-slate-800 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
+    <div id="visualizer-forest-fire" className="w-full bg-[#272757] border border-[#7676AB]/45 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
       {/* Header bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#7676AB]/45 pb-3">
         <div>
           <span className="text-xs font-mono text-emerald-400 uppercase tracking-wider block font-semibold">
             Percolation Threshold & Critical Phase Transitions
           </span>
-          <h3 className="text-sm font-bold text-slate-100 mt-0.5">
+          <h3 className="text-sm font-bold text-[#EDEDF7] mt-0.5">
             Lattice Occupancy Density p = {density}% (Theoretical Critical pc ≈ 59.3%)
           </h3>
         </div>
@@ -230,7 +230,7 @@ export default function ForestFireVisualizer({ state, activeStep, controls }: Vi
           <span className={`text-[10px] px-2.5 py-0.5 rounded font-mono font-bold border ${
             hasPercolated 
               ? 'bg-rose-500 text-white animate-pulse' 
-              : 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30'
+              : 'bg-indigo-500/20 text-[#EDEDF7] border-indigo-500/30'
           }`}>
             {hasPercolated ? '⚡ SPANNING CLUSTER PERCOLATED' : 'Subcritical / Localized'}
           </span>
@@ -240,8 +240,8 @@ export default function ForestFireVisualizer({ state, activeStep, controls }: Vi
       {/* Main Grid: Forest Canvas & Percolation Status */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         {/* Left: Canvas Lattice */}
-        <div className="lg:col-span-8 bg-slate-950 p-3 rounded-lg border border-slate-800 flex flex-col justify-between">
-          <div className="relative rounded overflow-hidden border border-slate-800">
+        <div className="lg:col-span-8 bg-[#0F0E47] p-3 rounded-lg border border-[#7676AB]/45 flex flex-col justify-between">
+          <div className="relative rounded overflow-hidden border border-[#7676AB]/45">
             <canvas
               ref={canvasRef}
               width={COLS * 12}
@@ -252,7 +252,7 @@ export default function ForestFireVisualizer({ state, activeStep, controls }: Vi
           </div>
 
           {/* Controls Toolbar */}
-          <div className="flex flex-wrap items-center justify-between gap-2 border-t border-slate-900 pt-3 mt-3">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-t border-[#7676AB]/30 pt-3 mt-3">
             <div className="flex items-center gap-2">
               <button
                 onClick={strikeLightning}
@@ -268,7 +268,7 @@ export default function ForestFireVisualizer({ state, activeStep, controls }: Vi
                 className={`px-3 py-1.5 rounded font-medium text-xs flex items-center gap-1.5 transition-colors ${
                   isRunning 
                     ? 'bg-rose-600 hover:bg-rose-500 text-white' 
-                    : 'bg-slate-800 hover:bg-slate-700 disabled:opacity-50 text-slate-200'
+                    : 'bg-[#2F2F66] hover:bg-[#7676AB]/35 disabled:opacity-50 text-[#EDEDF7]'
                 }`}
               >
                 {isRunning ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
@@ -278,39 +278,39 @@ export default function ForestFireVisualizer({ state, activeStep, controls }: Vi
               <button
                 onClick={stepFire}
                 disabled={isRunning || activeFiresCount === 0}
-                className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-50 text-slate-200 text-xs border border-slate-700"
+                className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 disabled:opacity-50 text-[#EDEDF7] text-xs border border-[#7676AB]/65"
               >
                 Step Tick
               </button>
 
               <button
                 onClick={initForest}
-                className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs flex items-center gap-1 border border-slate-700"
+                className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 text-[#EDEDF7] text-xs flex items-center gap-1 border border-[#7676AB]/65"
               >
-                <RotateCcw className="h-3.5 w-3.5 text-slate-400" />
+                <RotateCcw className="h-3.5 w-3.5 text-[#B4B4D6]" />
                 <span>Regrow Forest</span>
               </button>
             </div>
 
-            <div className="text-[10px] font-mono text-slate-400">
+            <div className="text-[10px] font-mono text-[#B4B4D6]">
               Click any green tree to spark manually
             </div>
           </div>
         </div>
 
         {/* Right: Phase Transition Curve & Metrics */}
-        <div className="lg:col-span-4 bg-slate-950 p-4 rounded-lg border border-slate-800 flex flex-col justify-between">
+        <div className="lg:col-span-4 bg-[#0F0E47] p-4 rounded-lg border border-[#7676AB]/45 flex flex-col justify-between">
           <div>
-            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">
+            <span className="text-[10px] font-mono text-[#B4B4D6] uppercase tracking-wider block">
               Phase Transition Monitor
             </span>
-            <p className="text-[11px] text-slate-500 mt-1">
+            <p className="text-[11px] text-[#B4B4D6] mt-1">
               Percolation probability vs. canopy density p
             </p>
           </div>
 
           {/* Percolation Curve Illustration SVG */}
-          <div className="h-32 border-b border-l border-slate-800 p-2 my-2 relative">
+          <div className="h-32 border-b border-l border-[#7676AB]/45 p-2 my-2 relative">
             <svg className="w-full h-full" viewBox="0 0 200 100" preserveAspectRatio="none">
               {/* Critical threshold line at pc = 59.3% (X = 118) */}
               <line x1="118" y1="0" x2="118" y2="100" stroke="#f43f5e" strokeDasharray="3" strokeWidth="1.5" />
@@ -346,13 +346,13 @@ export default function ForestFireVisualizer({ state, activeStep, controls }: Vi
           </div>
 
           {/* Metrics summary */}
-          <div className="flex flex-col gap-2 border-t border-slate-900 pt-2 text-xs">
+          <div className="flex flex-col gap-2 border-t border-[#7676AB]/30 pt-2 text-xs">
             <div className="flex justify-between items-center text-[11px] font-mono">
-              <span className="text-slate-400">Forest Consumed:</span>
+              <span className="text-[#B4B4D6]">Forest Consumed:</span>
               <span className="font-bold text-rose-400">{burnedPct}% ({burnedCount} trees)</span>
             </div>
             <div className="flex justify-between items-center text-[11px] font-mono">
-              <span className="text-slate-400">Threshold Regime:</span>
+              <span className="text-[#B4B4D6]">Threshold Regime:</span>
               <span className={density >= 59.3 ? 'font-bold text-rose-400' : 'font-bold text-emerald-400'}>
                 {density >= 59.3 ? 'SUPERCRITICAL (Runs away)' : 'SUBCRITICAL (Self-limiting)'}
               </span>
@@ -363,13 +363,13 @@ export default function ForestFireVisualizer({ state, activeStep, controls }: Vi
 
       {/* Commentary */}
       <div className={`p-3.5 rounded-lg border text-xs flex gap-3 items-start transition-all ${
-        density >= 59.3 && hasPercolated ? 'bg-rose-950/40 border-rose-900/50 text-rose-100' : 'bg-slate-950 border-slate-800 text-slate-300'
+        density >= 59.3 && hasPercolated ? 'bg-rose-950/40 border-rose-900/50 text-rose-100' : 'bg-[#0F0E47] border-[#7676AB]/45 text-[#EDEDF7]'
       }`}>
         <div className={`p-1.5 rounded shrink-0 ${density >= 59.3 && hasPercolated ? 'bg-rose-500 text-white' : 'bg-emerald-500 text-white'}`}>
           <Flame className="h-4 w-4" />
         </div>
         <div>
-          <span className="font-mono text-[9px] text-slate-400 uppercase block font-semibold">
+          <span className="font-mono text-[9px] text-[#B4B4D6] uppercase block font-semibold">
             PERCOLATION THRESHOLD THEOREM
           </span>
           <p className="leading-relaxed mt-0.5 font-normal">

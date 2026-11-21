@@ -255,7 +255,7 @@ export default function PreferentialAttachmentVisualizer({ state, activeStep, co
       const ratio = n.degree / maxDeg;
       let fill = '#38bdf8'; // Blue for ordinary
       if (ratio > 0.6) fill = '#f43f5e'; // Radiant Rose for superhubs
-      else if (ratio > 0.3) fill = '#fbbf24'; // Amber for mid-hubs
+      else if (ratio > 0.3) fill = '#F5B544'; // Amber for mid-hubs
       else if (ratio > 0.15) fill = '#818cf8'; // Indigo
 
       // Glow halo for top hubs
@@ -310,19 +310,19 @@ export default function PreferentialAttachmentVisualizer({ state, activeStep, co
   const histogramDegrees = Array.from({ length: Math.min(16, maxDegreeFound) }, (_, i) => i + 1);
 
   return (
-    <div id="visualizer-preferential-attachment" className="w-full bg-slate-900 border border-slate-800 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
+    <div id="visualizer-preferential-attachment" className="w-full bg-[#272757] border border-[#7676AB]/45 text-white rounded-xl p-5 shadow-inner flex flex-col gap-5">
       {/* Header bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#7676AB]/45 pb-3">
         <div>
-          <span className="text-xs font-mono text-indigo-400 uppercase tracking-wider block font-semibold">
+          <span className="text-xs font-mono text-[#F5B544] uppercase tracking-wider block font-semibold">
             Scale-Free Network Topology (Barabási–Albert)
           </span>
-          <h3 className="text-sm font-bold text-slate-100 mt-0.5">
+          <h3 className="text-sm font-bold text-[#EDEDF7] mt-0.5">
             Rich-Get-Richer Preferential Attachment (α = {alpha})
           </h3>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+          <span className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold bg-indigo-500/20 text-[#EDEDF7] border border-indigo-500/30">
             {nodes.length} Nodes | {edges.length} Edges
           </span>
           <span className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30">
@@ -334,8 +334,8 @@ export default function PreferentialAttachmentVisualizer({ state, activeStep, co
       {/* Main Grid: Force Graph (Left) & Degree Distribution (Right) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         {/* Left: Canvas Graph */}
-        <div className="lg:col-span-8 bg-slate-950 p-3 rounded-lg border border-slate-800 flex flex-col justify-between relative overflow-hidden">
-          <div className="flex items-center justify-between z-10 text-[10px] font-mono text-slate-400">
+        <div className="lg:col-span-8 bg-[#0F0E47] p-3 rounded-lg border border-[#7676AB]/45 flex flex-col justify-between relative overflow-hidden">
+          <div className="flex items-center justify-between z-10 text-[10px] font-mono text-[#B4B4D6]">
             <span>Force-Directed Spring Graph</span>
             <span>Hover to inspect node connections</span>
           </div>
@@ -364,7 +364,7 @@ export default function PreferentialAttachmentVisualizer({ state, activeStep, co
           </div>
 
           {/* Graph Controls Toolbar */}
-          <div className="flex flex-wrap items-center justify-between gap-2 border-t border-slate-900 pt-2.5 mt-1">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-t border-[#7676AB]/30 pt-2.5 mt-1">
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setIsAutoGrowing(!isAutoGrowing)}
@@ -381,7 +381,7 @@ export default function PreferentialAttachmentVisualizer({ state, activeStep, co
               <button
                 onClick={addNode}
                 disabled={isAutoGrowing || nodes.length >= 100}
-                className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-50 text-slate-200 text-xs flex items-center gap-1 border border-slate-700"
+                className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 disabled:opacity-50 text-[#EDEDF7] text-xs flex items-center gap-1 border border-[#7676AB]/65"
               >
                 <Plus className="h-3.5 w-3.5 text-emerald-400" />
                 <span>Add Node</span>
@@ -392,33 +392,33 @@ export default function PreferentialAttachmentVisualizer({ state, activeStep, co
                   for (let i = 0; i < 5; i++) addNode();
                 }}
                 disabled={isAutoGrowing || nodes.length >= 95}
-                className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-50 text-slate-200 text-xs flex items-center gap-1 border border-slate-700"
+                className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 disabled:opacity-50 text-[#EDEDF7] text-xs flex items-center gap-1 border border-[#7676AB]/65"
               >
                 <span>+5</span>
               </button>
 
               <button
                 onClick={resetNetwork}
-                className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs flex items-center gap-1 border border-slate-700"
+                className="px-2.5 py-1.5 rounded bg-[#2F2F66] hover:bg-[#7676AB]/35 text-[#EDEDF7] text-xs flex items-center gap-1 border border-[#7676AB]/65"
               >
-                <RotateCcw className="h-3.5 w-3.5 text-slate-400" />
+                <RotateCcw className="h-3.5 w-3.5 text-[#B4B4D6]" />
                 <span>Reset</span>
               </button>
             </div>
 
-            <div className="text-[10px] font-mono text-slate-400">
+            <div className="text-[10px] font-mono text-[#B4B4D6]">
               Capacity: <strong className="text-white">{nodes.length}/100</strong>
             </div>
           </div>
         </div>
 
         {/* Right: Power-Law Degree Distribution Histogram */}
-        <div className="lg:col-span-4 bg-slate-950 p-4 rounded-lg border border-slate-800 flex flex-col justify-between">
+        <div className="lg:col-span-4 bg-[#0F0E47] p-4 rounded-lg border border-[#7676AB]/45 flex flex-col justify-between">
           <div>
-            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">
+            <span className="text-[10px] font-mono text-[#B4B4D6] uppercase tracking-wider block">
               Degree Distribution P(k)
             </span>
-            <p className="text-[11px] text-slate-500 mt-1">
+            <p className="text-[11px] text-[#B4B4D6] mt-1">
               {alpha === 0 
                 ? 'Gaussian Poisson: Bell curve around mean degree' 
                 : alpha > 1.2
@@ -428,7 +428,7 @@ export default function PreferentialAttachmentVisualizer({ state, activeStep, co
           </div>
 
           {/* Histogram Bars */}
-          <div className="h-44 flex items-end gap-1.5 border-b border-l border-slate-800 p-2 my-2 relative">
+          <div className="h-44 flex items-end gap-1.5 border-b border-l border-[#7676AB]/45 p-2 my-2 relative">
             {histogramDegrees.map((deg) => {
               const count = degreeCounts[deg] || 0;
               const maxCount = Math.max(1, ...Object.values(degreeCounts));
@@ -441,33 +441,33 @@ export default function PreferentialAttachmentVisualizer({ state, activeStep, co
               return (
                 <div key={deg} className="flex-1 flex flex-col items-center justify-end h-full group relative">
                   {/* Tooltip on hover */}
-                  <div className="opacity-0 group-hover:opacity-100 absolute -top-7 bg-slate-900 border border-slate-700 px-1.5 py-0.5 rounded text-[8px] font-mono pointer-events-none transition-opacity z-20">
+                  <div className="opacity-0 group-hover:opacity-100 absolute -top-7 bg-[#272757] border border-[#7676AB]/65 px-1.5 py-0.5 rounded text-[8px] font-mono pointer-events-none transition-opacity z-20">
                     k={deg}: {count}
                   </div>
                   <div
                     className={`w-full rounded-t transition-all duration-300 ${barColor}`}
                     style={{ height: `${heightPct}%` }}
                   />
-                  <span className="text-[8px] font-mono text-slate-500 mt-1">{deg}</span>
+                  <span className="text-[8px] font-mono text-[#B4B4D6] mt-1">{deg}</span>
                 </div>
               );
             })}
           </div>
 
-          <div className="flex justify-between items-center text-[10px] font-mono text-slate-400">
+          <div className="flex justify-between items-center text-[10px] font-mono text-[#B4B4D6]">
             <span>Link Degree (k)</span>
             <span>Frequency Count</span>
           </div>
 
           {/* Network Metrics Snapshot */}
-          <div className="border-t border-slate-900 pt-2.5 mt-2 flex flex-col gap-1.5 text-xs">
+          <div className="border-t border-[#7676AB]/30 pt-2.5 mt-2 flex flex-col gap-1.5 text-xs">
             <div className="flex justify-between items-center text-[11px] font-mono">
-              <span className="text-slate-400">Hub Degree Dominance:</span>
+              <span className="text-[#B4B4D6]">Hub Degree Dominance:</span>
               <span className="font-bold text-rose-400">{Math.round((maxDegreeFound / Math.max(1, edges.length)) * 100)}% of edges</span>
             </div>
             <div className="flex justify-between items-center text-[11px] font-mono">
-              <span className="text-slate-400">Attachment Exponent:</span>
-              <span className="font-bold text-indigo-400">α = {alpha}</span>
+              <span className="text-[#B4B4D6]">Attachment Exponent:</span>
+              <span className="font-bold text-[#F5B544]">α = {alpha}</span>
             </div>
           </div>
         </div>
@@ -487,7 +487,7 @@ export default function PreferentialAttachmentVisualizer({ state, activeStep, co
           {alpha > 1.2 ? <ShieldAlert className="h-4 w-4" /> : <Share2 className="h-4 w-4" />}
         </div>
         <div>
-          <span className="font-mono text-[9px] text-slate-400 uppercase block font-semibold">
+          <span className="font-mono text-[9px] text-[#B4B4D6] uppercase block font-semibold">
             NETWORK TOPOLOGY REGIME DIAGNOSTIC
           </span>
           <p className="leading-relaxed mt-0.5 font-normal">
